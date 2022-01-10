@@ -1,0 +1,17 @@
+baseURL = 'https://ryokbys.github.io/'
+languageCode = 'en-us'
+title = 'R.K.S. website'
+theme = 'Hyde'
+hasCJKLanguage = true
+canonifyurls = true
+
+[Menus]
+  main = [
+      {Name = "Github", URL = "https://github.com/ryokbys/"},
+      {Name = "Twitter", URL = "https://twitter.com/ryokbys"}
+      {Name = "LinkedIn", URL = "https://www.linkedin.com/in/ryokobayashi/"}
+  ]
+
+[params]
+  description = "Live as if you were to die tomorrow, learn as if you were to live forever..."
+  themeColor = "theme-base-08"
