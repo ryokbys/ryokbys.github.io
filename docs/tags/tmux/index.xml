@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> tmux on R.K.S. website</title>
+    <link>https://ryokbys.github.io/tags/tmux/</link>
+    <description>Recent content in  tmux on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Jul 2017 14:19:06 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/tags/tmux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DISPLAY environment variable in tmux</title>
+      <link>https://ryokbys.github.io/2017/07/display-environment-variable-in-tmux/</link>
+      <pubDate>Wed, 05 Jul 2017 14:19:06 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/07/display-environment-variable-in-tmux/</guid>
+      <description>tmux is a great command when using remote servers for work. Mainly because once I turn on tmux on the remote server, I can recover the session whenever I reconnect the server again. This feature is greater than it sounds. If you have not tried tmux yet, and you often work on the remote server, you definitely should use tmux.
+But when I try to use gnuplot or something that needs X11 forwarding through SSH, sometimes you need to change DISPLAY environment variable in tmux session.</description>
+    </item>
+    
+    <item>
+      <title>Display glitches when using tmux</title>
+      <link>https://ryokbys.github.io/2017/03/display-glitches-when-using-tmux/</link>
+      <pubDate>Thu, 02 Mar 2017 19:13:28 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/03/display-glitches-when-using-tmux/</guid>
+      <description>When I was using tmux on a remote server in Terminal.app and tried to type something in addition to existing text, sometimes display went wrong not shifting the existing text rather overriding the text.
+This seems a problem of setting of TERM environment variable of the shell used. So I changed the TERM variable from xterm-color to xterm-256color and the problem was fixed.</description>
+    </item>
+    
+  </channel>
+</rss>

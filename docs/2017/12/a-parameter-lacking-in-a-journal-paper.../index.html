@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>A parameter lacking in a journal paper... &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>A parameter lacking in a journal paper...</h1>
+  <time datetime=2017-12-27T22:19:29&#43;0900 class="post-date">Wed, Dec 27, 2017</time>
+  <p>There is an erratum in the JAP journal paper (Ref.[1]) by Bonny et al about tungsten-rhenium EAM potential.
+The parameters for $V_\mathrm{WRe}$ listed in the paper, cubic spline with 5 knots, were not sufficient and
+the following 6th knot should be added.</p>
+<pre tabindex="0"><code>r_6 = 4.2
+a_6 = -0.25133241
+</code></pre><p>I extracted these numbers by numerical derivative of raw data provided in Ref.[2], so the precision of the data may not be so high.</p>
+<ol>
+<li>G. Bonny, A. Bakaev, D. Terentyev, and Y.A. Mastrikov, J. Appl. Phys. 121, 165107 (2017).</li>
+<li><a href="https://www.ctcms.nist.gov/potentials/W-Re.html">https://www.ctcms.nist.gov/potentials/W-Re.html</a></li>
+</ol>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

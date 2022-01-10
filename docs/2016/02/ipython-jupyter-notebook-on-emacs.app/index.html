@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Use ipython/jupyter notebook on Emacs.app &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Use ipython/jupyter notebook on Emacs.app</h1>
+  <time datetime=2016-02-27T19:47:42Z class="post-date">Sat, Feb 27, 2016</time>
+  <p>tags: python, emacs, mac</p>
+<h1 id="setup">Setup</h1>
+<p>To use ipython/jupyter notebook in Emacs, you need <code>elpy</code> and <code>ein</code>
+(emacs ipython notebook) packages. So write those dependencies in
+<code>.emacs.d/Cask</code> file (here I assume that the package management system
+<code>cask</code> is installed), :</p>
+<pre><code>(depends-on “ein&quot;)
+(depends-on “elpy”)
+</code></pre>
+<h1 id="usage">Usage</h1>
+<h2 id="boot-notebook-server">Boot notebook server</h2>
+<p>At first, ipython/jupyter notebook server should be booted before using
+<code>ein</code> in Emacs. Otherwise Emacs cannot connect to the notebook server
+and it just does not work.</p>
+<h2 id="call-ein-in-emacs">Call <em>ein</em> in Emacs</h2>
+<p><code>ein</code> can be booted with <code>M-x ein:notebooklist-open</code> command. You can
+open existing notebook or create new one.</p>
+<p>::: note
+::: title
+Note
+:::</p>
+<p>If you get an error message like <code>Invalid slot ...</code> when you try to
+start <em>ein</em>, it may be caused by <em>eieio</em> package additionally installed
+with some packages, not included in Emacs.app itself. You may have to
+remove it from <code>.emacs.d</code> directory.
+:::</p>
+<p>As you can see the following picture, graphs and pictures can also be
+shown in Emacs.app.</p>
+<p><img src="https://farm2.staticflickr.com/1482/25313177185_35009373ae_o.png" alt="">{width=&ldquo;400px&rdquo;}</p>
+<ul>
+<li>Markdown text cannot be shown as fancy decorated look.</li>
+<li>emacs in Terminal.app does not show graphs either.</li>
+</ul>
+<h2 id="keybindings">Keybindings</h2>
+<p>Keybindings are different from using the notebook on browsers.</p>
+<dl>
+<dt><code>C-c C-c</code></dt>
+<dd>
+<p>Execute the current cell</p>
+</dd>
+<dt><code>C-c C-b</code></dt>
+<dd>
+<p>Insert a cell below</p>
+</dd>
+<dt><code>C-c C-a</code></dt>
+<dd>
+<p>Insert a cell above</p>
+</dd>
+<dt><code>C-c C-k</code></dt>
+<dd>
+<p>Kill the current cell.</p>
+</dd>
+<dt><code>C-c C-n</code></dt>
+<dd>
+<p>Move to the next cell</p>
+</dd>
+<dt><code>C-c C-p</code></dt>
+<dd>
+<p>Move to the previous cell</p>
+</dd>
+<dt><code>C-c C-s</code></dt>
+<dd>
+<p>Divide/separate the current cell into two.</p>
+</dd>
+<dt><code>C-c C-m</code></dt>
+<dd>
+<p>Merge two cells into one.</p>
+</dd>
+<dt><code>C-c C-t</code></dt>
+<dd>
+<p>Change cell type (ipython, markdown, raw)</p>
+</dd>
+</dl>
+<h1 id="references">References</h1>
+<ul>
+<li><a href="https://realpython.com/blog/python/emacs-the-best-python-editor/">Emacs - the best python
+editor?</a></li>
+<li><a href="http://nullbyte.hatenablog.com/entry/2015/06/25/024311">Emacsでipython
+notebookを使う</a>
+(Japanese)</li>
+</ul>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

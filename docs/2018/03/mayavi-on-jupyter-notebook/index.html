@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mayavi on jupyter notebook &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Mayavi on jupyter notebook</h1>
+  <time datetime=2018-03-01T11:53:51&#43;0900 class="post-date">Thu, Mar 1, 2018</time>
+  <p><strong>Mayavi</strong> は3Dでのデータ可視化を支援するライブラリ．
+これを Jupyter notebook で使えるようにするまでのメモ（macOS High Sierra）．</p>
+<h2 id="references">References</h2>
+<ol>
+<li><a href="https://qiita.com/tenfu2tea/items/088b750f0204debe4f7f">Jupyter で 3D 表示 - Mayavi ライブラリ</a></li>
+<li><a href="http://docs.enthought.com/mayavi/mayavi/tips.html#using-mayavi-in-jupyter-notebooks">Tips and Tricks in Mayavi 4.5.0</a></li>
+<li><a href="https://github.com/enthought/mayavi">Mayavi on GitHub</a></li>
+</ol>
+<h2 id="mayavi-のインストール">Mayavi のインストール</h2>
+<p>Mayavi自体は以下のようにして <code>pip</code> でインストールすることができる．</p>
+<pre tabindex="0"><code>$ pip install mayavi
+</code></pre><p>しかし，この Mayavi を jupyter notebook で動作させるためには，Qt という表示用ライブラリを Python がら利用するための <strong>PyQt</strong> なるものが必要みたいで，それのインストールは pip からは行うことができなかった．
+そのため，Homebrew を用いて，</p>
+<pre tabindex="0"><code>$ brew install qt
+$ brew install pyqt
+</code></pre><p>として，Qt および PyQt をインストールした．
+インストール後は，</p>
+<pre tabindex="0"><code>$ export PYTHONPATH=$PYTHONPATH:/usr/local/Cellar/pyqt
+</code></pre><p>とするか，<code>~/.bashrc</code> もしくは <code>~/.bash_profile</code> に上記を書きこんでそれを反映させるかして，python が PyQt を使えるようにする．</p>
+<p>Ref. [2] に従い，</p>
+<pre tabindex="0"><code>$ jupyter nbextension install --py mayavi --user
+</code></pre><p>というおまじないもやっておく．</p>
+<h2 id="github版mayaviのインストール">Github版Mayaviのインストール</h2>
+<p>pip からは安定版(?)が得られるが，どうもpip版は最新の VTK (8.1.0) との相性が良くないらしく，エラーで何も表示されないことがあったので，それが解消されているGithub版をインストールする方法を載せておく．</p>
+<ol>
+<li>
+<p>GithubからZIPファイルをダウンロードしてきて展開．</p>
+</li>
+<li>
+<p><code>mayavi-master/</code>内ディレクトリにて，</p>
+<pre><code> :::bash
+ $ python setup.py build
+ $ python setup.py install
+ or
+ $ python setup.py install --prefix=~/local/
+</code></pre>
+<p><code>--prefix</code>オプションを指定した場合はそれ以下に <code>mayavi</code> と <code>tvtk</code> がインストールされる．
+<code>build</code> を行わないと TVTK が正常に動作しないので注意．</p>
+</li>
+</ol>
+<h2 id="jupyter-notebook-での使用">Jupyter notebook での使用</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> mayavi <span style="color:#f92672">import</span> mlab
+mlab<span style="color:#f92672">.</span>init_notebook()
+</code></pre></div><p>とすることで，notebook 上で Mayavi が使えるようになり，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s <span style="color:#f92672">=</span> mlab<span style="color:#f92672">.</span>test_plot3d()
+s
+</code></pre></div><p>で，3D表示がされれば成功．</p>
+<h2 id="issues">Issues</h2>
+<ol>
+<li>
+<p>jupyter notebook では成功したが，jupyter lab では表示されなかった．</p>
+</li>
+<li>
+<p><code>init_notebook()</code> のところで，最初，</p>
+<pre><code> An exception has occurred, use %tb to see the full traceback.
+
+ SystemExit: This program needs access to the screen. Please run with a
+ Framework build of python, and only when you are logged in
+ on the main display of your Mac.
+</code></pre>
+<p>のようなエラー出力が表示されるが，もう一度実行すると，</p>
+<pre><code> Notebook initialized with x3d backend.
+</code></pre>
+<p>のようになり，問題なくなる&hellip;</p>
+</li>
+</ol>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DISPLAY environment variable in tmux &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>DISPLAY environment variable in tmux</h1>
+  <time datetime=2017-07-05T14:19:06&#43;0900 class="post-date">Wed, Jul 5, 2017</time>
+  <p><code>tmux</code> is a great command when using remote servers for work. Mainly because once I turn on <code>tmux</code> on the remote server, I can recover the session whenever I reconnect the server again. This feature is greater than it sounds. If you have not tried <code>tmux</code> yet, and you often work on the remote server, you definitely should use <code>tmux</code>.</p>
+<p>But when I try to use <code>gnuplot</code> or something that needs X11 forwarding through SSH, sometimes you need to change <code>DISPLAY</code> environment variable in <code>tmux</code> session. Because the <code>DISPLAY</code> variable has been set when you turned on the <code>tmux</code> session first, and the variable could change when you reconnect to the server, but the variable in the <code>tmux</code> session is still the one set before. So when you try to run some X11 session in the <code>tmux</code> session, it will fail because of the <code>DISPLAY</code> variable of the SSH session and <code>tmux</code> session are different.</p>
+<p>To solve the problem, the <code>DISPLAY</code> environment variable of SSH session should be saved every time you connect with SSH like, and you can set the <code>DISPLAY</code> variable using the saved value. You can achieve this by writing the following line in <code>~/.bashrc</code>,</p>
+<pre tabindex="0"><code>if [ -z &quot;$TMUX&quot; ]; then
+    echo $DISPLAY &gt; ~/.display.txt
+fi
+
+function set_display(){
+    export DISPLAY=$(cat ~/.display.txt)
+}
+</code></pre><p>This will save the <code>DISPLAY</code> variable to <code>~/.display.txt</code> when you connect to the remote server which is not the <code>tmux</code> session.
+Then you can set the <code>DISPLAY</code> variable in the <code>tmux</code> session by doing</p>
+<pre tabindex="0"><code>$ set_display
+</code></pre><p>It still requires you to run the one line command and not completely automatic. If you really want to make it fully automatic, I think currently it is only possible by resetting the <code>DISPLAY</code> variable everywhen you run any command.</p>
+<h3 id="references">References</h3>
+<ul>
+<li><a href="http://alexteichman.com/octo/blog/2014/01/01/x11-forwarding-and-terminal-multiplexers/">Unbounded Above</a></li>
+</ul>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

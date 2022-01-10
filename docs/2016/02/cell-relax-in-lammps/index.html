@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cell relax in LAMMPS &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Cell relax in LAMMPS</h1>
+  <time datetime=2016-02-10T10:33:01Z class="post-date">Wed, Feb 10, 2016</time>
+  <p>tags: research, lammps
+These days I am learning how to use LAMMPS.</p>
+<p>To allow the simulation cell to relax, you need to specify <code>box/relax</code>
+with <code>fix</code> command as, :</p>
+<pre><code>fix 1 all box/relax tri 0.0
+</code></pre>
+<p>Here it mentions that the cell is triclinic, which meams x, y, z, yz,
+zx, and xy are controlled independently. And final value <code>0.0</code> means
+pressure to be achieved.</p>
+<p>Then you minimize the system as, :</p>
+<pre><code>minimize    1.0e-7 0.001 1000 10000
+</code></pre>
+<p>Here the values indicate etol, ftol, maxiter, and maxeval respectively.</p>
+<p>For example, if you use MEAM potential with <code>meam.library</code> and
+<code>meam.coeff</code> files. The LAMMPS input file can be as follows, :</p>
+<pre><code>units metal 
+boundary p p p 
+atom_modify sort 0 0.0 
+
+read_data data_lammps
+
+### interactions 
+pair_style meam 
+pair_coeff * * meam.library Al Mg Si meam.coeff Al Mg Si 
+
+### run
+fix 1 all box/relax tri 0.0
+dump dump_all all custom 1 trj_lammps* id type x y z vx vy vz fx fy fz
+thermo_style custom step temp press cpu pxx pyy pzz pxy pxz pyz ke pe etotal vol lx ly lz atoms
+thermo_modify flush yes
+thermo 1
+minimize    1.0e-7 0.001 1000 10000
+</code></pre>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

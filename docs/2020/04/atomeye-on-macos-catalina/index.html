@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AtomEye on macOS Catalina &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>AtomEye on macOS Catalina</h1>
+  <time datetime=2020-04-14T17:18:08&#43;0900 class="post-date">Tue, Apr 14, 2020</time>
+  <h2 id="atomeye">AtomEye</h2>
+<p>AtomEyeは原子・分子シミュレーションの構造を可視化するツール．コマンドラインに特化しているようで使い勝手が良いソフトウェアではないと思うが，動作も軽いし，原子のグラフィックスがきれいなので以前は結構よく使っていた．</p>
+<p>最近少し事情があってAtomEyeを使わなければいけない状況になったので，macOS Catalinaで使おうとしたら困ったのでメモを残しておく．</p>
+<p>AtomEyeのHP[1]でmac用バイナリが提供されているけど，どうも指定されているライブラリの位置がCatalineの中のライブラリの場所と異なっていたのが問題だった．
+AtomEyeはコマンド名は<code>A</code>なことに注意．</p>
+<p>まず，バイナリファイル内でリンクしている動的ライブラリへのリンクを調べる．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ otool -L ~/bin/A
+/Users/kobayashi/bin/A:
+    /System/Library/Frameworks/vecLib.framework/Versions/A/vecLib <span style="color:#f92672">(</span>compatibility version 1.0.0, current version 325.4.0<span style="color:#f92672">)</span>
+    /usr/lib/libSystem.B.dylib <span style="color:#f92672">(</span>compatibility version 1.0.0, current version 159.1.0<span style="color:#f92672">)</span>
+    /usr/X11/lib/libXpm.4.dylib <span style="color:#f92672">(</span>compatibility version 16.0.0, current version 16.0.0<span style="color:#f92672">)</span>
+    /usr/X11/lib/libXext.6.dylib <span style="color:#f92672">(</span>compatibility version 11.0.0, current version 11.0.0<span style="color:#f92672">)</span>
+    /usr/X11/lib/libX11.6.dylib <span style="color:#f92672">(</span>compatibility version 10.0.0, current version 10.0.0<span style="color:#f92672">)</span>
+</code></pre></div><p>しかし，Calatinaでは（もしくは自分の環境では）<code>/usr/X11</code>は空ディレクトリへのsymlinkで，<code>X11</code>は<code>/opt/X11</code>に存在していた．なので，上記の動的ライブラリのリンクを以下のように変更した．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ install_name_tool -change /usr/X11/lib/libXpm.4.dylib /opt/X11/lib/libXpm.4.dylib ~/bin/A
+$ install_name_tool -change /usr/X11/lib/libXext.6.dylib /opt/X11/lib/libXext.6.dylib ~/bin/A
+$ install_name_tool -change /usr/X11/lib/libX11.6.dylib /opt/X11/lib/libX11.6.dylib ~/bin/A
+</code></pre></div><p>他に，<code>/usr/X11</code>を<code>/opt/X11</code>へのsymlinkに変更するという手段も考えられるが，Catalinaではそれはできなかった．以前のmacOSでは，SIPなるものを無効にするとできたようだが，少なくとも自分の環境ではそれはできなかった．
+ちなみに，ソースコードも取ってくることはできるらしいので，それをコンパイルすることは可能とは思う[2]．</p>
+<h2 id="reference">Reference</h2>
+<ol>
+<li><a href="http://li.mit.edu/Archive/Graphics/A/">AtomEye</a></li>
+<li><a href="https://qiita.com/tkmtSo/items/93656c75b60c6728f9eb">Atomeyeをビルドする @Qiita</a></li>
+</ol>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

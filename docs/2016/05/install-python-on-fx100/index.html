@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Install python on FX100 in nagoya-u &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Install python on FX100 in nagoya-u</h1>
+  <time datetime=2016-05-17T09:25:57Z class="post-date">Tue, May 17, 2016</time>
+  <p>tags: linux, research
+名大スパコン <strong>FX100</strong>
+で作業することが多いが，作業に必要なツールがデフォルトでは入っていないので自分でpythonをインストールすることから始めた．</p>
+<p>普通にpythonをインストールすると，後々numpyをインストールしようとしたときにhashlibがないことが問題になるようなので，解決する必要がある．</p>
+<p>OSに入っているopensslに問題があるらしいので，opensslを取ってきてインストールしようとすると，
+OSに入っているperlに問題があるらしいので，perl-5.22.2を取ってきてインストール．</p>
+<p>ただし，以下のインストールはログインノードでのpythonおよびnumpyの使用を仮定している．
+計算ノードでの実行を考える場合には，マシンが異なるので，別途コンパイルしなければならない．
+おそらく，これよりもより多くの問題があるだろうし，ネット情報が少ないだろうから大変になると予想される．</p>
+<h1 id="install-perl-5222">Install perl-5.22.2</h1>
+<p>どうもopensslのインストールにperlのバージョンの問題があるらしかったから，最新版perlをインストール．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ./Configure -des -Dprefix<span style="color:#f92672">=</span>$HOME/local
+$ make -j8 2&gt;&amp;<span style="color:#ae81ff">1</span> | tee log.make
+$ make install
+</code></pre></div><h1 id="install-openssl">Install openssl</h1>
+<p><a href="https://www.openssl.org">OpenSSL Homepage</a>
+からソースパッケージをダウンロードしてきて，展開し，以下のようにしてコンパイルおよびインストールする．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ./config shared --openssldir<span style="color:#f92672">=</span>$HOME/local/openssl --prefix<span style="color:#f92672">=</span>$HOME/local/openssl
+$ make depend
+$ make -j12 2&gt;&amp;<span style="color:#ae81ff">1</span> | tee log.make
+$ make install
+</code></pre></div><p>最新のバージョンだと何故かconfigureの結果がだいぶ異なっているらしく，configure後に
+<code>make depend</code> を要求されない．
+しかし，最新バージョンでは後々のpythonコンパイルでいろいろとエラーが出てコンパイルできないので，
+<code>openssl-1.0.1t.tar.gz</code> をインストールした．</p>
+<h1 id="install-python-2711">Install python-2.7.11</h1>
+<p>上のopensslのインストールが成功すれば，下記のようにしてインストールできる．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ LDFLAGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-L</span>$HOME<span style="color:#e6db74">/local/openssl/lib&#34;</span> CFLAGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-I</span>$HOME<span style="color:#e6db74">/local/openssl/include&#34;</span> ./configure --prefix<span style="color:#f92672">=</span>$HOME/local
+$ export LD_LIBRARY_PATH<span style="color:#f92672">=</span>$HOME/local/openssl/lib:$LD_LIBRARY_PATH
+$ make -j12 2&gt;&amp;<span style="color:#ae81ff">1</span> | tee log.make
+$ make install
+</code></pre></div><p>makeの前に， <code>LD_LIBRARY_PATH</code>
+にopensslの共有ライブラリの場所を指定しておかないと， <code>_hashlib</code> と
+<code>_ssl</code> のビルドに失敗する． この際， <code>LD_LIBRARY_PATH</code>
+の先頭にopensslの共有ライブラリの場所がないといけないのかしらないが，makeの直前に直接exportしないと
+<code>libssl.so.1.0.0</code> や <code>libcrypto.so.1.0.0</code> などのリンクに失敗するようだ．</p>
+<h1 id="install-numpy-181">Install numpy-1.8.1</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python setup.py build --fcompiler<span style="color:#f92672">=</span>gfortran
+$ python setup.py install
+</code></pre></div><p>とすることでインストールされる． 以下のようにして確認すべし．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python -c <span style="color:#e6db74">&#34;import numpy; print numpy.__version__&#34;</span>
+</code></pre></div><h1 id="install-scipy-0600">Install scipy-0.60.0</h1>
+<p>こちらはnumpyとは異なり， <code>libblas</code> や <code>liblapack</code>
+が存在しないとインストールできないっぽい．
+BLASやLAPACKはどこかの説明を読んでインストールする． <code>~/local/lib/</code>
+内にそれらがインストールされたとしたら，そこへのPATHを <code>LD_LIBRARY_PATH</code>
+に追加しておく．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python setup.py build --fcompiler<span style="color:#f92672">=</span>gfortran
+$ python setup.py install
+</code></pre></div><p>以下のようにして確認すべし．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python -c <span style="color:#e6db74">&#34;import scipy; print scipy.__version__&#34;</span>
+</code></pre></div><h1 id="install-docopt">Install docopt</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cp docopt ~/local/lib/python-2.7/site-packages/
+</code></pre></div><h1 id="install-ase">Install ase</h1>
+<p>パッケージをダウンロードしてきて，FX100にコピーし，そのディレクトリへのパスを以下のように，
+<code>~/.bashrc.local</code> にいくつか設定すれば良い．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export PYTHONPATH<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>PYTHONPATH<span style="color:#e6db74">}</span>:~/src/ase
+export PATH<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>PATH<span style="color:#e6db74">}</span>:~/src/ase/tools
+export LAMMPS_COMMAND<span style="color:#f92672">=</span>/usr/local/bin/lammps
+export VASP_PP_PATH<span style="color:#f92672">=</span>~/local/vasp/
+</code></pre></div>
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

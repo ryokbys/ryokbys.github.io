@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bug in vasprun.xml? &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Bug in vasprun.xml?</h1>
+  <time datetime=2017-02-15T18:25:33&#43;0900 class="post-date">Wed, Feb 15, 2017</time>
+  <p>After running a VASP simulation with Li, La, Zr, and O, I found a bug in <code>vasprun.xml</code> in which <em>Zr</em> is written as <em>r</em>.</p>
+<pre tabindex="0"><code>$ grep 'PAW_PBE' vasprun.xml 
+    &lt;rc&gt;&lt;c&gt;  28&lt;/c&gt;&lt;c&gt;Li&lt;/c&gt;&lt;c&gt;      7.01000000&lt;/c&gt;&lt;c&gt;      1.00000000&lt;/c&gt;&lt;c&gt;  PAW_PBE Li 17Jan2003                  &lt;/c&gt;&lt;/rc&gt;
+    &lt;rc&gt;&lt;c&gt;  12&lt;/c&gt;&lt;c&gt;La&lt;/c&gt;&lt;c&gt;    138.90000000&lt;/c&gt;&lt;c&gt;      9.00000000&lt;/c&gt;&lt;c&gt;  PAW_PBE La_s 06Sep2000                &lt;/c&gt;&lt;/rc&gt;
+    &lt;rc&gt;&lt;c&gt;   8&lt;/c&gt;&lt;c&gt;r &lt;/c&gt;&lt;c&gt;     91.22400000&lt;/c&gt;&lt;c&gt;     12.00000000&lt;/c&gt;&lt;c&gt;  PAW_PBE Zr_sv 04Jan2005               &lt;/c&gt;&lt;/rc&gt;
+    &lt;rc&gt;&lt;c&gt;  48&lt;/c&gt;&lt;c&gt;O &lt;/c&gt;&lt;c&gt;     16.00000000&lt;/c&gt;&lt;c&gt;      6.00000000&lt;/c&gt;&lt;c&gt;  PAW_PBE O_s 07Sep2000                 &lt;/c&gt;&lt;/rc&gt;
+</code></pre><p>So reading the <code>vasprun.xml</code> file with using <em>ASE</em> module or something like that does not work.</p>
+<p>My current solution is just to correct using <code>sed</code> command.</p>
+<pre tabindex="0"><code>$ sed -i &quot;&quot; -e 's|&lt;c&gt;r &lt;/c&gt;|&lt;c&gt;Zr&lt;/c&gt;|' vasprun.xml
+</code></pre><p>But this is kind of an annoying bug when one does some automatic parsing of <code>vasprun.xml</code>&hellip;</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

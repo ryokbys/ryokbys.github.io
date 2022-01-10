@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Inheritance in python &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Inheritance in python</h1>
+  <time datetime=2016-01-08T18:12:45Z class="post-date">Fri, Jan 8, 2016</time>
+  <p>tags: python
+Pythonでクラスの継承の仕方を練習したのでメモしておく．</p>
+<p>以下のようにして， <code>ClassA</code> と <code>ClassB</code> を定義する．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClassA</span>(object):
+    <span style="color:#66d9ef">def</span> __init__(self,x):
+        self<span style="color:#f92672">.</span>x<span style="color:#f92672">=</span> x
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">multi</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>x <span style="color:#f92672">*</span>self<span style="color:#f92672">.</span>x
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClassB</span>(ClassA):
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">multi</span>(self):
+      <span style="color:#66d9ef">return</span> super(ClassB,self)<span style="color:#f92672">.</span>multi() <span style="color:#f92672">*</span>self<span style="color:#f92672">.</span>x
+</code></pre></div><p>これを実行すると，以下のように狙い通りクラスの継承およびオーバーライドができていることが分かる．
+:</p>
+<pre><code>&gt;&gt;&gt; a= ClassA(10)
+&gt;&gt;&gt; print a.x
+10
+&gt;&gt;&gt; print a.multi()
+100
+&gt;&gt;&gt; b= ClassB(5)
+&gt;&gt;&gt; print b.x
+5
+&gt;&gt;&gt; print b.multi()
+125
+</code></pre>
+<p>注意すべきは，</p>
+<ul>
+<li>上書きされた関数 <code>multi()</code> のみが変更を受けている．</li>
+<li><code>ClassB</code> において変更する必要のない関数は (<code>__init__</code> であっても)
+書く必要はない．勝手に継承される．</li>
+<li>元となる <code>ClassA</code> で <code>object</code> を継承しないと <code>super</code> が使えない．</li>
+<li>python 3 以降では，単に <code>super()</code>
+とすればよいらしいが，2.7とかでは上のように冗長的に書く必要があるらしい．第二引数の
+<code>self</code> はレシーバと呼ばれるらしい．</li>
+</ul>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

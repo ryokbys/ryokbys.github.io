@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Obsidian workflow &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>My Obsidian workflow</h1>
+  <time datetime=2020-08-03T11:39:17&#43;0900 class="post-date">Mon, Aug 3, 2020</time>
+  <p><a href="https://obsidian.md">Obsidian</a>というnote-takingアプリがなかなか良く出来たアプリで，今流行りの<a href="https://zettelkasten.de">Zettelkasten</a>が実装できるというので一ヶ月ほど使っている．</p>
+<p>アプリの紹介は「<a href="https://note.com/takibayashi/n/nd6250964f0a7">第２の脳アプリObsidianを使って日次メモを書く方法</a>」なんかを参照してもらうとして，自分の使い方をメモを兼ねて紹介しておく．
+ちなみに，このやり方は <a href="https://github.com/nickmilo/IMF-v3">nickmiloのIMF-v3</a> を参考にしている．</p>
+<h2 id="ディレクトリ構造">ディレクトリ構造</h2>
+<ul>
+<li>ノートをカテゴリしてディレクトリに分けるのは良くないと言われるのを良く耳にするので，基本的にはノートはディレクトリで分けたりせず，全て（Obsidian vaultの）ルートディレクトリ内に直に保存する．</li>
+<li>画像ファイル，PDFなどの添付ファイルはルートディレクトリに一緒に置くとごちゃつくので<code>00_assets/</code>というディレクトリに保存することにする．</li>
+<li>日々のノートは個別のノートとは少し性格がことなるので，<code>01_daily_notes</code>というディレクトリに保存する．</li>
+</ul>
+<h2 id="日々のノートdaily-notes">日々のノート（Daily notes）</h2>
+<ul>
+<li>日々のメモノートとそれ以外は少し用途というか考え方が異なるので，日々のノートは<code>01_daily_notes</code>という保存し，Obsidianの「Daily notes」plugin機能を使って，<code>YYYY-MM-DD</code>というファイル名で作成することにする．</li>
+<li>Daily notes pluginでは，テンプレートファイルを設定することができるので，<code>01_daily_notes/template</code>という以下のようなファイルを作り，それをテンプレートとする．</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Markdown" data-lang="Markdown">tags: #diary
+
+# Tasks
+<span style="color:#66d9ef">- [ ]</span> something
+
+---
+
+# Notes
+
+</code></pre></div><ul>
+<li>daily notesなのに，タグとしては<code>#diary</code>となっているのはご愛嬌．．．</li>
+<li>最初にdaily noteのTasksに，今日やることをリストアップして，チェックしていくという流れ．</li>
+<li><code># Notes</code>以下にメモを書いていく．一つのノートとして独立するような内容はコピペで独立したノートを作り，リンクする．</li>
+</ul>
+<h2 id="index-and-map-of-contents-moc">Index and Map of Contents (MOC)</h2>
+<p>全てのノートがルートディレクトリ内に一様に保存されているので，何かしらのインデックス・ノートなり各ノートを参照する機構がないと，個々のノートが単独で保存されてしまい，どこからも行き着くことの出来ない「dead note」になってしまう．そのため，<a href="https://github.com/nickmilo/IMF-v3">nickmiloのIMF-v3</a>に従って，indexノートとMOCノートを作る．</p>
+<h3 id="indexノート-000-index">indexノート <code>000 Index</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Markdown" data-lang="Markdown"># 000 Index
+
+<span style="color:#75715e">## Index Map
+</span><span style="color:#75715e"></span>Each index file contains <span style="font-weight:bold">**Map Of Contents (MOC)**</span> information.
+<span style="color:#66d9ef">-</span> 000s -- [[000 Index]]
+<span style="color:#66d9ef">-</span> 010s -- [[010 Personal Life MOC]] 自分・家族・生活に関すること
+<span style="color:#66d9ef">-</span> 030s -- [[030 Computer MOC]] 関連，使い方，ソフトウェア
+<span style="color:#66d9ef">-</span> 040s -- [[040 Finance MOC]] 資産運用，投資など
+<span style="color:#66d9ef">-</span> 050s -- [[050 Productivity MOC]] - note-taking, project managements, productivity
+<span style="color:#66d9ef">-</span> 090s -- [[090 Learning MOC]] 学習のことなど
+<span style="color:#66d9ef">-</span> 00_assets/ -- テキスト以外のファイル格納庫
+<span style="color:#66d9ef">-</span> 01_daily_notes/`YYYY-MM-DD.md` -- 日記
+<span style="color:#66d9ef">-</span> 99_archive/ -- もう更新されないノート格納庫
+
+<span style="color:#75715e">## Tags
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">-</span> 000s -- #IMF #MOC #Zettelkasten 
+<span style="color:#66d9ef">-</span> 010s -- 
+<span style="color:#66d9ef">-</span> 030s -- #computer #software #commands #スパコン 
+<span style="color:#66d9ef">-</span> 040s -- #株 #資産運用 
+<span style="color:#66d9ef">-</span> 050s -- #obsidian #note-taking #diary #productivity #GTD
+<span style="color:#66d9ef">-</span> 090s -- #learning
+
+<span style="color:#75715e">## Rules
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">-</span> 全てのノートはルートディレクトリに保存．ディレクトリによるカテゴリ分けはしない．タグとリンクでつなげる．
+<span style="color:#66d9ef">-</span> ノートは何かのノートからwiki風リンクで派生させる形で作成する．
+<span style="color:#66d9ef">-</span> 上記インデックスファイルからMOC noteにリンクして，MOCからさらにリンクしていく
+<span style="color:#66d9ef">-</span> 会議・ミーティングは`MTG YYMMDD 会議名.md`というノートに．
+</code></pre></div><ul>
+<li><code>000 Index</code>というファイル名にすることで，ソートすると一番上に表示される．</li>
+<li>ここで<code>[[...]]</code>のような記述は，wiki風のリンクでObsidianの中でリンクとして管理されて，backlinkなんかもつくので便利．</li>
+<li>各カテゴリーのMOCに関する説明と，そのMOCファイルへのリンク，および関連するタグなどを記載しておく．</li>
+<li>Obsidianノート管理のルールが書いてある（これは別ノートに書いても良いかも）</li>
+</ul>
+<h3 id="mocノート">MOCノート</h3>
+<p>各カテゴリーやトピックに関連するノートへのリンクをまとめておくノート．</p>
+<p>例えば，<code>000 Index</code>ノートにある<code>[[050 Productivity MOC]]</code>からは下記のようなノートに飛ぶようになっている．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Markdown" data-lang="Markdown"># 050 Productivity MOC
+#note-taking #obsidian #MOC #IMF #Zettelkasten #productivity 
+
+ノートのとり方，情報のまとめ方，情報の引き出し方など．文章の書き方なども含めても良い．
+
+---
+
+<span style="color:#75715e">## Notes
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">-</span> [[Article_Khan_Zettelkasten]] -- long blog post by Al Kahn
+<span style="color:#66d9ef">-</span> [[Flow creation]] -- from nickmilo&#39;s IMF v3
+<span style="color:#66d9ef">-</span> [[How To Take Smart Notes]] -- by TIAGO FORTE
+<span style="color:#66d9ef">-</span> [[Marp CLI]] -- markdown-to-slide tool made by some Japanese guy
+
+<span style="color:#75715e">## Writing my blog
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">-</span> [[pelican_blog_workflow]]
+
+--- 
+<span style="color:#75715e">## Useful notes in Obsidian
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">-</span> [[LaTeX preambles]] -- ここのpreambleをコピペしてノートの最初に書いておくとLaTeXを書くのが便利になる
+</code></pre></div><h3 id="hotkeys">Hotkeys</h3>
+<p>Obsidianではキーボードショートカットをかなり自由に設定できるので，以下のような自分仕様の変更を加えている．</p>
+<ul>
+<li><code>Cmd + T</code> &ndash; 今日のDaily noteを開く</li>
+<li><code>Cmd + 1</code> &ndash; 左サイドバーの表示／非表示</li>
+<li><code>Cmd + 2</code> &ndash; 右サイドバーの表示／非表示</li>
+</ul>
+<p>他に，特に変更していないが良く使うものをあげておく．</p>
+<ul>
+<li><code>Cmd + O</code> &ndash; ノートをタイトルで検索して開く．最近開いたノートも表示される．</li>
+<li><code>Cmd + Shift + F</code> &ndash; 全ノートの文字列検索．</li>
+</ul>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

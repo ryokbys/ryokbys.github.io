@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> research on R.K.S. website</title>
+    <link>https://ryokbys.github.io/tags/research/</link>
+    <description>Recent content in  research on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Oct 2020 10:54:42 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/tags/research/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>fp.py on ISSP Ohtaka</title>
+      <link>https://ryokbys.github.io/2020/10/fp.py-on-issp-ohtaka/</link>
+      <pubDate>Sun, 18 Oct 2020 10:54:42 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/10/fp.py-on-issp-ohtaka/</guid>
+      <description>東大物性研のスパコン[1]のシステムBというのが使えるようになったので，そこで自分のプログラムの動作確認をした．古典力場構築プログラムfp.</description>
+    </item>
+    
+    <item>
+      <title>Yield strength of high entropy alloys</title>
+      <link>https://ryokbys.github.io/2020/05/yield-strength-of-high-entropy-alloys/</link>
+      <pubDate>Thu, 28 May 2020 23:05:07 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/05/yield-strength-of-high-entropy-alloys/</guid>
+      <description>論文覚書． B. Yin and W. A. Curtin, “Origin of high strength in the CoCrFeNiPd high-entropy alloy,” Mater. Res. Lett., vol. 8, no. 6, pp. 209–215, 2020. B. Yin, S. Yoshida, N. Tsuji, and W. A. Curtin, “Yield strength and misfit volumes of</description>
+    </item>
+    
+    <item>
+      <title>AtomEye on macOS Catalina</title>
+      <link>https://ryokbys.github.io/2020/04/atomeye-on-macos-catalina/</link>
+      <pubDate>Tue, 14 Apr 2020 17:18:08 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/04/atomeye-on-macos-catalina/</guid>
+      <description>AtomEye AtomEyeは原子・分子シミュレーションの構造を可視化するツール．コマンドラインに特化しているようで使い勝手が良いソフトウェアではないと</description>
+    </item>
+    
+    <item>
+      <title>2018年初頭における作業環境</title>
+      <link>https://ryokbys.github.io/2018/02/environment-on-macos-as-of-2018/</link>
+      <pubDate>Mon, 19 Feb 2018 22:21:02 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2018/02/environment-on-macos-as-of-2018/</guid>
+      <description>昨年も，その時点における快適な作業環境をメモしたので，2018年版もメモしておく． Emacs 最近は Emacs を使う人も減っているみたいで，Vim に限らず，S</description>
+    </item>
+    
+    <item>
+      <title>A parameter lacking in a journal paper...</title>
+      <link>https://ryokbys.github.io/2017/12/a-parameter-lacking-in-a-journal-paper.../</link>
+      <pubDate>Wed, 27 Dec 2017 22:19:29 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/12/a-parameter-lacking-in-a-journal-paper.../</guid>
+      <description>There is an erratum in the JAP journal paper (Ref.[1]) by Bonny et al about tungsten-rhenium EAM potential. The parameters for $V_\mathrm{WRe}$ listed in the paper, cubic spline with 5 knots, were not sufficient and the following 6th knot should be added.
+r_6 = 4.2 a_6 = -0.25133241 I extracted these numbers by numerical derivative of raw data provided in Ref.[2], so the precision of the data may not be so high.</description>
+    </item>
+    
+    <item>
+      <title>2017年初頭における作業環境</title>
+      <link>https://ryokbys.github.io/2017/03/work-environment-feb.-2017/</link>
+      <pubDate>Fri, 03 Mar 2017 22:36:38 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/03/work-environment-feb.-2017/</guid>
+      <description>最近，近年で最もコンピュータ上での作業環境が変化したので，僕の作業環境を紹介してみる． 前提として，自分の仕事上，どのような作業が多いかを挙げ</description>
+    </item>
+    
+    <item>
+      <title>Show only non-FCC atoms in Ovito</title>
+      <link>https://ryokbys.github.io/2017/03/show-only-non-fcc-atoms-in-ovito/</link>
+      <pubDate>Thu, 02 Mar 2017 11:38:28 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/03/show-only-non-fcc-atoms-in-ovito/</guid>
+      <description>In Ovito, there are following modifications to the view,
+ Common neighbor analysis (CNA) Expression select Delete selected particles  So you can use CNA to identify which atoms are FCC-like and which are not. Then you can select FCC atoms using Expression select by adding the following expression into the Boolean expression: text box,
+StructureType == 1 And by adding Delete selected particles modification, you can see only non-FCC atoms in the view.</description>
+    </item>
+    
+    <item>
+      <title>Bug in vasprun.xml?</title>
+      <link>https://ryokbys.github.io/2017/02/bug-in-vasprun.xml/</link>
+      <pubDate>Wed, 15 Feb 2017 18:25:33 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/02/bug-in-vasprun.xml/</guid>
+      <description>After running a VASP simulation with Li, La, Zr, and O, I found a bug in vasprun.xml in which Zr is written as r.
+$ grep &#39;PAW_PBE&#39; vasprun.xml &amp;lt;rc&amp;gt;&amp;lt;c&amp;gt; 28&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt;Li&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 7.01000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 1.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; PAW_PBE Li 17Jan2003 &amp;lt;/c&amp;gt;&amp;lt;/rc&amp;gt; &amp;lt;rc&amp;gt;&amp;lt;c&amp;gt; 12&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt;La&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 138.90000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 9.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; PAW_PBE La_s 06Sep2000 &amp;lt;/c&amp;gt;&amp;lt;/rc&amp;gt; &amp;lt;rc&amp;gt;&amp;lt;c&amp;gt; 8&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt;r &amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 91.22400000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 12.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; PAW_PBE Zr_sv 04Jan2005 &amp;lt;/c&amp;gt;&amp;lt;/rc&amp;gt; &amp;lt;rc&amp;gt;&amp;lt;c&amp;gt; 48&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt;O &amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 16.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 6.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; PAW_PBE O_s 07Sep2000 &amp;lt;/c&amp;gt;&amp;lt;/rc&amp;gt; So reading the vasprun.xml file with using ASE module or something like that does not work.</description>
+    </item>
+    
+  </channel>
+</rss>

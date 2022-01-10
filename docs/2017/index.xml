@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2017s on R.K.S. website</title>
+    <link>https://ryokbys.github.io/2017/</link>
+    <description>Recent content in 2017s on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 27 Dec 2017 22:19:29 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/2017/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A parameter lacking in a journal paper...</title>
+      <link>https://ryokbys.github.io/2017/12/a-parameter-lacking-in-a-journal-paper.../</link>
+      <pubDate>Wed, 27 Dec 2017 22:19:29 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/12/a-parameter-lacking-in-a-journal-paper.../</guid>
+      <description>There is an erratum in the JAP journal paper (Ref.[1]) by Bonny et al about tungsten-rhenium EAM potential. The parameters for $V_\mathrm{WRe}$ listed in the paper, cubic spline with 5 knots, were not sufficient and the following 6th knot should be added.
+r_6 = 4.2 a_6 = -0.25133241 I extracted these numbers by numerical derivative of raw data provided in Ref.[2], so the precision of the data may not be so high.</description>
+    </item>
+    
+    <item>
+      <title>Logo path in Flex theme</title>
+      <link>https://ryokbys.github.io/2017/12/logo-path-in-flex-theme/</link>
+      <pubDate>Fri, 22 Dec 2017 16:24:39 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/12/logo-path-in-flex-theme/</guid>
+      <description>Currently this site uses the pelican theme Flex, and I like it. But one thing annoyed me. There is a logo image on the left side and it works fine with the home, archive, and tag pages. But it does not show up on post pages. The reason is that the path to the logo image is set in pelicanconf.py and it seems to be relative URL from the current content which is dependent on the article.</description>
+    </item>
+    
+    <item>
+      <title>clean script</title>
+      <link>https://ryokbys.github.io/2017/07/clean-script/</link>
+      <pubDate>Thu, 27 Jul 2017 18:35:08 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/07/clean-script/</guid>
+      <description>I made a simple script that removes files specified by a file .clean in the current working directory.
+The script is like this.
+#!/bin/bash  CLEAN_FILE=&amp;#39;.clean&amp;#39; if [ ! -f ${CLEAN_FILE} ]; then echo &amp;#34; There is no &amp;#34; ${CLEAN_FILE} &amp;#34; file.&amp;#34; echo &amp;#34; You write a list of files to be cleaned into &amp;#34; ${CLEAN_FILE} &amp;#34; file.&amp;#34; echo &amp;#34; Then this script will remove these files from the current directory.</description>
+    </item>
+    
+    <item>
+      <title>DISPLAY environment variable in tmux</title>
+      <link>https://ryokbys.github.io/2017/07/display-environment-variable-in-tmux/</link>
+      <pubDate>Wed, 05 Jul 2017 14:19:06 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/07/display-environment-variable-in-tmux/</guid>
+      <description>tmux is a great command when using remote servers for work. Mainly because once I turn on tmux on the remote server, I can recover the session whenever I reconnect the server again. This feature is greater than it sounds. If you have not tried tmux yet, and you often work on the remote server, you definitely should use tmux.
+But when I try to use gnuplot or something that needs X11 forwarding through SSH, sometimes you need to change DISPLAY environment variable in tmux session.</description>
+    </item>
+    
+    <item>
+      <title>Circular dependency when making a Fortran program with modules</title>
+      <link>https://ryokbys.github.io/2017/06/circular-dependency-when-making-a-fortran-program-with-modules/</link>
+      <pubDate>Mon, 26 Jun 2017 16:50:42 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/06/circular-dependency-when-making-a-fortran-program-with-modules/</guid>
+      <description>以下のようなFortranのプログラムがある． いくつかのファイルに分割されている． ファイルと同じ名前のモジュールを含むファイルがある．（つま</description>
+    </item>
+    
+    <item>
+      <title>Making slide with Markdown</title>
+      <link>https://ryokbys.github.io/2017/05/making-slide-with-markdown/</link>
+      <pubDate>Thu, 25 May 2017 19:37:52 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/05/making-slide-with-markdown/</guid>
+      <description>Markdownでスライドを作ることができれば，コンテンツに集中できるし，かなり速くスライド作成ができるようになると期待される． 現状（201</description>
+    </item>
+    
+    <item>
+      <title>2017年初頭における作業環境</title>
+      <link>https://ryokbys.github.io/2017/03/work-environment-feb.-2017/</link>
+      <pubDate>Fri, 03 Mar 2017 22:36:38 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/03/work-environment-feb.-2017/</guid>
+      <description>最近，近年で最もコンピュータ上での作業環境が変化したので，僕の作業環境を紹介してみる． 前提として，自分の仕事上，どのような作業が多いかを挙げ</description>
+    </item>
+    
+    <item>
+      <title>Display glitches when using tmux</title>
+      <link>https://ryokbys.github.io/2017/03/display-glitches-when-using-tmux/</link>
+      <pubDate>Thu, 02 Mar 2017 19:13:28 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/03/display-glitches-when-using-tmux/</guid>
+      <description>When I was using tmux on a remote server in Terminal.app and tried to type something in addition to existing text, sometimes display went wrong not shifting the existing text rather overriding the text.
+This seems a problem of setting of TERM environment variable of the shell used. So I changed the TERM variable from xterm-color to xterm-256color and the problem was fixed.</description>
+    </item>
+    
+    <item>
+      <title>Show only non-FCC atoms in Ovito</title>
+      <link>https://ryokbys.github.io/2017/03/show-only-non-fcc-atoms-in-ovito/</link>
+      <pubDate>Thu, 02 Mar 2017 11:38:28 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/03/show-only-non-fcc-atoms-in-ovito/</guid>
+      <description>In Ovito, there are following modifications to the view,
+ Common neighbor analysis (CNA) Expression select Delete selected particles  So you can use CNA to identify which atoms are FCC-like and which are not. Then you can select FCC atoms using Expression select by adding the following expression into the Boolean expression: text box,
+StructureType == 1 And by adding Delete selected particles modification, you can see only non-FCC atoms in the view.</description>
+    </item>
+    
+    <item>
+      <title>Ovito from command line on macOS</title>
+      <link>https://ryokbys.github.io/2017/03/ovito-from-command-line-on-macos/</link>
+      <pubDate>Thu, 02 Mar 2017 11:10:59 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/03/ovito-from-command-line-on-macos/</guid>
+      <description>Ovito is a visualization tool for atomistic configurations and simulation results.
+When I open a file from command line, I had to directly call ovito in /Applications/Ovito.app/Contents/MacOS/. Since it is cumbersome to type this everytime I open Ovito, firstly I made its link to the directory where my PATH environment can find. But unfortunately and I don&amp;rsquo;t know the reason why, it did not work for Ovito.
+So I created a script ~/bin/ovito,</description>
+    </item>
+    
+    <item>
+      <title>Two columns in Marp</title>
+      <link>https://ryokbys.github.io/2017/02/two-columns-in-marp/</link>
+      <pubDate>Wed, 22 Feb 2017 14:38:58 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/02/two-columns-in-marp/</guid>
+      <description>Markdownでスライドを作成できるMarpという日本人が作ったアプリがある． 僕が思うこのアプリの良いところは， Markdownで作成でき</description>
+    </item>
+    
+    <item>
+      <title>Bug in vasprun.xml?</title>
+      <link>https://ryokbys.github.io/2017/02/bug-in-vasprun.xml/</link>
+      <pubDate>Wed, 15 Feb 2017 18:25:33 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/02/bug-in-vasprun.xml/</guid>
+      <description>After running a VASP simulation with Li, La, Zr, and O, I found a bug in vasprun.xml in which Zr is written as r.
+$ grep &#39;PAW_PBE&#39; vasprun.xml &amp;lt;rc&amp;gt;&amp;lt;c&amp;gt; 28&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt;Li&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 7.01000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 1.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; PAW_PBE Li 17Jan2003 &amp;lt;/c&amp;gt;&amp;lt;/rc&amp;gt; &amp;lt;rc&amp;gt;&amp;lt;c&amp;gt; 12&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt;La&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 138.90000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 9.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; PAW_PBE La_s 06Sep2000 &amp;lt;/c&amp;gt;&amp;lt;/rc&amp;gt; &amp;lt;rc&amp;gt;&amp;lt;c&amp;gt; 8&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt;r &amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 91.22400000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 12.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; PAW_PBE Zr_sv 04Jan2005 &amp;lt;/c&amp;gt;&amp;lt;/rc&amp;gt; &amp;lt;rc&amp;gt;&amp;lt;c&amp;gt; 48&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt;O &amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 16.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 6.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; PAW_PBE O_s 07Sep2000 &amp;lt;/c&amp;gt;&amp;lt;/rc&amp;gt; So reading the vasprun.xml file with using ASE module or something like that does not work.</description>
+    </item>
+    
+    <item>
+      <title>Install numpy on Fujitsu FX100</title>
+      <link>https://ryokbys.github.io/2017/02/install-numpy-on-fujitsu-fx100/</link>
+      <pubDate>Thu, 02 Feb 2017 18:51:18 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/02/install-numpy-on-fujitsu-fx100/</guid>
+      <description>FX100でも，大きな計算だけでなく大量の小さな計算をバカ並列で行うことが認められて来ているので，FX100計算サーバ上でnumpyを用いた</description>
+    </item>
+    
+    <item>
+      <title>新しいMacBookProへの移行の記録</title>
+      <link>https://ryokbys.github.io/2017/01/move-to-new-macbookpro/</link>
+      <pubDate>Tue, 31 Jan 2017 22:54:48 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/01/move-to-new-macbookpro/</guid>
+      <description>移行アシスタントは使えなかった． 旧Mac（MacBookAir）と接続して，直接移行することをトライ．（一回目は，MBAの方はEl Capit</description>
+    </item>
+    
+  </channel>
+</rss>

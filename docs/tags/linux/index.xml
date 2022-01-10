@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> linux on R.K.S. website</title>
+    <link>https://ryokbys.github.io/tags/linux/</link>
+    <description>Recent content in  linux on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 Jan 2021 00:46:38 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021年初頭における作業環境</title>
+      <link>https://ryokbys.github.io/2021/01/software-environment-in-2021/</link>
+      <pubDate>Sat, 02 Jan 2021 00:46:38 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2021/01/software-environment-in-2021/</guid>
+      <description>ここ数年は年の初頭に作業環境についてメモしているので，2021年も元旦における作業環境についてメモしておく．昨年から変わっていないことも多い</description>
+    </item>
+    
+    <item>
+      <title>Simplify rsync workflow</title>
+      <link>https://ryokbys.github.io/2020/04/simply-rsync-workflow/</link>
+      <pubDate>Tue, 21 Apr 2020 12:59:40 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/04/simply-rsync-workflow/</guid>
+      <description>If you are using remote computers on a daily basis, you probably use rsync command for transfering data between the local machine and remote machines. And you may need to type remote directory every time you use rsync command, which is a small effort for a single case but it costs a lot if you do the smae thing many times. The script rsync_wrapper.py is a helper script to avoid typing remote directory every time you use rsync.</description>
+    </item>
+    
+    <item>
+      <title>2020年初頭における作業環境</title>
+      <link>https://ryokbys.github.io/2020/03/2020-environment/</link>
+      <pubDate>Sun, 15 Mar 2020 21:56:22 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/03/2020-environment/</guid>
+      <description>もう最近はこれを毎年メモするだけのブログになってきているので，今年も書いておく． すでに３月も中旬なので初頭というのはフェイクニュースだが． Mac</description>
+    </item>
+    
+    <item>
+      <title>2019年初頭における作業環境</title>
+      <link>https://ryokbys.github.io/2019/02/2019-work-environment/</link>
+      <pubDate>Fri, 22 Feb 2019 10:25:16 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2019/02/2019-work-environment/</guid>
+      <description>一昨年，昨年と年の初頭における作業環境をメモしていたので，今年も書いておく． tmux これはかなり秀逸なツールなので，愛用している．リモートサーバ上</description>
+    </item>
+    
+    <item>
+      <title>2018年初頭における作業環境</title>
+      <link>https://ryokbys.github.io/2018/02/environment-on-macos-as-of-2018/</link>
+      <pubDate>Mon, 19 Feb 2018 22:21:02 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2018/02/environment-on-macos-as-of-2018/</guid>
+      <description>昨年も，その時点における快適な作業環境をメモしたので，2018年版もメモしておく． Emacs 最近は Emacs を使う人も減っているみたいで，Vim に限らず，S</description>
+    </item>
+    
+    <item>
+      <title>clean script</title>
+      <link>https://ryokbys.github.io/2017/07/clean-script/</link>
+      <pubDate>Thu, 27 Jul 2017 18:35:08 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/07/clean-script/</guid>
+      <description>I made a simple script that removes files specified by a file .clean in the current working directory.
+The script is like this.
+#!/bin/bash  CLEAN_FILE=&amp;#39;.clean&amp;#39; if [ ! -f ${CLEAN_FILE} ]; then echo &amp;#34; There is no &amp;#34; ${CLEAN_FILE} &amp;#34; file.&amp;#34; echo &amp;#34; You write a list of files to be cleaned into &amp;#34; ${CLEAN_FILE} &amp;#34; file.&amp;#34; echo &amp;#34; Then this script will remove these files from the current directory.</description>
+    </item>
+    
+    <item>
+      <title>2017年初頭における作業環境</title>
+      <link>https://ryokbys.github.io/2017/03/work-environment-feb.-2017/</link>
+      <pubDate>Fri, 03 Mar 2017 22:36:38 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/03/work-environment-feb.-2017/</guid>
+      <description>最近，近年で最もコンピュータ上での作業環境が変化したので，僕の作業環境を紹介してみる． 前提として，自分の仕事上，どのような作業が多いかを挙げ</description>
+    </item>
+    
+    <item>
+      <title>Display glitches when using tmux</title>
+      <link>https://ryokbys.github.io/2017/03/display-glitches-when-using-tmux/</link>
+      <pubDate>Thu, 02 Mar 2017 19:13:28 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/03/display-glitches-when-using-tmux/</guid>
+      <description>When I was using tmux on a remote server in Terminal.app and tried to type something in addition to existing text, sometimes display went wrong not shifting the existing text rather overriding the text.
+This seems a problem of setting of TERM environment variable of the shell used. So I changed the TERM variable from xterm-color to xterm-256color and the problem was fixed.</description>
+    </item>
+    
+  </channel>
+</rss>

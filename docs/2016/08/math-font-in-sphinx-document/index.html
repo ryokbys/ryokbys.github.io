@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Math font in sphinx-document &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Math font in sphinx-document</h1>
+  <time datetime=2016-08-11T15:53:45Z class="post-date">Thu, Aug 11, 2016</time>
+  <p>tags: sphinx
+SphinxドキュメントをHTML出力する際の数式フォントを変更したい．
+ここでは，数式をPNGで出力する <strong>pngmath</strong> が選択されているとする．（
+<strong>mathjax</strong> の場合は別の話らしい．）</p>
+<p><code>conf.py</code> 内に .. code:: python</p>
+<blockquote>
+<p>extensions = ['sphinx.ext.pngmath']</p>
+</blockquote>
+<p>と書かれていたら， <em>pngmath</em> を使う設定になっている．
+この場合，sphinxはコンパイル時にlatexを呼び出して数式のpngファイルを作成する．
+そのlatexのためのプリアンブル（preamble）を以下のように <code>conf.py</code>
+に追加すればよい．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pngmath_latex_preamble <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">\usepackage</span><span style="color:#e6db74">{eulervm}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">\usepackage{amsmath,amssymb}
+</span><span style="color:#e6db74">\newcommand{\degree}{$^{\circ}$}
+</span><span style="color:#e6db74">\newcommand{\temp}{$</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">^\circ$C}
+</span><span style="color:#e6db74">\newcommand{\rmd}{{\rm d}}
+</span><span style="color:#e6db74">\newcommand{\rme}{{\rm e}}
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</code></pre></div><p>そうするとめでたく数式フォントの変更や自作コマンドなんかを使えるようになる．</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

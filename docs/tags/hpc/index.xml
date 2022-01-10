@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> HPC on R.K.S. website</title>
+    <link>https://ryokbys.github.io/tags/hpc/</link>
+    <description>Recent content in  HPC on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Oct 2020 10:54:42 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/tags/hpc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>fp.py on ISSP Ohtaka</title>
+      <link>https://ryokbys.github.io/2020/10/fp.py-on-issp-ohtaka/</link>
+      <pubDate>Sun, 18 Oct 2020 10:54:42 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/10/fp.py-on-issp-ohtaka/</guid>
+      <description>東大物性研のスパコン[1]のシステムBというのが使えるようになったので，そこで自分のプログラムの動作確認をした．古典力場構築プログラムfp.</description>
+    </item>
+    
+  </channel>
+</rss>

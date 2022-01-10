@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Convert docx files to pdf on Mac &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Convert docx files to pdf on Mac</h1>
+  <time datetime=2021-03-31T11:04:23&#43;0900 class="post-date">Wed, Mar 31, 2021</time>
+  <p>昨今の状況で，オンラインでのレポートの提出が多くなったが，docx形式で提出されたものをこちらで見やすいようにpdfに変換したいということがあった．
+そこで，macOSで使えるAutomatorアプリを使って，大量の異なるディレクトリ内にあるdocxファイルをpdfに変換するワークフローを作ったのでメモしておく．（年間数回しか行わない作業なのでメモしないと忘れてしまう．）</p>
+<p>Automator.appで「ワークフロー」を開いて，下図のようなコンポーネント構成にする．
+<img src="%7Bstatic%7D/images/210210_automator_docx2pdf.png" alt=""></p>
+<p>指定されたフォルダ内のサブフォルダの中身も検索するようにして，フォルダ内の「docx」もしくは「doc」ファイル全てに対してAppleScriptを実行する．
+実行するAppleScriptは以下のようなもので，どこかのサイトから引用したものだが，どこのサイトか忘れてしまった（スミマセン）．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-AppleScript" data-lang="AppleScript">use scripting additions
+
+<span style="color:#66d9ef">on</span> run {input, parameters}
+  <span style="color:#66d9ef">repeat</span> <span style="color:#66d9ef">with</span> aFile <span style="color:#66d9ef">in</span> input
+  	<span style="color:#66d9ef">tell</span> application <span style="color:#e6db74">&#34;System Events&#34;</span>
+  		<span style="color:#66d9ef">set</span> inputFile <span style="color:#66d9ef">to</span> disk item (aFile <span style="color:#66d9ef">as </span><span style="color:#a6e22e">text</span>)
+  		<span style="color:#66d9ef">set</span> outputFileName <span style="color:#66d9ef">to</span> (((<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">of</span> inputFile) <span style="color:#66d9ef">as </span><span style="color:#a6e22e">text</span>) <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#34;.pdf&#34;</span>)
+  	<span style="color:#66d9ef">end</span> <span style="color:#66d9ef">tell</span>
+  	
+  	<span style="color:#66d9ef">tell</span> application <span style="color:#a6e22e">id</span> <span style="color:#e6db74">&#34;com.microsoft.Word&#34;</span>
+  		activate
+  		open aFile
+  		<span style="color:#66d9ef">tell</span> <span style="color:#a6e22e">active</span> <span style="color:#a6e22e">document</span>
+  			save <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">it</span> <span style="color:#a6e22e">file name</span> outputFileName file format format PDF
+  			close saving no
+  		<span style="color:#66d9ef">end</span> <span style="color:#66d9ef">tell</span>
+  		<span style="color:#66d9ef">set</span> defaultPath <span style="color:#66d9ef">to</span> <span style="color:#66d9ef">get</span> default file <span style="color:#a6e22e">path</span> file <span style="color:#a6e22e">path</span> type documents <span style="color:#a6e22e">path</span>
+  	<span style="color:#66d9ef">end</span> <span style="color:#66d9ef">tell</span>
+  	
+  	<span style="color:#66d9ef">tell</span> application <span style="color:#e6db74">&#34;System Events&#34;</span>
+  		<span style="color:#66d9ef">set</span> outputPath <span style="color:#66d9ef">to</span> (container <span style="color:#66d9ef">of</span> inputFile)
+  		<span style="color:#66d9ef">set</span> outputFile <span style="color:#66d9ef">to</span> disk item outputFileName <span style="color:#66d9ef">of</span> folder defaultPath
+  		move outputFile <span style="color:#66d9ef">to</span> outputPath
+  	<span style="color:#66d9ef">end</span> <span style="color:#66d9ef">tell</span>
+  <span style="color:#66d9ef">end</span> <span style="color:#66d9ef">repeat</span>
+  <span style="color:#66d9ef">return</span> input
+<span style="color:#66d9ef">end</span> run
+</code></pre></div><p>このワークフローを実行すると，ディレクトリ指定を求められ，指定したらそのディレクトリ以下の全てのdocxファイルをpdfに変換してくれる．
+自分の場合，これをDropboxなんかに入れて，iPadのDocumentからpdfファイルを開くことでApple pencilで赤ペン先生のように書き込むことができ，それが終わったら自動的にDropboxに同期されてmac側でも見れる．</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

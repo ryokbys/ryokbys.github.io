@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>2017年初頭における作業環境 &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>2017年初頭における作業環境</h1>
+  <time datetime=2017-03-03T22:36:38&#43;0900 class="post-date">Fri, Mar 3, 2017</time>
+  <p>最近，近年で最もコンピュータ上での作業環境が変化したので，僕の作業環境を紹介してみる．
+前提として，自分の仕事上，どのような作業が多いかを挙げておく．</p>
+<ul>
+<li>ローカルマシン（MacBook）にてプログラム作成，結果の解析，文書作成など</li>
+<li>研究室にあるクラスタマシンにて小規模並列計算，パラメータ並列計算（小さな計算を大量に）</li>
+<li>名大スパコンを利用して大規模並列計算，小規模大量計算</li>
+</ul>
+<p>上記のように，<strong>いくつかの異なるサーバーにて種々の異なる作業を行っている</strong>．
+そのため，どのサーバの，どのディレクトリで，どのような作業を行っているかを把握するのがかなり面倒になっていた．また，サーバに接続し直すたびにその作業ディレクトリに移動し直したりするのがかなりの時間のロスだったようだ（これは，それが当然と思っていたときには気づかないものだった）．
+最近，以下の２つ技術の導入したことで，（少なくとも気分的には）かなり楽になった．</p>
+<h2 id="tmux">tmux</h2>
+<p>ターミナル・マルチプレクサと呼ばれるもので，</p>
+<ol>
+<li>一つの画面でいくつものターミナルを立ち上げて，それらを切り替えることができる</li>
+<li><code>tmux</code>自体がデーモンのようにバッググラウンドで走っており，リモートホストで<code>tmux</code>が起動している場合，接続が切れたとしても，接続し直すと以前の作業に復帰できる．</li>
+</ol>
+<p>この <strong>2</strong> が本当に良い機能で，使ってみないと「そんなものかね」的に思うが，一度使ったら最後，これがないリモートサーバで作業する気などなくなってしまう．そのくらい良い機能．</p>
+<p>インストールや設定の仕方，使い方などはすでにインターネット上にいろいろと出回っているので，ここには記載しないが，いくつかのキーバインドは自分が便利と思うものを載せておく．
+以下のような内容で <code>~/.tmux.conf</code> を保存しておくことで，自分の好きな設定ができている（ほとんどどこかのウェブサイトから取ってきたものだが，どこかを忘れてしまった）．</p>
+<pre tabindex="0"><code># Prefix変更 C-b -&gt; C-t
+set-option -g prefix C-t
+bind-key C-t send-prefix
+unbind-key C-b
+
+# 設定再読込キーバインド
+unbind r
+bind r source-file ~/.tmux.conf \; display &quot;Reloaded ~/.tmux.conf&quot;
+
+# key bind (windowの移動)
+# カーソルキーで移動
+bind -n left previous-window
+bind -n right next-window
+
+# key bind (paneの移動)
+# Shift + カーソルキーで移動
+bind -n S-left select-pane -L
+bind -n S-down select-pane -D
+bind -n S-up select-pane -U
+bind -n S-right select-pane -R
+
+# 256色端末を使用する
+set-option -g default-terminal &quot;tmux-256color&quot;
+# viのキーバインドを使用する
+# set-window-option -g mode-keys vi
+
+# ステータスバー設定
+set -g status-interval 10
+set -g status-bg colour100
+setw -g window-status-current-fg black
+setw -g window-status-current-bg white
+
+# split panes using | and -
+bind h split-window -h
+bind v split-window -v
+unbind '&quot;'
+unbind %
+</code></pre><ul>
+<li>prefixを <code>C-t</code> に変更</li>
+<li>矢印の左右で，windowを切り替える</li>
+<li>prefix + <code>h</code> でウィンドウを横（horizontal）分割</li>
+<li>prefix + <code>v</code> でウィンドウを縦（vertical）分割</li>
+<li><code>Shift</code>+ 上下左右でペインを切り替えるとなっているが，Shift+上下がうまく働いていないため，<code>C-t</code> + <code>o</code> で切り替えている．</li>
+</ul>
+<h2 id="jupyter-notebook">Jupyter notebook</h2>
+<p>もう一つは，jupyter notebook．
+これは，ブラウザ上でプログラムを作成し，簡単に実行して結果を確認できるもの．自分の場合はたいてい python でなんらかの軽い処理をする際に重宝している．
+良い点としては，</p>
+<ol>
+<li>すぐに結果が見れる</li>
+<li>カード毎に実行できるため，以前に書いた一箇所だけを実行とかできる</li>
+<li>Markdownでコメントを書き込める</li>
+<li>数式も書ける</li>
+<li>グラフや画像なども挿入できる</li>
+<li>リモートサーバー上のnotebookをローカルのブラウザで実行できる</li>
+</ol>
+<p>これらが可能なため，実際に何らかの解析作業などを行う場合，何をどうやるかやをMarkdownで書きながら実際にコードも書いて，実行した結果も一つのノートの上に表示されていく感じ．実験ノートを書きながら解析作業を行えているようなもので，後から見ても思考の過程をたどることができる．</p>
+<p>そして， <strong>6</strong> ができるため，ちょっと重たい作業を行ってもローカルマシンがヒートアップしたり遅くなったりしないのが良い．</p>
+<p>インストールは <strong>pyenv</strong> を入れた後に，<strong>anaconda</strong> をインストールすれば自動的についてくる（便利な世の中になったものだ）．</p>
+<p>この２つの技術は全く独立しているものだが，リモートサーバー上でjupyter notebookを使うに際して，<code>tmux</code>が役に立つ．
+<code>tmux</code>をリモートサーバーで一度起動しておけば，ログアウトしても，プロセスを起動し続けることができるから，jupyter notebookをリモートサーバー上で常時起動させておくことが可能になる．これはまたかなり便利（これも体験してみないとなかなか便利さが伝わらないと思うが）．</p>
+<h2 id="おまけ">おまけ</h2>
+<h3 id="marphttpsyhattgithubiomarp"><a href="https://yhatt.github.io/marp/">Marp</a></h3>
+<p>日本人が作成した，Markdownでスライドを作れるアプリ．機能としては，</p>
+<ul>
+<li>Markdownで記述する</li>
+<li>リアルタイム（just-in-time?）でスライドが更新される</li>
+<li>コード，数式，図を扱える</li>
+</ul>
+<p>これでかなり楽にスライドを作れるから便利．</p>
+<h3 id="quiverhttphappenappscomquiver"><a href="http://happenapps.com/#quiver">Quiver</a></h3>
+<p>Programmer&rsquo;s notebookという触れ込みだが，プログラム実行のできないjupyter notebookを束ねたEvernoteのようなもので，それだけ効くと何が良いのか分からない．
+何が良いかというと，</p>
+<ul>
+<li>ノートを取って後から検索できる．</li>
+<li>Markdownでメモを取れる．</li>
+<li>ノートがcell単位で成り立っており，各セルで，Markdown，コード，数式（LaTeX）などの形式を選択することができる．</li>
+<li>ノートカテゴリを分けたりタグを付けたりといったEvernote的なこともできる．</li>
+</ul>
+<p>実際に使ってみると，プログラミングに関連したほぼすべてのことをメモするのには事足りるので，Evernoteよりも便利と思う．</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Logo path in Flex theme &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Logo path in Flex theme</h1>
+  <time datetime=2017-12-22T16:24:39&#43;0900 class="post-date">Fri, Dec 22, 2017</time>
+  <p>Currently this site uses the pelican theme <a href="https://github.com/alexandrevicenzi/Flex">Flex</a>, and I like it.
+But one thing annoyed me. There is a logo image on the left side and it works fine with the home, archive, and tag pages. But it does not show up on post pages.
+The reason is that the path to the logo image is set in <code>pelicanconf.py</code> and it seems to be relative URL from the current content which is dependent on the article.
+So setting</p>
+<pre tabindex="0"><code>SITELOGO = &quot;images/logo.png&quot;
+</code></pre><p>does not work for post pages.
+But I do not know how to set <code>SITEURL</code> into it.</p>
+<p>So I modified directory <code>pelican-themes/Flex/templates/base.html</code> file, line 81,
+from</p>
+<pre tabindex="0"><code>        {% if SITELOGO %}
+        &lt;img src=&quot;{{ SITELOGO }}&quot; alt=&quot;{{ SITETITLE }}&quot; title=&quot;{{ SITETITLE }}&quot;&gt;
+        {% else %}
+</code></pre><p>to</p>
+<pre tabindex="0"><code>        {% if SITELOGO %}
+        &lt;img src=&quot;{{ SITEURL }}/{{ SITELOGO }}&quot; alt=&quot;{{ SITETITLE }}&quot; title=&quot;{{ SITETITLE }}&quot;&gt;
+        {% else %}
+</code></pre><p>I added <code>{{ SITEURL }}/</code> before <code>{{ SITELOGO }}</code> to make the <code>SITELOGO</code> path as a relative path from <code>SITEURL</code>.</p>
+<p>Then it works fine even at post pages.</p>
+<p>But after struggling on this for hours, it turns out that just setting</p>
+<pre tabindex="0"><code>SITELOGO = &quot;/images/logo.png&quot;
+</code></pre><p>solves the issue here&hellip; What a waste of time&hellip;</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

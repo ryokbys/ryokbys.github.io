@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>新しいMacBookProへの移行の記録 &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>新しいMacBookProへの移行の記録</h1>
+  <time datetime=2017-01-31T22:54:48&#43;0900 class="post-date">Tue, Jan 31, 2017</time>
+  <h2 id="移行アシスタントは使えなかった">移行アシスタントは使えなかった．</h2>
+<p>旧Mac（MacBookAir）と接続して，直接移行することをトライ．（一回目は，MBAの方はEl Capitanだったが，二回目はアップグレードしてSeirra同士での移行）
+なぜだか最後，残り1時間40分から先に進めなくなる．
+２回やってどちらもほぼ同じ症状（再現性あり）なので，ダメなのだろう．
+ということで，否応無く__手動インストール__を余儀なくされた．</p>
+<h3 id="macos-sierraのクリーンインストール">macOS sierraのクリーンインストール</h3>
+<ol>
+<li><code>Cmd+r</code>を押しながら起動．アップルマークが表示されたら<code>Cmd+r</code>を離して良いみたい．</li>
+<li>ディスクユーティリティを開いてディスクを消去およびフォーマット</li>
+<li>OSの再インストール</li>
+</ol>
+<p>これ自体は時間は少々かかるが，スムーズに進む．</p>
+<h2 id="xcode">Xcode</h2>
+<p>App Storeからダウンロード．
+一度Xcodeを起動して認証(?)しないと，のちのhomebrewインストールで引っかかる．</p>
+<h2 id="terminalappの設定">Terminal.appの設定</h2>
+<p><a href="http://ethanschoonover.com/solarized">Solarized</a> から，ファイルをダウンロード．
+Terminal.appの環境設定「プロファイル」で，「読み込み&hellip;」からsolarizedの「Light」と「Dark」を読み込んでおいた．
+フォントサイズを11ptから14ptへ変更．
+ウィンドウサイズも変更．</p>
+<h2 id="mailデータ移行">Mailデータ移行</h2>
+<p><a href="http://blog.skeg.jp/archives/2016/11/mail-backup-sierra.html">ここ</a>を参考にして，以下のファイル群を旧macからコピーした．</p>
+<h3 id="インターネットアカウントの復元">インターネットアカウントの復元</h3>
+<pre tabindex="0"><code>/Users/UserName/Library/Accounts
+</code></pre><h3 id="メールデータの復元">メールデータの復元</h3>
+<pre tabindex="0"><code>/Users/kazuto/Library/Mail/
+/Users/UserName/Library/Mail Downloads/
+/Users/UserName/Library/Containers/com.apple.mail/
+/Users/UserName/Library/Preferences/com.apple.accounts.plist
+/Users/UserName/Library/Preferences/com.apple.accountsd.plist
+/Users/UserName/Library/Preferences/com.apple.mail-shared.plist
+/Users/UserName/Library/Preferences/com.apple.MailMigratorService.plist
+/Users/UserName/Library/SyncedPreferences/com.apple.mail-com.apple.mail.vipsenders.plist
+/Users/UserName/Library/SyncedPreferences/com.apple.mail.plist
+</code></pre><p>キーチェーン（/Users/UserName/Library/Keychains）は，iCloudで同期されていれば，復元する必要なし．</p>
+<h2 id="emacs">Emacs</h2>
+<p>参考
+<a href="http://keisanbutsuriya.hateblo.jp/entry/2016/04/10/115945">http://keisanbutsuriya.hateblo.jp/entry/2016/04/10/115945</a></p>
+<pre tabindex="0"><code>$ brew tap railwaycat/emacsmacport
+$ brew install emacs-mac
+$ brew linkapps
+</code></pre><h3 id="設定ファイルのコピー">設定ファイルのコピー</h3>
+<p>旧macからemacs用の設定ファイルを転送する．</p>
+<pre tabindex="0"><code>$ rsync -avh /Volumes/kobayashi/.emacs.d ~/
+</code></pre><h3 id="caskのインストール">Caskのインストール</h3>
+<pre tabindex="0"><code>$ brew install cask
+</code></pre><h3 id="ipython">ipython</h3>
+<p>emacs起動時にipythonコマンドが見つからないと言われる場合は，pythonのインストールがまず必要．</p>
+<h2 id="python">python</h2>
+<p>pythonの新規インストール時にはプロジェクトごとにバージョンを切り替えられるpyenvをインストールしておいた方が良いらしい．</p>
+<h3 id="pyenv">pyenv</h3>
+<p>どうもpyenvだとかvirtualenvだとかさまざまあるらしいが，ここではpyenvとvirtualenvプラグインをインストールする方法を採用する．下記参考．
+<a href="http://cocodrips.hateblo.jp/entry/2014/09/02/171127">http://cocodrips.hateblo.jp/entry/2014/09/02/171127</a></p>
+<pre tabindex="0"><code>$ CFLAGS=&quot;-I$(xcrun --show-sdk-path)/usr/include&quot; pyenv install 2.7.13
+</code></pre><p><code>CFLAGS</code>を設定しないと，macOS sierraではうまいことインストールできない．
+参考
+<a href="http://kazscape.com/2014/12/kz-python%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E8%A6%9A%E6%9B%B8/">http://kazscape.com/2014/12/kz-pythonインストール覚書/</a></p>
+<p>どうも，anacondaというものをインストールすると，numpy，scipyだとかipython，jupyterなどがインストールされるらしくてかなり便利らしい．</p>
+<pre tabindex="0"><code>$ CFLAGS=&quot;-I$(xcrun --show-sdk-path)/usr/include&quot; pyenv install anaconda-4.0.0
+$ pyenv versions
+  system
+* 2.7.13 (set by /Users/kobayashi/.pyenv/version)
+  3.5.3rc1
+  anaconda-4.0.0
+$ pyenv global anaconda-4.0.0
+$ pyenv versions
+  system
+  2.7.13
+  3.5.3rc1
+* anaconda-4.0.0 (set by /Users/kobayashi/.pyenv/version)
+</code></pre><p>とした．<code>CFLAGS</code>の設定がここでも必要かどうか知らないが，上で必要だったのだからおそらく必要だろう．</p>
+<p>非常に便利なので<code>docopt</code>もインストールしておく．</p>
+<pre tabindex="0"><code>$ pip install docopt
+</code></pre><h3 id="matplotlibpyplotの問題">matplotlib.pyplotの問題</h3>
+<p>このバージョンのmatplotlib (1.5.1)では，pyplotをimportしようとすると，下記のようなwarningが出て先に進まない（macOS Sierra 10.12.2）．</p>
+<pre tabindex="0"><code>/Users/kobayashi/.pyenv/versions/anaconda-4.0.0/lib/python2.7/site-packages/matplotlib/font_manager.py:273: UserWarning: Matplotlib is building the font cache using fc-list. This may take a moment.
+  warnings.warn('Matplotlib is building the font cache using fc-list. This may take a moment.')
+</code></pre><ul>
+<li><a href="http://stackoverflow.com/questions/34771191/matplotlib-taking-time-when-being-imported">http://stackoverflow.com/questions/34771191/matplotlib-taking-time-when-being-imported</a></li>
+<li><a href="http://stackoverflow.com/questions/17490444/import-matplotlib-pyplot-hangs">http://stackoverflow.com/questions/17490444/import-matplotlib-pyplot-hangs</a></li>
+</ul>
+<p>上記でいろいろと解決策が議論されているが，どれも自分の場合は有効でなかったため，下記のような対策をとった．これは<code>matplotlib/font_manager.py</code>を書き換えることになるので注意が必要．</p>
+<p>これはどうも，上記<code>font_manager.py</code>の273行目</p>
+<pre tabindex="0"><code>        pipe = subprocess.Popen(['fc-list', '--format=%{file}\\n'],
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+</code></pre><p>という箇所が問題なようだ．<code>%{file}</code>という部分がバグっているように思われる．
+ここは，font-listを<code>fc-list</code>を用いて取得する部分なのだが，その部分をごっそり無視するため，
+font_manager.py:325,326行目の</p>
+<pre tabindex="0"><code>            for f in get_fontconfig_fonts(fontext):
+                fontfiles[f] = 1
+</code></pre><p>の部分をコメントアウトする．
+別にこの部分がなくとも，その２〜３行前で十分にフォントリストは取得できていると期待できるので，大きな問題は生じないと期待する．（動かないよりは良い！）</p>
+<h2 id="tmux">tmux</h2>
+<p>端末仮想化コマンドらしい．いくつもの端末を起動しなくてもそれらを切り替えられ，通信が切れても後から復活できるらしい．かなり便利ツールで，unix/linuxユーザの間では常識ツールらしい．</p>
+<ul>
+<li><a href="http://kanjuku-tomato.blogspot.jp/2014/02/tmux.html">http://kanjuku-tomato.blogspot.jp/2014/02/tmux.html</a></li>
+<li><a href="http://qiita.com/michiomochi@github/items/4bf8e34a91bbf3d9af20">http://qiita.com/michiomochi@github/items/4bf8e34a91bbf3d9af20</a></li>
+</ul>
+<h2 id="gnuplot">gnuplot</h2>
+<p>XQuartzを先にインストールしなくてはいけない．
+<a href="https://www.xquartz.org">https://www.xquartz.org</a>
+その後，</p>
+<pre tabindex="0"><code>$ brew install gnuplot —with-x11
+</code></pre><p>ここで，<code>--with-x11</code>というオプションを指定してx11を使うことを宣言してインストールしなくてはならない．</p>
+<h2 id="itunes">iTunes</h2>
+<p>参考
+<a href="https://digitalfan.jp/103717">https://digitalfan.jp/103717</a></p>
+<p><code>~/Music/</code>フォルダ内の「iTunes」フォルダを旧MacからコピーしてくればOK．</p>
+<h2 id="latex">LaTeX</h2>
+<p><a href="http://qiita.com/hideaki_polisci/items/3afd204449c6cdd995c9">http://qiita.com/hideaki_polisci/items/3afd204449c6cdd995c9</a>
+上記サイトに従ってインストールした．
+今のところ問題なく動作しているように見える．</p>
+<h2 id="homebrew-cask">homebrew-cask</h2>
+<p>homebrewだけでなく，homebrew-caskというのも使うと，よりインストールが楽になるらしい</p>
+<pre tabindex="0"><code>$ brew install caskroom/cask/brew-cask
+$ brew cask search
+</code></pre><p>おそらく，unix系のコマンドラインだけでなく，ふつうのmac用アプリもこれでインストールできるようになるみたい．</p>
+<h2 id="google日本語入力">Google日本語入力</h2>
+<p>OS標準のことえりを一ヶ月ほど試してみたが，やはりGoogle日本語入力の方が少々頭が良い．</p>
+<p>Google日本語入力をダウンロードしてきて，インストールし，「キーボード」環境設定の「入力ソース」で</p>
+<ul>
+<li>ひらがな (Google)</li>
+<li>英数 (Google)</li>
+</ul>
+<p>の２つを選択．Google入力ソースとして「カタカナ」，「半角カナ」，「全角英数」があるが，ほぼ使わないので入力ソースとして登録するよりは必要に応じて変換する方が良いと思う．</p>
+<p>Emacsで <code>Control + Space</code> がマークセットに設定されている場合，これがOSのキーボードショートカットの「前の入力ソースを選択」とバッティングすると厄介なので，OSの設定を解除しておくとよい．</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

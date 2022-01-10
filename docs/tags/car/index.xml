@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> car on R.K.S. website</title>
+    <link>https://ryokbys.github.io/tags/car/</link>
+    <description>Recent content in  car on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Nov 2020 22:24:35 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/tags/car/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>No more car navigation...</title>
+      <link>https://ryokbys.github.io/2020/11/no-more-car-navigation.../</link>
+      <pubDate>Tue, 03 Nov 2020 22:24:35 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/11/no-more-car-navigation.../</guid>
+      <description>最近車を買い替えたが，新しい車ではカーナビとして Android auto で Google map を利用するのがデフォルトとなっている．以前から思ってはいたことだが，このやり方より</description>
+    </item>
+    
+  </channel>
+</rss>

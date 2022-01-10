@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Package managing system Cask &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Package managing system Cask</h1>
+  <time datetime=2016-02-27T20:57:10Z class="post-date">Sat, Feb 27, 2016</time>
+  <p>tags: emacs</p>
+<h1 id="what-is-cask">What is Cask?</h1>
+<p>Usually, without cask, we need to download and install packages manually
+and write some configurations in <code>.emacs.d/init.el</code> to make them work.
+Cask makes it much easier.</p>
+<p><a href="http://cask.readthedocs.org/en/latest/">cask documentation</a></p>
+<p>It seems to require the following conditions,</p>
+<ul>
+<li>emacs &gt;= 24</li>
+<li>python &gt;= 2.6</li>
+</ul>
+<h2 id="install">Install</h2>
+<pre><code>$ brew install cask
+</code></pre>
+<p>It seems different from :</p>
+<pre><code>$ pip install cask
+</code></pre>
+<h2 id="setup">Setup</h2>
+<pre><code>$ cd ~/.emacs.d
+$ cask init
+$ ls
+Cask
+$ head Cask
+(source gnu)
+(source melpa)
+
+(depends-on &quot;bind-key&quot;)
+(depends-on &quot;cask&quot;)
+(depends-on &quot;dash&quot;)
+(depends-on &quot;drag-stuff&quot;)
+(depends-on &quot;exec-path-from-shell&quot;)
+(depends-on &quot;expand-region&quot;)
+(depends-on &quot;f&quot;)
+</code></pre>
+<p>You can modify this Cask file to manage which packages to be installed?
+Every time you modify the <code>Cask</code> file, you should perform the following
+command to reflect the change, :</p>
+<pre><code>$ cask install
+</code></pre>
+<p>Important cask dependencies for python usage in Emacs are,</p>
+<ul>
+<li>elpy: extended python mode</li>
+<li>ein: ipython notebook integration</li>
+</ul>
+<h2 id="setup-in-initel">Setup in init.el</h2>
+<p>After installing packages via cask, cask should be loaded by Emacs. To
+do so, the following lines should be written in <code>init.el</code>. :</p>
+<pre><code>(require ‘cask)
+(cask-initialize)
+</code></pre>
+<p>In case of MacOSX, this works. But I am not sure whether it works in
+Linux, too. You may have to specify cask elisp file as :</p>
+<pre><code>(require ‘cask ‘~/.emacs.d/.cask/cask.el')
+</code></pre>
+<h2 id="in-case-of-using-different-versions-of-emacs">In case of using different versions of emacs</h2>
+<p>In case you want to use Emacs.app and the version of Emacs.app is
+different from that of emacs in Terminal.app. You have to specify the
+emacs binary as :</p>
+<pre><code>$ EMACS=&quot;/Applications/Emacs.app/Contents/MacOS/Emacs&quot; cask install
+</code></pre>
+<p>Or if you want to use emacs in Terminal.app, :</p>
+<pre><code>$ EMACS=“/usr/local/bin/emacs” cask install
+</code></pre>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

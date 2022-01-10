@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Simplify rsync workflow &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Simplify rsync workflow</h1>
+  <time datetime=2020-04-21T12:59:40&#43;0900 class="post-date">Tue, Apr 21, 2020</time>
+  <p>If you are using remote computers on a daily basis, you probably use <code>rsync</code> command for transfering data
+between the local machine and remote machines. And you may need to type remote directory every time you
+use <code>rsync</code> command, which is a small effort for a single case but it costs a lot if you do the smae thing many times.
+The script <a href="https://github.com/ryokbys/rsync_wrapper">rsync_wrapper.py</a> is a helper script to avoid
+typing remote directory every time you use <code>rsync</code>.</p>
+<h2 id="before-using-rsync_wrapperpy">Before using <code>rsync_wrapper.py</code>&hellip;</h2>
+<p>You can see at its <a href="https://github.com/ryokbys/rsync_wrapper">github page</a> how to use.
+But before using the script, I strongly recommend that you make the paths of working directories on the local machine
+and remote machines identical so that you don&rsquo;t need to specify the corresponding directory on remote machines.
+For example, if the current working directory on the local machine is <code>/Users/kobayashi/work/2020-04-01/</code> and the home directory is <code>/Users/kobayashi/</code>,
+the corresponding directory on remote machines should be <code>~/work/2020-04-01/</code>.</p>
+<h2 id="further-tips">Further tips</h2>
+<p>You can sync (upload/download) files and directories in the current working directory between the local and remote machines,
+by the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ /path/to/rsync_wrapper.py up -r remote
+</code></pre></div><p>If you make an alias to <code>/path/to/rsync_wrapper.py up</code> as <code>upsync</code>, you can do the same by,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ upsync -r remote
+</code></pre></div><p>And from the second time, you can do by just</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ upsync
+</code></pre></div><p>since the first run of <code>rsync_wrapper.py</code> will make a configuration file <code>.sync</code> in the directory
+and the script knows which remote host is used for the sync.</p>
+<p>I think it is very helpful for some people, don&rsquo;t you think?</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Markdown on R.K.S. website</title>
+    <link>https://ryokbys.github.io/tags/markdown/</link>
+    <description>Recent content in Markdown on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 25 May 2017 19:37:52 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Making slide with Markdown</title>
+      <link>https://ryokbys.github.io/2017/05/making-slide-with-markdown/</link>
+      <pubDate>Thu, 25 May 2017 19:37:52 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/05/making-slide-with-markdown/</guid>
+      <description>Markdownでスライドを作ることができれば，コンテンツに集中できるし，かなり速くスライド作成ができるようになると期待される． 現状（201</description>
+    </item>
+    
+  </channel>
+</rss>

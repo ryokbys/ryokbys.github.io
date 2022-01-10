@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>clean script &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>clean script</h1>
+  <time datetime=2017-07-27T18:35:08&#43;0900 class="post-date">Thu, Jul 27, 2017</time>
+  <p>I made a simple script that removes files specified by a file <code>.clean</code> in the current working directory.</p>
+<p>The script is like this.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>
+CLEAN_FILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;.clean&#39;</span>
+
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> ! -f <span style="color:#e6db74">${</span>CLEAN_FILE<span style="color:#e6db74">}</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+    echo <span style="color:#e6db74">&#34;  There is no &#34;</span> <span style="color:#e6db74">${</span>CLEAN_FILE<span style="color:#e6db74">}</span> <span style="color:#e6db74">&#34; file.&#34;</span>
+    echo <span style="color:#e6db74">&#34;  You write a list of files to be cleaned into &#34;</span> <span style="color:#e6db74">${</span>CLEAN_FILE<span style="color:#e6db74">}</span> <span style="color:#e6db74">&#34; file.&#34;</span>
+    echo <span style="color:#e6db74">&#34;  Then this script will remove these files from the current directory.&#34;</span>
+    exit <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">fi</span>
+
+rm -rf <span style="color:#66d9ef">$(</span>cat <span style="color:#e6db74">${</span>CLEAN_FILE<span style="color:#e6db74">}</span><span style="color:#66d9ef">)</span>
+</code></pre></div><ol>
+<li>Put this script at <code>~/bin/</code> or somewhere the shell can find by looking at <code>PATH</code> environment variable.</li>
+<li>In any directory where there are many files you want to remove often, create the file <code>.clean</code> which is something like</li>
+</ol>
+<pre tabindex="0"><code>out.*
+*.txt
+</code></pre><ol start="3">
+<li>Run the above script,</li>
+</ol>
+<pre tabindex="0"><code>$ clean
+</code></pre><p>Then the files specifined by the <code>.clean</code> file will be removed.</p>
+<p>It is a very simple script, but it is very convenient for my daily routines.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

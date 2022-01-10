@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>2022年初頭の作業環境 &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>2022年初頭の作業環境</h1>
+  <time datetime=2022-01-03T12:24:59&#43;0900 class="post-date">Mon, Jan 3, 2022</time>
+  <p>ここ数年は年の初頭に作業環境についてメモしているので2022年も現状の作業環境についてメモしておく．<a href="%7Bfilename%7D/2021/01/02_software-environment-in-2021.md">昨年</a>から変わっていないことも多いが，昨年末にM1 ProのMacBookProに移行したのでその記録もついで書いておく．</p>
+<p>Intel CPUからApple Siliconへの移行となるので，アプリなんかをそのままコピーしてしまうとnativeでなかったり動かなかったりする可能性がありそうだから，移行アシスタントを使ったまるごとコピーはやめて，一からインストールし直すことにした．</p>
+<h2 id="旧macbookproで移行時に行ったこと">旧MacBookProで移行時に行ったこと</h2>
+<ul>
+<li>とりあえず，ユーザのホームディレクトリはすべてバックアップして復元できるようにしておく．</li>
+<li>次のアカウントを解除した：Apple iCloud, Dropbox, Google Drive, Adobe</li>
+</ul>
+<hr>
+<h2 id="新macbookproで行ったこと">新MacBookProで行ったこと</h2>
+<ul>
+<li>wifiのMACアドレスを職場のデータベースに登録．</li>
+<li>Apple iCloudへログイン．MailやCalendarのアカウント情報が同期される．Calendarはこれで設定完了．</li>
+<li>DropboxとGoogle Driveのログイン．ログインするとサーバデータがダウンロードされた．</li>
+</ul>
+<h3 id="homebrew">Homebrew</h3>
+<p>ウェブサイトの最初に書かれているおまじないを実行してインストール．ウェブサイトのコマンドをコピペして実行したらXcodeのCLTも勝手にインストール始めた．ただし，ここでインストールされたgccは <code>/opt/homebrew/bin/gcc-11</code> であり，単に<code>gcc</code>としてもリンクされていないため，<code>alias gcc='gcc-11'</code> を <code>~/.zshrc</code> に書き込むなどして <code>gcc</code> コマンド一発で <code>gcc-11</code> を呼び出すようにする必要があった．また，<code>c++</code> も <code>/opt/homebrew/bin/c++-11</code> にリンクする必要があった．</p>
+<p>以下のようにして <code>~/.zprofile</code> の最後尾におまじないを追加した．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">echo <span style="color:#e6db74">&#39;eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;&#39;</span> &gt;&gt; /Users/kobayashi/.zprofile
+</code></pre></div><p>Homebrewを使ってNoto-sans-mono CJKフォントをインストールした．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ brew tap homebrew/cask-fonts
+$ brew search /noto/
+$ brew install --cask font-noto-sans-cjk-jp font-noto-serif-cjk-jp font-hackgen font-ipafont
+</code></pre></div><p>ターミナルやメールで等しい幅フォントとして使う．<code>brew cask install ...</code> と書かれている情報は古く， <code>brew install --cask ...</code> としなければいけないようになったらしい．</p>
+<h3 id="emacs">Emacs</h3>
+<p>ターミナルで使えうぶんには以下のコマンドでOK．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ brew install emacs --cask
+</code></pre></div><p>ターミナル上のemacsでは日本語の扱いが少し弱いので，app版の <a href="https://emacsformacosx.com/">Emacs for macosx</a> をウェブから取ってきてインストールした．</p>
+<h3 id="anyenv-から-pyenv">anyenv から pyenv</h3>
+<p>pyenvでpythonをインストールするのだが，anyenvという一つ上のツールを使うと，他のrbenvなんかも同様の扱いでいけるようになるらしいのでanyenvから導入した．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ brew install anyenv
+$ echo <span style="color:#e6db74">&#39;eval &#34;$(anyenv init -)&#34;&#39;</span> &gt;&gt; ~/.zshrc
+$ anyenv install -l
+$ anyenv instlal pyenv
+</code></pre></div><p>下記を <code>~/.zshrc</code> に追加した．</p>
+<pre tabindex="0"><code class="language-shellscript" data-lang="shellscript">export PYENV_ROOT=&quot;$HOME/.pyenv&quot;
+export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;
+if command -v pyenv 1&gt;/dev/null 2&gt;&amp;1; then
+  eval &quot;$(pyenv init --path)&quot;
+fi
+</code></pre><p>いろんなサイトで，<code>eval &quot;$(pyenv init -)&quot;</code> と書かれていたが，<code>-</code> のところを <code>--path</code> としないと，pythonへのPATHが <code>/usr/bin/python</code> となってしまいうまいこといかなかった．</p>
+<h3 id="mactex">MacTeX</h3>
+<p>LaTeX環境はいろいろあるらしく，どれが良いのか調べるのも億劫なのであまり調べていないが，<a href="https://sourabhbajaj.com/mac-setup/LaTeX/">ココ</a> を参考にして，brewでmactexをインストールした．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ brew install --cast mactex
+</code></pre></div><p>一応，TeXShopもインストールされると書かれているような気がする．．．</p>
+<h3 id="hhkb-happy-hacking-keyboard">HHKB (Happy Hacking Keyboard)</h3>
+<p>USB-C で接続しただけでは最初は認識しなかった．設定 -&gt; キーボード -&gt; 「キーボードの種類を変更&hellip;」でアシスタントに従って操作してやっと認識された．それでもときどき英語配列のようなキー配列となってしまうことがあった． <code>Fn + Ctrl + 0</code> と押したり，繋ぎ直したりしたらJIS日本語配列に直った．どうもメーカー側もまだはっきりとは解決できていないらしい（2021-12-28）．</p>
+<h3 id="メールデータ移行">メールデータ移行</h3>
+<p>旧Mac上のMailにおいて各アカウントのメールボックスを選択して「メールボックス &gt; メールボックスを書き出す&hellip;」として，<code>hoge.mbox</code> というファイルにエクスポートし，それらをコピーして，新Mac上のMailで「ファイル &gt; メールボックスを読み込む&hellip; &gt; Apple Mailにチェック」して読み込むとメールデータを移行できる．ただし，このやり方だと添付ファイルは含まれないようす．添付ファイルは重いのでコピーしないことにする．（メールサーバがIMAPで，データがサーバにある場合はアカウントを移行するだけでOKと思われる．）</p>
+<h3 id="ホスト名登録">ホスト名登録</h3>
+<p>ホスト名だけでリモートホスト名のIPアドレス解決するためには，DNSを設定するだけではだめだったので，<code>/etc/hosts</code> によく使うリモートサーバーを書きこんだ（ちなみに <code>/etc</code> は <code>/private/etc</code> へのリンク）．</p>
+<h3 id="インストールしたアプリ">インストールしたアプリ</h3>
+<ul>
+<li>Ovito &mdash; MD結果可視化ツール</li>
+<li>VESTA &mdash; 原子構造可視化ツール</li>
+<li>Obsidian &mdash; ノートアプリ</li>
+<li>MindNode &mdash; マインドマップアプリ（あまり使わないけど．．．）</li>
+<li>Adobe CC</li>
+<li>Slack</li>
+<li>MS Office 365</li>
+<li>TimeMachine Editor (via Homebrew)</li>
+<li>Chrome (「Save to Pocket」)</li>
+<li>Market Speed (楽天証券)</li>
+<li>Zoom</li>
+<li>PlainCalc &mdash; 計算機アプリ</li>
+<li>WorkFlowy &mdash; アウトライン作成，ToDoアプリ</li>
+<li>Alfred 4 &mdash; 検索アプリ，Spotlightより便利</li>
+<li>XQuartz &mdash; via <code>brew install --cask xquartz</code></li>
+<li>gnuplot &mdash; via <code>brew install gnuplot</code>, なぜかx11をtermに設定できない．qtで表示されるから良いけど，リモート転送が重い傾向．</li>
+<li><a href="https://rectangleapp.com/">Rectangle</a> &mdash; ウィンドウサイズを変更したりするアプリとして以前は ShiftIt というものを用いていたが，それは開発終了したとのことでこちらに変更．</li>
+</ul>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

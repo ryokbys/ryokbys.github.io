@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>fortran on R.K.S. website</title>
+    <link>https://ryokbys.github.io/tags/fortran/</link>
+    <description>Recent content in fortran on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 26 Jun 2017 16:50:42 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/tags/fortran/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Circular dependency when making a Fortran program with modules</title>
+      <link>https://ryokbys.github.io/2017/06/circular-dependency-when-making-a-fortran-program-with-modules/</link>
+      <pubDate>Mon, 26 Jun 2017 16:50:42 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/06/circular-dependency-when-making-a-fortran-program-with-modules/</guid>
+      <description>以下のようなFortranのプログラムがある． いくつかのファイルに分割されている． ファイルと同じ名前のモジュールを含むファイルがある．（つま</description>
+    </item>
+    
+  </channel>
+</rss>

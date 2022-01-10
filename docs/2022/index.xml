@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2022s on R.K.S. website</title>
+    <link>https://ryokbys.github.io/2022/</link>
+    <description>Recent content in 2022s on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 03 Jan 2022 12:24:59 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/2022/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2022年初頭の作業環境</title>
+      <link>https://ryokbys.github.io/2022/01/2022%E5%B9%B4%E5%88%9D%E9%A0%AD%E3%81%AE%E4%BD%9C%E6%A5%AD%E7%92%B0%E5%A2%83/</link>
+      <pubDate>Mon, 03 Jan 2022 12:24:59 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2022/01/2022%E5%B9%B4%E5%88%9D%E9%A0%AD%E3%81%AE%E4%BD%9C%E6%A5%AD%E7%92%B0%E5%A2%83/</guid>
+      <description>ここ数年は年の初頭に作業環境についてメモしているので2022年も現状の作業環境についてメモしておく．昨年から変わっていないことも多いが，昨年</description>
+    </item>
+    
+  </channel>
+</rss>

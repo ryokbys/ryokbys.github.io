@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Install numpy on Fujitsu FX100 &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Install numpy on Fujitsu FX100</h1>
+  <time datetime=2017-02-02T18:51:18&#43;0900 class="post-date">Thu, Feb 2, 2017</time>
+  <p>FX100でも，大きな計算だけでなく大量の小さな計算をバカ並列で行うことが認められて来ているので，FX100計算サーバ上でnumpyを用いたpythonコードを走らせたいというモチベーションがあった．
+しかし，numpyは入っていないし，管理者に要望を伝えても，「メンテナンスの時でないとインストールできないし，優先順位は低い」みたいな感じだったので，自分でインストールしなければならなかった．</p>
+<h2 id="前提">前提</h2>
+<ul>
+<li>名大スパコン <strong>FX100</strong></li>
+<li><code>$ uname -a</code>とすると，<code>Linux f13c06n08 2.6.32 #2 SMP Wed Nov 2 17:44:12 JST 2016 s64fx s64fx s64fx GNU/Linux</code>となる．Sparc64の上でLinuxが動いている環境．</li>
+<li>gccは初めから入っているが，gfortranは存在しない．</li>
+<li>管理者権限はないし，スパコン側からインターネットに接続できないから，<code>$ pip install numpy</code>のような便利コマンドが使えないため，自分で依存関係も含めてソースコードからコンパイルしてインストールしなければならない．</li>
+<li>numpyのインストールにはFortranコンパイラが必要そう．</li>
+</ul>
+<h2 id="gcc-447">gcc-4.4.7</h2>
+<p>最新バージョンではないが，もともとそのスパコンにはこのバージョンのgccがインストールされていたので，このバージョンを選択．</p>
+<p><a href="http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-4.4.7/">ここ</a>から
+<code>gcc-4.4.7.tar.gz</code> を落として来て，<code>fx:src/</code>にコピー．</p>
+<pre tabindex="0"><code>$ ./configure --prefix=$HOME/local-fx --enable-languages=c,fortran
+...
+configure: error: cannot guess build type; you must specify one
+</code></pre><p>となって，進むことができない．
+オプションに<code>--build=sparc64-linux-gnu</code>を追加すると，</p>
+<pre tabindex="0"><code>checking for correct version of gmp.h... no
+configure: error: Building GCC requires GMP 4.1+ and MPFR 2.3.2+.
+Try the --with-gmp and/or --with-mpfr options to specify their locations.
+Copies of these libraries' source code can be found at their respective
+hosting sites as well as at ftp://gcc.gnu.org/pub/gcc/infrastructure/.
+See also http://gcc.gnu.org/install/prerequisites.html for additional info.
+If you obtained GMP and/or MPFR from a vendor distribution package, make
+sure that you have installed both the libraries and the header files.
+They may be located in separate packages.
+</code></pre><p>となり，進めない．どうも<code>GMP</code>と<code>MPFR</code>というライブラリが必要とのこと．</p>
+<p><strong>次のセクションにMPFRとGMPのインストールを記載する．</strong></p>
+<p>GMPとMPFRをインストールしたら，それらのヘッダファイルやライブラリファイルへのパスを明示的に渡してやって<code>./configure</code>を行う．</p>
+<pre tabindex="0"><code>$ ./configure --prefix=$HOME/local-fx/ --build=sparc64-linux-gnu --with-gmp-include=$HOME/local-fx/include --with-gmp-lib=$HOME/local-fx/lib --with-mpfr-include=$HOME/local-fx/include --with-mpfr-lib=$HOME/local-fx/lib --enable-languages=c,fortran --disable-multilib
+$ make -j24
+$ make install
+</code></pre><ul>
+<li><code>--disable-multilib</code>をつけないと，コンパイル途中で，<code>gnu/stubs-32.h</code>が見つからないというエラーで止まってしまう．（<a href="http://qiita.com/liveralmask/items/6ed4a98ebb3bf6b7f707">ココ</a>を参照．）</li>
+</ul>
+<h3 id="mpfr">MPFR</h3>
+<ul>
+<li><a href="http://www.mpfr.org">http://www.mpfr.org</a>
+からダウンロードしてきて，解凍して，</li>
+</ul>
+<pre tabindex="0"><code>$ ./configure --prefix=$HOME/local-fx/ --build=sparc64-linux-gnu
+...
+checking for gmp.h... no
+configure: error: gmp.h can't be found, or is unusable.
+</code></pre><p>と，結局<code>GMP</code>が必要．</p>
+<p>次のセクションのGMPをインストール後，下記のようにGMPの<code>gmp.h</code>と<code>libgmp.a</code>の場所を明示的にconfigureに渡してやれば，configureは通る．</p>
+<pre tabindex="0"><code>$ ./configure --prefix=$HOME/local-fx/ --build=sparc64-linux-gnu --with-gmp-include=$HOME/local-fx/include --with-gmp-lib=$HOME/local-fx/lib
+$ make -j12
+$ make install
+</code></pre><h3 id="gmp">GMP</h3>
+<p>下記参考</p>
+<ul>
+<li><a href="http://d.hatena.ne.jp/fuku_dw/20111217/1324127010">http://d.hatena.ne.jp/fuku_dw/20111217/1324127010</a></li>
+</ul>
+<pre tabindex="0"><code>$ ./configure --prefix=$HOME/local-fx/ --build=sparc64-linux-gnu
+$ make -j4
+$ make check
+$ make install
+</code></pre><hr>
+<h2 id="numpy">numpy</h2>
+<h3 id="build">build</h3>
+<pre tabindex="0"><code>$ CC=gcc python setup.py build --fcompiler=gfortran
+</code></pre><ul>
+<li><code>CC=gcc</code>と先に宣言してから<code>setup.py</code>を実行しなければエラーで止まってしまう．</li>
+<li><code>sparc64-unknown-linux-gnu-gcc</code>という名前で，コンパイラが存在していないとダメだったので，パスの通っているディレクトリにリンクを貼っておいた．</li>
+<li>BLASやLAPACKなどはマシンにインストールされているものを使えなかった．しかし，インストールはできる．おそらくnumpyの性能はあまりよくないと思われる．</li>
+</ul>
+<h3 id="install">install</h3>
+<p><a href="https://docs.python.org/3/install/index.html#alternate-installation">ここ</a>を参考にして下記のように<code>--prefix</code>にインストール先を指定．</p>
+<pre tabindex="0"><code>$ python setup.py install --prefix=$HOME/local-fx
+</code></pre><p>こうしたら，
+<code>$HOME/local-fx/lib64/python2.6/site-packages/</code>以下にインストールされた．
+<code>lib</code>ではなく，<code>lib64</code>であることに注意．</p>
+<h3 id="check">check</h3>
+<pre tabindex="0"><code>$ export PYTHONPATH=$HOME/local-fx/lib64/python2.6/site-packages:$PYTHONPATH
+$ python -c &quot;import numpy; print numpy.__file__&quot;
+/home/usr0/z41110v/local-fx/lib64/python2.6/site-packages/numpy/__init__.pyc
+</code></pre><ul>
+<li>まず，<code>numpy</code>が置かれているところへ，PYTHONPATHを通してやる．</li>
+<li><code>import numpy</code>が通ることを確認．</li>
+</ul>
+<h2 id="注意点">注意点</h2>
+<ul>
+<li>今回のインストールでは，BLAS, LAPACKを用いずにnumpyをインストールしているので，もしかしたら思い計算は遅くなるかもしれない．</li>
+<li>BLAS, LAPACKをインストールしていないので，scipyのインストールはできなかった．今の所は必要としていないので，これ以上は追求しない．</li>
+</ul>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

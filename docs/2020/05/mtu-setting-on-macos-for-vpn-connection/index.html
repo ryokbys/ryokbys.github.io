@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MTU setting on macOS for VPN connection &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>MTU setting on macOS for VPN connection</h1>
+  <time datetime=2020-05-28T17:15:29&#43;0900 class="post-date">Thu, May 28, 2020</time>
+  <h2 id="work-from-home">Work from home&hellip;</h2>
+<p>コロナの影響で，最近はずっと自宅からリモートワークをしている．
+リモートワークで職場のネットワークにアクセスするには，VPN接続が必要なことがある．
+VPNで接続しても10分程度で突然接続が切れてしまうことが多々あった．
+しかし，この現象は同様の環境におかれている知人のところでは発生しない．知人は，使っているプロバイダ，マシン（Windows）などが異なる．
+いくらかのネットの情報より，MTU（Maximum Transmission Unit）の設定が問題かもしれないということに至った．</p>
+<h2 id="estimate-mtu-value">Estimate MTU value</h2>
+<p>macOS 10.15.4 (Catalina) では，<code>ping</code>コマンドでMTUの上限値を調べることができる．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ping -c <span style="color:#ae81ff">5</span> -D -s <span style="color:#ae81ff">1472</span> www.google.com
+</code></pre></div><ul>
+<li><code>-s 1472</code>：通信バイトサイズを指定（ヘッダ分<code>+28</code>がこれに加わる）</li>
+<li><code>-D</code>：通信パッケージを分割しない？　通信パッケージが大きすぎたらダメだとなってほしいので．</li>
+<li><code>-c 5</code>：テスト通信の回数</li>
+</ul>
+<p>ウチのWiFi環境では，VPN接続しない場合は，1472（つまり 1472+28=1500）で通信できた．</p>
+<p>以下，VPN環境下での<code>ping</code>テスト結果：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ping -c <span style="color:#ae81ff">5</span> -D -s <span style="color:#ae81ff">1253</span> www.google.com
+PING www.google.com <span style="color:#f92672">(</span>172.217.161.228<span style="color:#f92672">)</span>: <span style="color:#ae81ff">1253</span> data bytes
+ping: sendto: Message too long
+ping: sendto: Message too long
+Request timeout <span style="color:#66d9ef">for</span> icmp_seq <span style="color:#ae81ff">0</span>
+ping: sendto: Message too long
+Request timeout <span style="color:#66d9ef">for</span> icmp_seq <span style="color:#ae81ff">1</span>
+^C
+--- www.google.com ping statistics ---
+<span style="color:#ae81ff">3</span> packets transmitted, <span style="color:#ae81ff">0</span> packets received, 100.0% packet loss
+<span style="color:#f92672">[</span>kobayashi@mbp-rk py3Dmol<span style="color:#f92672">]</span>$ ping -c <span style="color:#ae81ff">5</span> -D -s <span style="color:#ae81ff">1252</span> www.google.com
+PING www.google.com <span style="color:#f92672">(</span>172.217.161.228<span style="color:#f92672">)</span>: <span style="color:#ae81ff">1252</span> data bytes
+<span style="color:#ae81ff">76</span> bytes from 172.217.161.228: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">55</span> time<span style="color:#f92672">=</span>34.951 ms
+wrong total length <span style="color:#ae81ff">96</span> instead of <span style="color:#ae81ff">1280</span>
+<span style="color:#ae81ff">76</span> bytes from 172.217.161.228: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">55</span> time<span style="color:#f92672">=</span>35.473 ms
+wrong total length <span style="color:#ae81ff">96</span> instead of <span style="color:#ae81ff">1280</span>
+<span style="color:#ae81ff">76</span> bytes from 172.217.161.228: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">55</span> time<span style="color:#f92672">=</span>34.116 ms
+wrong total length <span style="color:#ae81ff">96</span> instead of <span style="color:#ae81ff">1280</span>
+^C
+--- www.google.com ping statistics ---
+<span style="color:#ae81ff">5</span> packets transmitted, <span style="color:#ae81ff">5</span> packets received, 0.0% packet loss
+round-trip min/avg/max/stddev <span style="color:#f92672">=</span> 33.143/34.767/36.151/1.050 ms
+</code></pre></div><p>このように，1280まではOKだが，1281以上だとパッケージ分割が必要となり，VPNの受付側が分割したパッケージは受け取らんというポリシーの場合には途中で接続が切れるということがある，のかな？</p>
+<h2 id="mtu-manual-setting-on-macos-catalina">MTU manual setting on macOS Catalina</h2>
+<ol>
+<li>「システム環境設定&hellip;」&gt;「ネットワーク」&gt;「Wi-Fi」右下の「詳細&hellip;」</li>
+<li>「ハードウェア」パネルを開く</li>
+<li>「構成：」で，「手動」を選択</li>
+<li>「MTU：」で，「カスタム」を選択し，適切な値を記入（今の場合は <code>1280</code>）</li>
+</ol>
+<h2 id="conclusions">Conclusions</h2>
+<ul>
+<li><code>ping</code>を使ってMTUの上限値（最適値）を調べることができる</li>
+<li>「システム環境設定」内でwifiのMTU値をカスタム設定できる</li>
+<li>しかし，残念なことに突然接続が切れる問題は解決していない&hellip;</li>
+</ul>
+<h2 id="references">References</h2>
+<ol>
+<li><a href="https://support.purevpn.com/how-to-change-mtu-value-on-mac">https://support.purevpn.com/how-to-change-mtu-value-on-mac</a></li>
+<li><a href="https://www.chrismacpherson.net/dev/configuring-vpn-mtu/">https://www.chrismacpherson.net/dev/configuring-vpn-mtu/</a></li>
+</ol>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

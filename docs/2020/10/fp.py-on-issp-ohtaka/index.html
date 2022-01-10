@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>fp.py on ISSP Ohtaka &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>fp.py on ISSP Ohtaka</h1>
+  <time datetime=2020-10-18T10:54:42&#43;0900 class="post-date">Sun, Oct 18, 2020</time>
+  <p>東大物性研のスパコン[1]のシステムBというのが使えるようになったので，そこで自分のプログラムの動作確認をした．古典力場構築プログラム<code>fp.py</code>[2]が普通に使えたので，設定とジョブ投入方法をメモしておく．</p>
+<h2 id="ダウンロード">ダウンロード</h2>
+<p>nap (Nagoya Atomistic simulation Package) を下記GitHubサイトからダウンロードする．
+<a href="https://github.com/ryokbys/nap">https://github.com/ryokbys/nap</a></p>
+<p>展開して，ディレクトリ名を変更して，<code>~/src/nap</code> というディレクトリに置かれたとする．</p>
+<h2 id="pmdのコンパイル">pmdのコンパイル</h2>
+<p>Parallel Molecular Dynamics (pmd) プログラムをコンパイルする．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd ~/src/nap/
+$ ./configure FCFLAGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;-O3 -march=core-avx2 -ip -ipo -g -traceback&#39;</span>
+$ cd pmd/
+$ make pmd
+</code></pre></div><h2 id="pythonの設定">Pythonの設定</h2>
+<p>初期設定ではpythonへのパスは通っていない．システム内にいくつかのバージョンのpythonが入っているが，残念ながらログインノードと計算ノードでインストールされているパッケージが異なっていて，扱いづらいので，自分のディレクトリに独自のpythonをインストールする．</p>
+<p>Homebrew for Linux を利用してpython@3.8をインストールするため，<a href="https://docs.brew.sh/Homebrew-on-Linux">ココ</a> に従い Homebrew for Linux をインストールする．</p>
+<p><code>python@3.8</code> をインストールして，pythonとpipのリンクを <code>$HOME/bin/</code> に入れて <code>python</code> と <code>pip</code> コマンドを使えるようにしておく．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ brew install python@3.8
+$ cd ~/bin/
+$ ln -s ~/.linuxbrew/bin/python3 python
+$ ln -s ~/.linuxbrew/bin/pip3 pip
+</code></pre></div><p>いくつか必要となるPythonパッケージをインストールする．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ pip install numpy pandas docopt ase
+</code></pre></div><h2 id="nappyの設定">nappyの設定</h2>
+<p><code>~/.bash_profile.local</code> に下記を追加して，<code>PYTHONPATH</code> へnappyを追加しておく．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ export PYTHONPATH<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>/src/nap:<span style="color:#e6db74">${</span>PYTHONPATH<span style="color:#e6db74">}</span>
+</code></pre></div><p>これがちゃんと反映されるように，<code>~/.bash_profile</code> の最後に下記を書いておく．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">source ~/.bash_profile.local
+</code></pre></div><h2 id="fppyの動作確認">fp.pyの動作確認</h2>
+<p><code>nap/examples/fp_LLZ/</code> を適当な場所にコピーして <em>fp.py</em> のテストを行う．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd /path/to/testdir
+$ cp -r ~/src/nap/examples/fp_LLZ ./
+$ cd fp_LLZ
+</code></pre></div><p><code>subjob.sh</code>内の</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pmd 2&gt;&amp;<span style="color:#ae81ff">1</span> &gt; out.pmd.NpT
+</code></pre></div><p>の行を，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">srun -N <span style="color:#ae81ff">1</span> -n <span style="color:#ae81ff">1</span> -c <span style="color:#ae81ff">1</span> pmd 2&gt;&amp;<span style="color:#ae81ff">1</span> &gt; out.pmd.NpT
+</code></pre></div><p>のように <code>srun</code> でpmdを実行するように変更する．</p>
+<p><code>in.fitpot</code> の中に <code>cs_num_individuals 4</code> という行があり，４個体並列で計算することを確認し，下記コマンドで <em>fp.py</em> を実行する．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sbatch -p B1cpu -J <span style="color:#e6db74">&#39;test_fp&#39;</span> -N <span style="color:#ae81ff">1</span> -n <span style="color:#ae81ff">4</span> -o out.fp ~/src/nap/nappy/fitpot/fp.py --nproc<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>
+</code></pre></div><p>下記のような <code>out.fp</code> ファイルが出力されていれば成功．</p>
+<pre tabindex="0"><code>$ tail -n5 out.fp
+   iid,Lr,Lth,Lvol,Llat,L=        6    0.7614     0.4336     2.4838     0.0000     3.6788
+   iid,Lr,Lth,Lvol,Llat,L=        5    0.4043     0.2991     1.0301     0.0000     1.7336
+   iid,Lr,Lth,Lvol,Llat,L=        9    2.1364     0.8182    27.3374     0.0000    30.2921
+ step,time,best,vars=      1    137.4    1.7336  1.000  1.152  1.177  0.974  0.833  0.873  2.037  1.773  2.352  2.169  1.964  4.219  2.038  1.536  1.862  1.000
+elapsed time = 137.432213 sec.
+</code></pre><h2 id="ohtakaにおける注意">Ohtakaにおける注意</h2>
+<p>Ohtakaには１ノード当たり2CPUあり，全部で128コアあるので，<em>fp.py</em> では128並列まで可能なはず．</p>
+<p>1プロセスのクロックはそれほど速くないので，スピードは速くないが，並列数が多いので広域探索が可能なのでもしかしたら収束までが速くなるかもしれない．</p>
+<hr>
+<ol>
+<li><a href="https://www.issp.u-tokyo.ac.jp/supercom">東京大学物性研究所スーパーコンピュータ・センター</a></li>
+<li><a href="https://aip.scitation.org/doi/10.1063/5.0015373">R. Kobayashi, Y. Miyaji, K. Nakano, M. Nakayama, &ldquo;High-throughput production of force-fields for solid-state electrolyte materials&rdquo;, APL Materials 8, 081111 (2020)</a></li>
+</ol>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

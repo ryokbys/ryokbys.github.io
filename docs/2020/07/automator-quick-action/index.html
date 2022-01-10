@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Automator quick action on macOS &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Automator quick action on macOS</h1>
+  <time datetime=2020-07-04T22:07:40&#43;0900 class="post-date">Sat, Jul 4, 2020</time>
+  <p>とある目的で，何らかのファイルを特定のフォルダにコピーし，ファイル名が年月日から始まるように変更したかった．これまではそれを手動で行っていたが，CUIであればすぐにスクリプトを作るなぁと思ったので，macOS純正の<strong>Automator</strong>アプリでできるだけやってみた．</p>
+<ol>
+<li>Automator.appでクイックアクションを開く</li>
+<li>図のように，「Finder項目をコピー」，「Finder項目の名前を変更」，「Finder項目を表示」をつなげてワークフローを作る．
+<img src="https://ryokbys.github.io/images/20200704_automator.png" alt="img"></li>
+<li>適当な名前でディレクトリを指定して保存する．ここでは，「Save to zettlr assets」というディレクトリの中に保存するようになっている．</li>
+</ol>
+<p>このクイックアクションは，<code>~/Library/Services/Save to zettlr assets.workflow</code>という名前で保存されている．Finder上で何かしらのファイルを選択し，右クリックでコンテキストメニューを表示し，「サービス」から選択することで上記ワークフローが実行される．だが，これだけだとまだ面倒なので，次のようにしてこのアクションにキーボード・ショートカットを設定する．</p>
+<ol>
+<li>
+<p><strong>システム環境設定</strong>を開き，「キーボード」内の「ショートカット」タブを選択．</p>
+</li>
+<li>
+<p>左の選択肢の中から「アプリケーション」を選択し，右で「＋」をクリック．</p>
+</li>
+<li>
+<p>追加ウィンドウから以下の設定：</p>
+<ul>
+<li>アプリケーション：<code>Finder.app</code></li>
+<li>メニュータイトル：<code>Save to zettlr assets</code></li>
+<li>キーボードショートカット：<code>⌘^⇧1</code>（<code>cmd+shift+control+1</code>）</li>
+</ul>
+</li>
+</ol>
+<p>これで，ファイルを選択して上記ショートカットでクイックアクションが実行されるようになり，だいぶ作業が簡略化された．めでたし，めでたし．</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

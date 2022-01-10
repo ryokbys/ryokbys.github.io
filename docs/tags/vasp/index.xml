@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vasp on R.K.S. website</title>
+    <link>https://ryokbys.github.io/tags/vasp/</link>
+    <description>Recent content in vasp on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Feb 2017 18:25:33 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/tags/vasp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bug in vasprun.xml?</title>
+      <link>https://ryokbys.github.io/2017/02/bug-in-vasprun.xml/</link>
+      <pubDate>Wed, 15 Feb 2017 18:25:33 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/02/bug-in-vasprun.xml/</guid>
+      <description>After running a VASP simulation with Li, La, Zr, and O, I found a bug in vasprun.xml in which Zr is written as r.
+$ grep &#39;PAW_PBE&#39; vasprun.xml &amp;lt;rc&amp;gt;&amp;lt;c&amp;gt; 28&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt;Li&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 7.01000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 1.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; PAW_PBE Li 17Jan2003 &amp;lt;/c&amp;gt;&amp;lt;/rc&amp;gt; &amp;lt;rc&amp;gt;&amp;lt;c&amp;gt; 12&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt;La&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 138.90000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 9.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; PAW_PBE La_s 06Sep2000 &amp;lt;/c&amp;gt;&amp;lt;/rc&amp;gt; &amp;lt;rc&amp;gt;&amp;lt;c&amp;gt; 8&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt;r &amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 91.22400000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 12.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; PAW_PBE Zr_sv 04Jan2005 &amp;lt;/c&amp;gt;&amp;lt;/rc&amp;gt; &amp;lt;rc&amp;gt;&amp;lt;c&amp;gt; 48&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt;O &amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 16.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; 6.00000000&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt; PAW_PBE O_s 07Sep2000 &amp;lt;/c&amp;gt;&amp;lt;/rc&amp;gt; So reading the vasprun.xml file with using ASE module or something like that does not work.</description>
+    </item>
+    
+  </channel>
+</rss>

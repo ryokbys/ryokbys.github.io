@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> alloy on R.K.S. website</title>
+    <link>https://ryokbys.github.io/tags/alloy/</link>
+    <description>Recent content in  alloy on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 May 2020 23:05:07 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/tags/alloy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Yield strength of high entropy alloys</title>
+      <link>https://ryokbys.github.io/2020/05/yield-strength-of-high-entropy-alloys/</link>
+      <pubDate>Thu, 28 May 2020 23:05:07 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/05/yield-strength-of-high-entropy-alloys/</guid>
+      <description>論文覚書． B. Yin and W. A. Curtin, “Origin of high strength in the CoCrFeNiPd high-entropy alloy,” Mater. Res. Lett., vol. 8, no. 6, pp. 209–215, 2020. B. Yin, S. Yoshida, N. Tsuji, and W. A. Curtin, “Yield strength and misfit volumes of</description>
+    </item>
+    
+  </channel>
+</rss>

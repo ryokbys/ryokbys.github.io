@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> python on R.K.S. website</title>
+    <link>https://ryokbys.github.io/tags/python/</link>
+    <description>Recent content in  python on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Mar 2020 10:24:48 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Stylish Jupyter Notebook with jupyter-themes</title>
+      <link>https://ryokbys.github.io/2020/03/jupyter-themes/</link>
+      <pubDate>Tue, 24 Mar 2020 10:24:48 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/03/jupyter-themes/</guid>
+      <description>Appearance of Jupyter Notebook can be modified using jupyter-themes. See the following websites for details, jupyterの表示拡張機能、jupyter-themesを徹底紹介する jupyter-themes の fontについて Chrome extension Stylish should be installed in addition to</description>
+    </item>
+    
+    <item>
+      <title>Mayavi on jupyter notebook</title>
+      <link>https://ryokbys.github.io/2018/03/mayavi-on-jupyter-notebook/</link>
+      <pubDate>Thu, 01 Mar 2018 11:53:51 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2018/03/mayavi-on-jupyter-notebook/</guid>
+      <description>Mayavi は3Dでのデータ可視化を支援するライブラリ． これを Jupyter notebook で使えるようにするまでのメモ（macOS High Sierra）． References Jupyter で 3D 表示 - Mayavi ライブラリ</description>
+    </item>
+    
+    <item>
+      <title>Install numpy on Fujitsu FX100</title>
+      <link>https://ryokbys.github.io/2017/02/install-numpy-on-fujitsu-fx100/</link>
+      <pubDate>Thu, 02 Feb 2017 18:51:18 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/02/install-numpy-on-fujitsu-fx100/</guid>
+      <description>FX100でも，大きな計算だけでなく大量の小さな計算をバカ並列で行うことが認められて来ているので，FX100計算サーバ上でnumpyを用いた</description>
+    </item>
+    
+  </channel>
+</rss>

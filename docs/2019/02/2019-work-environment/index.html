@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>2019年初頭における作業環境 &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>2019年初頭における作業環境</h1>
+  <time datetime=2019-02-22T10:25:16&#43;0900 class="post-date">Fri, Feb 22, 2019</time>
+  <p>一昨年，昨年と年の初頭における作業環境をメモしていたので，今年も書いておく．</p>
+<h2 id="tmux">tmux</h2>
+<p>これはかなり秀逸なツールなので，愛用している．リモートサーバ上での作業に関しては，これが入っていないと面倒でしかたがない．
+以下のスクリプトを<code>~/.bashrc</code>もしくは<code>~/.bash_profile</code>に書いておく．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">function</span> tmux<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    local tmux<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>type -fp tmux<span style="color:#66d9ef">)</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> in
+        update-environment|update-env|env-update<span style="color:#f92672">)</span>
+            local v
+            <span style="color:#66d9ef">while</span> read v; <span style="color:#66d9ef">do</span>
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $v <span style="color:#f92672">==</span> -* <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+                    unset <span style="color:#e6db74">${</span>v/#-/<span style="color:#e6db74">}</span>
+                <span style="color:#66d9ef">else</span>
+                    <span style="color:#75715e"># Add quotes around the argument</span>
+                    v<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>v/=/=<span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">}</span>
+                    v<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>v/%/<span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">}</span>
+                    eval export $v
+                <span style="color:#66d9ef">fi</span>
+            <span style="color:#66d9ef">done</span> &lt; &lt;<span style="color:#f92672">(</span>tmux show-environment<span style="color:#f92672">)</span>
+            ;;
+        *<span style="color:#f92672">)</span>
+            $tmux <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>
+            ;;
+    <span style="color:#66d9ef">esac</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>そうして，以下のコマンドを打つことで，tmux内のX windowの設定を切り替えられるので，gnuplotなどのグラフをちゃんと転送できるようになる．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tmux update-env
+</code></pre></div><h2 id="jupyter-lab">Jupyter Lab</h2>
+<p>こちらも前年同様で，引き続き使用している．もはや欠かせない．前年度からの変更は，プロジェクト毎のディレクトリの構造を整理し，<code>project/</code>ディレクトリの中に，<code>src/codebase/</code>というディレクトリを用意し，その中に<code>__init__.py</code>という空のファイルと，pythonスクリプトを置いておく．それらのスクリプトは，そのプロジェクトに共通する便利スクリプト群であり，そのプロジェクトで使うすべてのjupyter notebookから参照しやすくした．jupyter notebookからそれらを利用する際には，以下のようなコードを書けば良い．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> sys
+projsrc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/path/to/project/src/&#39;</span>
+sys<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>append(projsrc)
+<span style="color:#75715e">#...There is a codebase directory in projsrc/src/</span>
+<span style="color:#f92672">from</span> codebase <span style="color:#f92672">import</span> pmd
+<span style="color:#f92672">from</span> codebase <span style="color:#f92672">import</span> cspline <span style="color:#66d9ef">as</span> csp
+</code></pre></div><h2 id="quiverapp">Quiver.app</h2>
+<p>昨年から引き続き使用している．しかし，最近iPad Proを使うようになってから，一部のメモはそちらに移行している．</p>
+<h2 id="ipad-pro--goodnote5">iPad Pro + GoodNote5</h2>
+<p>iPad Proで GoodNote5 アプリを使ってノートを取ることが増えてきた．
+Quiverに比べると，以下の点でメリットがある．</p>
+<ul>
+<li>手書き</li>
+<li>画像を任意の場所に，任意のサイズで貼り付けられる</li>
+<li>貼り付けた画像に書き込める</li>
+</ul>
+<p>パソコン作業しているもののメモには，（iPadに持ち帰るのが面倒なので）未だにQuiverの方が便利だが，それ以外のメモなどにはiPadを使うことが多くなってきた．iPad + GoodNote5があれば，本当に論文を印刷する必要がなくなってきた．</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

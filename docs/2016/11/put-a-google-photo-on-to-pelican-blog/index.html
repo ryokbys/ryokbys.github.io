@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ペリカンブログにグーグルフォトを載せる &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>ペリカンブログにグーグルフォトを載せる</h1>
+  <time datetime=2016-11-03T10:55:38Z class="post-date">Thu, Nov 3, 2016</time>
+  <p>tags: pelican
+最近，スマホで撮った写真は自動的にグーグルフォトに同期されるようになっていて，そこから写真のURLを取得するだけでブログに写真を載せることができる．</p>
+<p>備忘録として記載しておく．</p>
+<h1 id="画像の貼り付け方restで共通">画像の貼り付け方（ReSTで共通？）</h1>
+<pre><code>.. figure:: http://......
+  :target: http://target.url.here
+  :align: right
+  :width: 400px
+  :alt: Alternative text
+</code></pre>
+<p>のようにして貼り付ける．</p>
+<p>この <code>figure</code>
+の右にグーグルフォトで取得した写真のURLを貼り付ければいい．</p>
+<h1 id="グーグルフォトから写真のurlを取得">グーグルフォトから写真のURLを取得</h1>
+<p>どうもグーグルフォトの写真を右クリックして「イメージのアドレスをコピー」としただけでは，そのURLは一時的なものもしくはグーグルフォトにログインしていない人には見れないなどの問題があるらしい．
+Picasa
+web（こちらもgoogleの写真サービス）のアルバムのアクセス設定を，アドレスを知っている人のみに制限しつつ公開する．Picasa
+webでグーグルフォトの写真が見れたらその写真を右クリックして写真のURLを取得すればよいらしい．</p>
+<p>参考サイト：</p>
+<ul>
+<li><a href="http://ameblo.jp/wantan-52/entry-12119213036.html">Googleフォトの画像URLを取得</a></li>
+<li><a href="http://stackoverflow.com/questions/39508631/how-to-get-direct-permanent-link-to-public-image-on-google-photos">How to get direct permanent link to public image on Google
+Photos? - stack
+overflow</a></li>
+</ul>
+<p>グーグルフォトサイトへのリンクを加えたい場合は，
+グーグルフォトサイトにて写真の上の方にある「共有ボタン」をクリックして，「リンクを取得」をクリックするとサイトへのリンクが得られるので，それを上の
+<code>:target:</code> の箇所に貼り付ける．</p>
+<p>結局，下のようなコードとなり，さらに下のように写真が表示されるはず． :</p>
+<pre><code>.. figure:: https://lh3.googleusercontent.com/la0N8s4s7XBBc2SKwDWJC4Q4yDr96EXQ7F8i2mnyFtpv-LuX_k_RSDv6Vgb9a5rwtqr3W7w0WhOJ4T0=w1440-h900-no
+  :align: center
+  :width: 600px
+  :alt: Running course along Lake Geneva
+</code></pre>
+<p><img src="https://lh3.googleusercontent.com/la0N8s4s7XBBc2SKwDWJC4Q4yDr96EXQ7F8i2mnyFtpv-LuX_k_RSDv6Vgb9a5rwtqr3W7w0WhOJ4T0=w1440-h900-no" alt="">{.align-center
+width=&ldquo;600px&rdquo;}</p>
+<h1 id="まだ問題あり">まだ問題あり？</h1>
+<p>どうもグーグルフォトもしくはPicasaから取得した写真のURLはPermanent
+linkではないみたいで，いつ変わってしまうか分からない． <strong>Picasa (Google
+album archive)からのpermanet
+linkの取得さえもうまく行っていない？上記サイトに記載されているやり方でやっていても時が経つと画像が表示されなくなってしまう．．．</strong>
+googleが仕様を変更した瞬間にリンクしていた画像は全て見えなくなってしまうわけで，画像をグーグルフォトから取ってきてブログに貼るという方法は便利だが，不確定性が大きいのかもしれない．</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

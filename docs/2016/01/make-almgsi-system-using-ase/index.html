@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Make AlMgSi-system LAMMPS file using ASE &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Make AlMgSi-system LAMMPS file using ASE</h1>
+  <time datetime=2016-01-13T16:58:33Z class="post-date">Wed, Jan 13, 2016</time>
+  <p>tags: research, alloy, ase, lammps, python</p>
+<h1 id="a-bit-math-first">A bit Math first</h1>
+<p>To get $y$-at%Mg2Si for the 1.2wt%Mg2Si system, calculate the following
+simultaneous equations,</p>
+<p>$$\begin{aligned}
+\frac{(\text{Mg$_2$Si})_y}{\text{Al}_x +(\text{Mg$_2$Si})_y} &amp;=&amp; 0.012, \
+x + y &amp;=&amp; 1,
+\end{aligned}$$</p>
+<p>using masses, Al=26,981, Mg=24.305, and Si=28.085. We get
+$y\simeq 0.00425$.</p>
+<h1 id="in-case-of-32000-atom-system">In case of 32000-atom system</h1>
+<p>If we put (20,20,20) cubic FCC cells including 4 atoms in the simulation
+box, the box contains 32,000 atoms. In the 32000-atom system,</p>
+<p>$$32000*y \simeq 32000 *0.00425 \sim 136,$$</p>
+<p>there are 136 Mg$_2$Si units. So there are about 90 Mg atoms and 45 Si
+atoms in the system, and rest of all are Al atoms.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> ase <span style="color:#f92672">import</span> Atoms
+<span style="color:#f92672">from</span> ase.lattice.cubic <span style="color:#f92672">import</span> FaceCenteredCubic
+atoms<span style="color:#f92672">=</span>FaceCenteredCubic(symbol<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Al&#39;</span>,latticeconstant<span style="color:#f92672">=</span><span style="color:#ae81ff">4.041</span>,size<span style="color:#f92672">=</span>(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">20</span>))
+print atoms<span style="color:#f92672">.</span>get_number_of_atoms()
+</code></pre></div><p>::: parsed-literal
+32000
+:::</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> random <span style="color:#f92672">import</span> random
+natm0<span style="color:#f92672">=</span> atoms<span style="color:#f92672">.</span>get_number_of_atoms()
+n_si<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+n_mg<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(natm0):
+    rnd<span style="color:#f92672">=</span> random()
+    <span style="color:#66d9ef">if</span> rnd <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.00425</span>:
+        <span style="color:#66d9ef">if</span> rnd <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.00425</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>:
+            atoms[i]<span style="color:#f92672">.</span>symbol<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Si&#39;</span>
+            n_si <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">else</span>:
+            atoms[i]<span style="color:#f92672">.</span>symbol<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Mg&#39;</span>
+            n_mg <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+print <span style="color:#e6db74">&#39;number of Mg = &#39;</span>,n_mg
+print <span style="color:#e6db74">&#39;number of Si = &#39;</span>,n_si
+</code></pre></div><p>::: parsed-literal
+number of Mg = 102 number of Si = 46
+:::</p>
+<h1 id="introduce-vacancy">Introduce vacancy</h1>
+<p>For solute atoms to move, there must be sufficient amount of vacancies
+in the system. Here we introduce vacancies of almost the same amount of
+solute atoms.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">n_vac<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(natm0<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+    <span style="color:#66d9ef">if</span> random() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.00425</span>:
+        atoms<span style="color:#f92672">.</span>pop(i)
+        n_vac <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+
+print <span style="color:#e6db74">&#39;number of vacancies = &#39;</span>,n_vac
+</code></pre></div><p>::: parsed-literal
+number of vacancies = 139
+:::</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">n_si<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+n_mg<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(atoms)):
+    <span style="color:#66d9ef">if</span> atoms[i]<span style="color:#f92672">.</span>symbol <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Si&#39;</span>:
+        n_si <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">elif</span> atoms[i]<span style="color:#f92672">.</span>symbol <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Mg&#39;</span>:
+        n_mg <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+print <span style="color:#e6db74">&#39;number of Mg = &#39;</span>,n_mg
+print <span style="color:#e6db74">&#39;number of Si = &#39;</span>,n_si
+</code></pre></div><p>::: parsed-literal
+number of Mg = 101 number of Si = 46
+:::</p>
+<h1 id="write-the-atoms-to-lammps-readable-format">Write the atoms to lammps-readable format</h1>
+<p>In order to write an atomic configuration file for LAMMPS, ase's
+<code>write</code> function does not work. Instead, we have to use
+<code>write_lammps_data</code> function in <code>lammpsrun</code> module.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> ase.calculators <span style="color:#f92672">import</span> lammpsrun
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fname<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;data.AlMgSi&#39;</span>
+lammpsrun<span style="color:#f92672">.</span>write_lammps_data(fname,atoms)
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>head <span style="color:#f92672">-</span>n15 data<span style="color:#f92672">.</span>AlMgSi
+</code></pre></div><p>::: parsed-literal
+data.AlMgSi (written by ASE)</p>
+<p>31861 atoms 3 atom types 0.0 80.820000000 xlo xhi 0.0 80.820000000 ylo
+yhi 0.0 80.819999999 zlo zhi</p>
+<p>Atoms</p>
+<blockquote>
+<p>1 1 0E-9 0E-9 0E-9 2 1 2.020500000 2.020500000 0E-9 3 1 2.020500000
+0E-9 2.020500000 4 1 0E-9 2.020500000 2.020500000
+:::</p>
+</blockquote>
+<p>Note that in this case, the order of chemical species are Al, Mg, and
+Si, because in LAMMPS atoms types are assigned according to the
+alphabetic order.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

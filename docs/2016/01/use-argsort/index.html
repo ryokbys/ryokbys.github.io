@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Use argsort &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Use argsort</h1>
+  <time datetime=2016-01-10T18:43:15Z class="post-date">Sun, Jan 10, 2016</time>
+  <p>tags: python
+Numpyパッケージにリストを並び替えるための <code>argsort</code>
+という関数があるが，その使い方がちょいと難しいからメモ．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> a<span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>])
+<span style="color:#f92672">&gt;&gt;&gt;</span> b<span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argsort(a)
+<span style="color:#f92672">&gt;&gt;&gt;</span> b
+array([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>])
+<span style="color:#f92672">&gt;&gt;&gt;</span> a
+array([<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>])
+<span style="color:#f92672">&gt;&gt;&gt;</span> c<span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(a)[b]
+<span style="color:#f92672">&gt;&gt;&gt;</span> a
+array([<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>])
+<span style="color:#f92672">&gt;&gt;&gt;</span> b
+array([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>])
+<span style="color:#f92672">&gt;&gt;&gt;</span> c
+array([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>])
+</code></pre></div><p>この例を見ると， <code>a=[3,1,2]</code> の <code>argsort</code> で得られたリスト <code>b=[1,2,0]</code>
+は， <code>a</code> をソートするとしたらこの順番ですよという <code>a</code>
+の要素番号のリストとなっている． なので， <code>[a[b[0]],a[b[1]],a[b[2]]]</code>
+というリストを作れば <code>a</code> を並び替えられることになる．
+これを実行しているのが，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">c<span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(a)[b]
+<span style="color:#75715e"># or</span>
+c<span style="color:#f92672">=</span> a[b]
+</code></pre></div><p>なのだが，この書き方はなんだか簡略化しすぎていて理解が難しい気がする．
+おそらくNumpyだと，こういう演算が許されているということだと思うのだが．．．</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

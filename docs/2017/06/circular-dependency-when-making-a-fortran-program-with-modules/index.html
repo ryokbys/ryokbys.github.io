@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Circular dependency when making a Fortran program with modules &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Circular dependency when making a Fortran program with modules</h1>
+  <time datetime=2017-06-26T16:50:42&#43;0900 class="post-date">Mon, Jun 26, 2017</time>
+  <p>以下のようなFortranのプログラムがある．</p>
+<ul>
+<li>いくつかのファイルに分割されている．</li>
+<li>ファイルと同じ名前のモジュールを含むファイルがある．（つまり，<code>hoge.F90</code>の中に<code>module hoge</code>が宣言されている．）</li>
+</ul>
+<p>このような場合，そのモジュールを含む<code>hoge.F90</code>を変更した後に<code>make</code>してもなぜか<code>hoge.F90</code>がコンパイルし直されず，変更が反映されない．</p>
+<pre tabindex="0"><code>$ make -d 
+</code></pre><p>のように，<code>-d</code>オプションをつけて<code>make</code>を実行すると，なぜにそれがコンパイルされないかが分かるのだが，</p>
+<pre tabindex="0"><code>Trying implicit prerequisite `hoge.mod'.
+Found an implicit rule for `hoge.o'.
+　Considering target file `hoge.mod'.
+Prerequisite `hoge.mod' is older than target `hoge.o'.
+</code></pre><p>のように，なぜか<code>.mod</code>ファイルを見つけてそれが<code>.o</code>ファイルより古いから<code>hoge.o</code>を更新する必要がないと判断されてしまう．
+（<code>.mod</code>ファイルはモジュールのヘッダファイルのようなもので，そのモジュールが呼び出される際に必要な情報が入っているが，それらの情報が変更されない限り変更されないファイルである．）
+この，<code>.mod</code>ファイルの<code>.o</code>ファイルへの依存性は，<code>makefile</code>内に陽には記述されていないのだが，暗黙のルールとして定義されているようで，</p>
+<pre tabindex="0"><code>.F90.o:
+  ${MPIFC} -c $&lt;
+</code></pre><p>のように陽に記述されている<code>.F90</code>ファイルへの依存性よりも先に判定されてしまい，<code>.F90</code>ファイルが更新されてもコンパイルの必要なしと判断されてしまっている．</p>
+<h2 id="解決策１ファイル名と同じ名前のモジュール名を使わない">解決策１：ファイル名と同じ名前のモジュール名を使わない</h2>
+<p>この解決策は確実に上手くいくのだが，なんかバカっぽいし，この問題を忘れた頃にまた同じようにファイル名と同名のモジュールを作成して，同じ問題が生じると思われる．
+もっと根本的な解決策が欲しい．</p>
+<h2 id="解決策２modも含めた依存関係を明示する">解決策２：<code>.mod</code>も含めた依存関係を明示する</h2>
+<pre tabindex="0"><code>hoge.o hoge.mod : hoge.F90
+    $(MPIFC) -c $(MPIFLAGS) $(CPPFLAGS) $&lt;
+</code></pre><p>のように，<code>.o</code>と<code>.mod</code>の２つが<code>.F90</code>に依存していると書くことで上記の問題は回避できる．</p>
+<p>これですべての場合に対応しているかは不明だが，とりあえず現状の自分の課題は解決される．．．</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

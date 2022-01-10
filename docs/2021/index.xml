@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2021s on R.K.S. website</title>
+    <link>https://ryokbys.github.io/2021/</link>
+    <description>Recent content in 2021s on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 31 Mar 2021 11:04:23 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/2021/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Convert docx files to pdf on Mac</title>
+      <link>https://ryokbys.github.io/2021/03/convert-docx-files-to-pdf-on-mac/</link>
+      <pubDate>Wed, 31 Mar 2021 11:04:23 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2021/03/convert-docx-files-to-pdf-on-mac/</guid>
+      <description>昨今の状況で，オンラインでのレポートの提出が多くなったが，docx形式で提出されたものをこちらで見やすいようにpdfに変換したいということが</description>
+    </item>
+    
+    <item>
+      <title>2021年初頭における作業環境</title>
+      <link>https://ryokbys.github.io/2021/01/software-environment-in-2021/</link>
+      <pubDate>Sat, 02 Jan 2021 00:46:38 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2021/01/software-environment-in-2021/</guid>
+      <description>ここ数年は年の初頭に作業環境についてメモしているので，2021年も元旦における作業環境についてメモしておく．昨年から変わっていないことも多い</description>
+    </item>
+    
+  </channel>
+</rss>

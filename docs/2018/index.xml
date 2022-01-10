@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2018s on R.K.S. website</title>
+    <link>https://ryokbys.github.io/2018/</link>
+    <description>Recent content in 2018s on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Dec 2018 16:38:52 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/2018/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>macOS: X11 forwarding request failed</title>
+      <link>https://ryokbys.github.io/2018/12/x11-forwarding-request-failed/</link>
+      <pubDate>Thu, 06 Dec 2018 16:38:52 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2018/12/x11-forwarding-request-failed/</guid>
+      <description>When I tried to connect to macOS Mojave machine from other machine, I got the following message.
+X11 forwarding request failed on channel 0 And when using -v option, I got
+debug1: Remote: No xauth program; cannot forward X11. X11 forwarding request failed on channel 0 So the problem seemed to be an issue of xauth-related, and actually this was because the remote server could not find the xauth program, even though I do not know the reason why.</description>
+    </item>
+    
+    <item>
+      <title>Mayavi on jupyter notebook</title>
+      <link>https://ryokbys.github.io/2018/03/mayavi-on-jupyter-notebook/</link>
+      <pubDate>Thu, 01 Mar 2018 11:53:51 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2018/03/mayavi-on-jupyter-notebook/</guid>
+      <description>Mayavi は3Dでのデータ可視化を支援するライブラリ． これを Jupyter notebook で使えるようにするまでのメモ（macOS High Sierra）． References Jupyter で 3D 表示 - Mayavi ライブラリ</description>
+    </item>
+    
+    <item>
+      <title>2018年初頭における作業環境</title>
+      <link>https://ryokbys.github.io/2018/02/environment-on-macos-as-of-2018/</link>
+      <pubDate>Mon, 19 Feb 2018 22:21:02 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2018/02/environment-on-macos-as-of-2018/</guid>
+      <description>昨年も，その時点における快適な作業環境をメモしたので，2018年版もメモしておく． Emacs 最近は Emacs を使う人も減っているみたいで，Vim に限らず，S</description>
+    </item>
+    
+  </channel>
+</rss>

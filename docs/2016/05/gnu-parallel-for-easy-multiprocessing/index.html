@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GNU parallel for easy multiprocessing &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>GNU parallel for easy multiprocessing</h1>
+  <time datetime=2016-05-12T13:45:48Z class="post-date">Thu, May 12, 2016</time>
+  <p>tags: linux</p>
+<ul>
+<li><a href="http://bicycle1885.hatenablog.com/entry/2014/08/10/143612">コマンドを並列に実行するGNU
+parallelがとても便利</a></li>
+<li><a href="https://blog.riywo.com/2011/04/19/022802/">GNU
+Parallelがすごすぎて生きるのがつらい</a></li>
+<li><a href="http://w.koshigoe.jp/study/?%5Bsystem%5D+GNU+parallel+%BB%C8%CD%D1%CE%E3">GNU parallel
+使用例</a></li>
+</ul>
+<p>などで <strong>GNU parallel</strong>
+の紹介がされていて，ちょうど自分がやりたかったことにマッチしてうれしい．</p>
+<h1 id="インストール">インストール</h1>
+<p><a href="http://ftp.gnu.org/gnu/parallel/">http://ftp.gnu.org/gnu/parallel/</a> から <code>parallel-latest.tar.bz2</code>
+をダウンロードし，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ bzip2 -d parallel-latest.tar.bz2
+$ tar xvf parallel-latest.tar
+$ cd parallel-??????
+$ ./configure --prefix<span style="color:#f92672">=</span>$HOME/local/ <span style="color:#f92672">&amp;&amp;</span> make <span style="color:#f92672">&amp;&amp;</span> make install
+</code></pre></div><p>としてインストールした．</p>
+<h1 id="並列処理">並列処理</h1>
+<p>自分の場合，多くのディレクトリ内（ <code>smpl_*/smd/</code> 内 ）で <code>smd</code>
+というプログラムを実行したかった．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ parallel --bar -j <span style="color:#ae81ff">12</span> <span style="color:#e6db74">&#34;cd {}/smd/; ~/src/nap/pmd/smd &gt; out.smd; cd ../..&#34;</span> ::: smpl_*
+</code></pre></div><p>とすると12プロセス並列で実行してくれる． <code>--bar</code>
+オプションで進捗状況表示もしてくれるから便利．</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Password manager: pass &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Password manager: pass</h1>
+  <time datetime=2016-03-29T17:39:35Z class="post-date">Tue, Mar 29, 2016</time>
+  <p>tags: linux, mac
+Here is memorandom of how I set up password manager <strong>pass</strong>.</p>
+<h1 id="install-pass">Install pass</h1>
+<p>On MacOSX (El Capitan in my case), :</p>
+<pre><code>$ brew install pass
+</code></pre>
+<p>will install <code>pass</code> command and others that the <code>pass</code> depends on.</p>
+<h1 id="prepare-gpg">Prepare gpg</h1>
+<p>To generate PGP key using GnuPG <code>gpg</code>, :</p>
+<pre><code>$ gpg --gen-key
+</code></pre>
+<p>You have to answer some questions to generate a pgp key.</p>
+<p>Once you generate a pgp key, you can confirm it with <code>--list-keys</code>
+option as, :</p>
+<pre><code>$ gpg --list-keys
+/Users/kobayashi/.gnupg/pubring.gpg
+-----------------------------------
+pub   2048R/BFB474F7 2016-03-29
+uid                  Ryo KOBAYASHI &lt;ryo.kbys@gmail.com&gt;
+sub   2048R/2B3848F5 2016-03-29
+</code></pre>
+<p>As you can see, public key identifier is <code>BFB474F7</code>.</p>
+<h1 id="initialize-pass">Initialize pass</h1>
+<p>From here, you can just follow the instruction on the <strong>pass</strong> website
+as,</p>
+<pre><code>$ pass init BFB474F7
+$ pass git init
+$ pass insert hoge@gmail.com
+$ pass ...
+</code></pre>
+<p>Important thing here is that you have to specify the PGP key identifier
+at initialization. Or you have to change pgp key priviledeg using <code>gpg</code>.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

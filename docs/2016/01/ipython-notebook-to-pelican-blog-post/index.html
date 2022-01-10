@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>IPython notebook to Pelican blog post &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>IPython notebook to Pelican blog post</h1>
+  <time datetime=2016-01-13T17:16:54Z class="post-date">Wed, Jan 13, 2016</time>
+  <p>tags: pelican, python
+この前のブログポストはIPython
+notebookでの作業をブログに載せたものだが，ちょっと面倒な方法だった．</p>
+<p>直接 <code>.ipynb</code>
+ファイルを参照できればよいのだが，そのような手段はないらしい．
+nbviewerというサイトがあるが，そこでは数式が表示されない．
+基本的にはnbviewerサイトと同じことだが，以下のように <code>nbconvert</code>
+を用いて :</p>
+<pre><code>$ ipython nbconvert --to html hoge.ipynb
+</code></pre>
+<p>とすれば，HTMLファイルが生成されるが，数式が表示されなかったりする．</p>
+<p>結局，ipython notebookから <code>.rst</code> 形式に出力して，Emacsで編集した．</p>
+<ul>
+<li>
+<p>改行コードの <code>^M</code> が含まれていたため，Emacsで <code>^M</code>
+を置換した．（Emacsでは，改行コード <code>^M</code> は <code>C-q C-m</code>
+で指定できる．）</p>
+</li>
+<li>
+<p>別行だての数式が， :</p>
+<pre><code>.. raw:: latex
+</code></pre>
+<p>とかになっていたので， :</p>
+<pre><code>.. math::
+</code></pre>
+<p>に訂正し，微調整した．</p>
+</li>
+</ul>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

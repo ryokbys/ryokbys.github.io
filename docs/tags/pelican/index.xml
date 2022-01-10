@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pelican on R.K.S. website</title>
+    <link>https://ryokbys.github.io/tags/pelican/</link>
+    <description>Recent content in pelican on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Dec 2017 16:24:39 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/tags/pelican/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Logo path in Flex theme</title>
+      <link>https://ryokbys.github.io/2017/12/logo-path-in-flex-theme/</link>
+      <pubDate>Fri, 22 Dec 2017 16:24:39 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2017/12/logo-path-in-flex-theme/</guid>
+      <description>Currently this site uses the pelican theme Flex, and I like it. But one thing annoyed me. There is a logo image on the left side and it works fine with the home, archive, and tag pages. But it does not show up on post pages. The reason is that the path to the logo image is set in pelicanconf.py and it seems to be relative URL from the current content which is dependent on the article.</description>
+    </item>
+    
+    <item>
+      <title>Markdown on Pelican</title>
+      <link>https://ryokbys.github.io/2016/12/markdown-on-pelican/</link>
+      <pubDate>Fri, 16 Dec 2016 10:10:23 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/12/markdown-on-pelican/</guid>
+      <description>Since I got to know that Markdown is available in pelican, I tried to use Markdown.
+[TOC]
+Markdown setting To activate the Markdown, I wrote the following line in pelicanconf.py.
+MD_EXTENSIONS = [&#39;codehilite&#39;,&#39;extra&#39;,&#39;smarty&#39;, &#39;toc&#39;] And to make toc to be available in Markdown I added &#39;extract_toc&#39; as,
+PLUGINS = [&amp;quot;tag_cloud&amp;quot;,&amp;quot;render_math&amp;quot;,&#39;extract_toc&#39;] These are what I did. It is easy.
+Test This post is written in Markdown, and now I am going to see whether it works or not&amp;hellip;</description>
+    </item>
+    
+  </channel>
+</rss>

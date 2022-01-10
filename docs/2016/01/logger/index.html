@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Use logger in python &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Use logger in python</h1>
+  <time datetime=2016-01-07T18:38:11Z class="post-date">Thu, Jan 7, 2016</time>
+  <p>tags: python</p>
+<h1 id="使用例">使用例</h1>
+<p>Pythonでのloggerの使い方を学んだからメモしておく．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> logging
+logger<span style="color:#f92672">=</span> logging<span style="color:#f92672">.</span>getLogger(__name__)
+console <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</span>StreamHandler()
+console<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f92672">.</span>INFO)
+logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f92672">.</span>INFO)
+formatter <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</span>Formatter(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%(name)-12s</span><span style="color:#e6db74">: </span><span style="color:#e6db74">%(levelname)-8s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%(message)s</span><span style="color:#e6db74">&#39;</span>)
+console<span style="color:#f92672">.</span>setFormatter(formatter)
+logger<span style="color:#f92672">.</span>addHandler(console)
+
+logger<span style="color:#f92672">.</span>debug(<span style="color:#e6db74">&#39;this is debug&#39;</span>)
+logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#39;this is info&#39;</span>)
+logger<span style="color:#f92672">.</span>warn(<span style="color:#e6db74">&#39;this is warn&#39;</span>)
+logger<span style="color:#f92672">.</span>error(<span style="color:#e6db74">&#39;this is error&#39;</span>)
+logger<span style="color:#f92672">.</span>critical(<span style="color:#e6db74">&#39;this is critical&#39;</span>)
+</code></pre></div><p>のようにして <code>logger</code>
+オブジェクトから出力を吐いていくことでログを作成できる．</p>
+<p>上の例では，コンソールに出したいために <code>StreamHandler</code>
+をloggerに対して加えているが， <code>FileHandler</code>
+でファイルを指定したものをさらにloggerに追加してやれば，ファイルに出力することも可能．</p>
+<h1 id="良い点">良い点</h1>
+<ul>
+<li>ロガーの出力レベルを変更することで出力されるかどうかが決まるから，例えばデバッグしたいときにコードを変更したり，デバッグ終わったから出力コードを削除したりしなくてよい．</li>
+<li>コンソール用とログ用の出力を別々にコードしなくてよい．</li>
+</ul>
+<h1 id="以下参考">以下参考</h1>
+<ul>
+<li><a href="http://victorlin.me/posts/2012/08/26/good-logging-practice-in-python">http://victorlin.me/posts/2012/08/26/good-logging-practice-in-python</a></li>
+<li><a href="http://qiita.com/amedama/items/b856b2f30c2f38665701">http://qiita.com/amedama/items/b856b2f30c2f38665701</a></li>
+</ul>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

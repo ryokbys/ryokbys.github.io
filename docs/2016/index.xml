@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2016s on R.K.S. website</title>
+    <link>https://ryokbys.github.io/2016/</link>
+    <description>Recent content in 2016s on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Dec 2016 10:10:23 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/2016/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Markdown on Pelican</title>
+      <link>https://ryokbys.github.io/2016/12/markdown-on-pelican/</link>
+      <pubDate>Fri, 16 Dec 2016 10:10:23 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/12/markdown-on-pelican/</guid>
+      <description>Since I got to know that Markdown is available in pelican, I tried to use Markdown.
+[TOC]
+Markdown setting To activate the Markdown, I wrote the following line in pelicanconf.py.
+MD_EXTENSIONS = [&#39;codehilite&#39;,&#39;extra&#39;,&#39;smarty&#39;, &#39;toc&#39;] And to make toc to be available in Markdown I added &#39;extract_toc&#39; as,
+PLUGINS = [&amp;quot;tag_cloud&amp;quot;,&amp;quot;render_math&amp;quot;,&#39;extract_toc&#39;] These are what I did. It is easy.
+Test This post is written in Markdown, and now I am going to see whether it works or not&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>ローザンヌ生活終了 - 日本帰国</title>
+      <link>https://ryokbys.github.io/2016/11/farewell-to-my-lausanne-life/</link>
+      <pubDate>Sun, 06 Nov 2016 07:26:59 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/11/farewell-to-my-lausanne-life/</guid>
+      <description>tags: swiss, lausanne 昨日（2016年11月5日）に，１１ヶ月のローザンヌ生活を終えて日本に帰国した． いろいろと思ったことを今思い出せることだけでもメモして</description>
+    </item>
+    
+    <item>
+      <title>Last dinner in Lausanne</title>
+      <link>https://ryokbys.github.io/2016/11/last-dinner-in-lausanne/</link>
+      <pubDate>Thu, 03 Nov 2016 22:23:58 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/11/last-dinner-in-lausanne/</guid>
+      <description>tags: swiss, ローザンヌ最後の晩餐はPrilly-Malley駅近くの Restaurant des Bouchers でとった． ホタテのタルタル {.align-center width=&amp;ldquo;600px&amp;rdquo;} ホタテのタルタルはなかなか他では見たことなく</description>
+    </item>
+    
+    <item>
+      <title>ペリカンブログにグーグルフォトを載せる</title>
+      <link>https://ryokbys.github.io/2016/11/put-a-google-photo-on-to-pelican-blog/</link>
+      <pubDate>Thu, 03 Nov 2016 10:55:38 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/11/put-a-google-photo-on-to-pelican-blog/</guid>
+      <description>tags: pelican 最近，スマホで撮った写真は自動的にグーグルフォトに同期されるようになっていて，そこから写真のURLを取得するだけでブログに写真を載せるこ</description>
+    </item>
+    
+    <item>
+      <title>Petit Boeuf in Lausanne</title>
+      <link>https://ryokbys.github.io/2016/11/petit-baeof-at-lausanne/</link>
+      <pubDate>Thu, 03 Nov 2016 10:39:18 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/11/petit-baeof-at-lausanne/</guid>
+      <description>tags: swiss, lausanne ローザンヌ生活も終わりに近づいたので，何かスイスっぽい食事をと考えていたところ， 同僚から Petit Boeuf なるお店を勧められたので行ってみた． 名前は</description>
+    </item>
+    
+    <item>
+      <title>flake8 personal setting for python</title>
+      <link>https://ryokbys.github.io/2016/10/flake8-personal-setting-for-python/</link>
+      <pubDate>Thu, 27 Oct 2016 06:44:20 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/10/flake8-personal-setting-for-python/</guid>
+      <description>tags: python, emacs, mac When I code python programs using emacs, emacs uses elpy and elpy uses flake8 for syntax checking. But this syntax checking is kind of annoying. For example, I would like to write like this
+x = some_func(a,b,c+d) instead of this
+x = some_func(a, b, c + d) I think this style condtains too many whitespaces which make code lengthy.
+To change the style in flake8, you can write the following lines in ~/.</description>
+    </item>
+    
+    <item>
+      <title>No match found in Reftex</title>
+      <link>https://ryokbys.github.io/2016/10/no-match-found-in-reftex/</link>
+      <pubDate>Sun, 02 Oct 2016 21:52:48 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/10/no-match-found-in-reftex/</guid>
+      <description>tags: emacs Sometimes when writing a LaTeX document with Emacs.app in MacOS and I tried to put citation in the document by typing Ctl-C + [, emacs fails to search references I am looking for. I do not know the reason exactly, but I seems that emacs does not store the reference information in it.
+So the solution is to reload the reference file by typing M-x Reftex-parse-all. Then emacs will reload bibtex database and reftex by Ctl-C + [ begins to work again, perhaps.</description>
+    </item>
+    
+    <item>
+      <title>Web shop service thebase</title>
+      <link>https://ryokbys.github.io/2016/08/web-shop-service-thebase/</link>
+      <pubDate>Sun, 14 Aug 2016 11:15:31 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/08/web-shop-service-thebase/</guid>
+      <description>tags: misc 友人のサイトにウェブショップ wataroom がオープンしてたから見てみたら，なんだか有名なウェブショップ作成サービスで作られてものだった． このサービス</description>
+    </item>
+    
+    <item>
+      <title>Math font in sphinx-document</title>
+      <link>https://ryokbys.github.io/2016/08/math-font-in-sphinx-document/</link>
+      <pubDate>Thu, 11 Aug 2016 15:53:45 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/08/math-font-in-sphinx-document/</guid>
+      <description>tags: sphinx SphinxドキュメントをHTML出力する際の数式フォントを変更したい． ここでは，数式をPNGで出力する pngmath が選択されているとする．（ mathjax の</description>
+    </item>
+    
+    <item>
+      <title>Speedup python script using numba</title>
+      <link>https://ryokbys.github.io/2016/08/speedup-python-script-using-numba/</link>
+      <pubDate>Tue, 09 Aug 2016 10:20:50 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/08/speedup-python-script-using-numba/</guid>
+      <description>tags: python, research Numba というモジュールを利用することで，pythonスクリプトの数値演算のみからなる関数を劇的に高速化することができる． （数値演算でない部</description>
+    </item>
+    
+    <item>
+      <title>Excel: make custom list</title>
+      <link>https://ryokbys.github.io/2016/08/make-custom-list-in-excel/</link>
+      <pubDate>Sun, 07 Aug 2016 12:26:33 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/08/make-custom-list-in-excel/</guid>
+      <description>tags: excel Excelにて並び替えを行いたいが，数値や日付やアルファベットではなく，「高，中，低」のように自分で設定した文字列で並べたい場合，「 ユー</description>
+    </item>
+    
+    <item>
+      <title>お金と投資</title>
+      <link>https://ryokbys.github.io/2016/08/money-and-investment/</link>
+      <pubDate>Fri, 05 Aug 2016 15:52:22 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/08/money-and-investment/</guid>
+      <description>tags: book 『 外資系金融マンがわが子に教えたい「お金」と「投資」の本当の話 』 ジョン太郎 著 Kindle Unlimitedが開始されたので，試しに加入してみての第</description>
+    </item>
+    
+    <item>
+      <title>VASP vs QuantumESPRESSO</title>
+      <link>https://ryokbys.github.io/2016/08/vasp-vs-quantumespresso/</link>
+      <pubDate>Wed, 03 Aug 2016 15:30:54 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/08/vasp-vs-quantumespresso/</guid>
+      <description>tags: research, DFT 近年，さまざまなDFTコードが世に出ており，それぞれいろいろと特徴を出そうとしている． 擬ポテンシャルと平面波展開のコードについては，ほ</description>
+    </item>
+    
+    <item>
+      <title>Science and technology trends in Switzerland</title>
+      <link>https://ryokbys.github.io/2016/07/science-and-technology-trends-in-switzerland/</link>
+      <pubDate>Fri, 22 Jul 2016 18:12:26 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/07/science-and-technology-trends-in-switzerland/</guid>
+      <description>tags: swiss, research 金属学会誌まてりあ「談話室」寄稿へむけた情報収集の一環として． JSTが作成した 「競争力のある小国の科学技術動向（2013年度版）」 とい</description>
+    </item>
+    
+    <item>
+      <title>Religious talk in Europe</title>
+      <link>https://ryokbys.github.io/2016/07/religious-talk-in-europe/</link>
+      <pubDate>Thu, 21 Jul 2016 22:41:00 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/07/religious-talk-in-europe/</guid>
+      <description>tags: swiss 研究室のお昼タイムに，誰か（無神論者）が「ポープはアスホールだ」というような持論を展開し， 他の誰か（カトリック）がそれには同意できないと</description>
+    </item>
+    
+    <item>
+      <title>Minimization algorithms</title>
+      <link>https://ryokbys.github.io/2016/07/minimization-algorithms/</link>
+      <pubDate>Wed, 13 Jul 2016 15:58:45 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/07/minimization-algorithms/</guid>
+      <description>tags: research, paper CGやBFGSや，ニューラルネットの世界ではSGDなどの様々な最適化手法があるが，どのようなケースがどれがどれだけ効率的なのかを系統的</description>
+    </item>
+    
+    <item>
+      <title>任天堂の逆襲？</title>
+      <link>https://ryokbys.github.io/2016/07/nintendo-rising/</link>
+      <pubDate>Tue, 12 Jul 2016 21:08:18 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/07/nintendo-rising/</guid>
+      <description>tags: stock どうも米国で最近発売された「Pokemon GO」というのが大人気らしく，任天堂の株価が激上がりした． {width=&amp;ldquo;600px&amp;rdquo;} ニュースで少々「Pokemon GO</description>
+    </item>
+    
+    <item>
+      <title>Health insurance in Switzerland</title>
+      <link>https://ryokbys.github.io/2016/07/health-insurance-in-switzerland/</link>
+      <pubDate>Fri, 01 Jul 2016 17:02:19 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/07/health-insurance-in-switzerland/</guid>
+      <description>tags: swiss こちらスイスは健康保険への加入が義務付けれられている．義務付けられているけど，保険自体は国や州では用意しておらず，どこかの保険会社の保険</description>
+    </item>
+    
+    <item>
+      <title>gamma surface with gnuplot</title>
+      <link>https://ryokbys.github.io/2016/06/gamma-surface-with-gnuplot/</link>
+      <pubDate>Sun, 19 Jun 2016 23:02:20 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/06/gamma-surface-with-gnuplot/</guid>
+      <description>tags: research, gnuplot 材料の機械的性質を議論する場合，generalized stacking fault もしくは gamma surface を考える場合が多い． その場合，ある面内で上下の原子をシフトした場</description>
+    </item>
+    
+    <item>
+      <title>Random structure search</title>
+      <link>https://ryokbys.github.io/2016/06/random-sensitive-search/</link>
+      <pubDate>Tue, 14 Jun 2016 14:25:38 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/06/random-sensitive-search/</guid>
+      <description>tags: research EPFLでの会議PASC16にて，Chris J Pickardの発表を聴いた． そこで Ab initio random structure search (AIRSS) を紹介していたので下記論文を読んでみた． Pickard,</description>
+    </item>
+    
+    <item>
+      <title>Bash: all the output to /dev/null</title>
+      <link>https://ryokbys.github.io/2016/05/bash-all-the-output-to-somewhere/</link>
+      <pubDate>Tue, 17 May 2016 10:31:56 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/05/bash-all-the-output-to-somewhere/</guid>
+      <description>tags: linux I wanted to run jupyter notebook background without showing any outputs from it. So I tried the following command, :
+$ jupyter notebook hoge.ipynb 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null &amp;amp;  But it still showed some outputs on the screen and interrupted me typing other commands. This is because, 2&amp;gt;&amp;amp;1 means that standard error output goes to where the standard output currently pointing to, which is not /dev/null. So I had to switch the order from 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null to 1&amp;gt;/dev/null 2&amp;gt;&amp;amp;1 to make the error output go to /dev/null.</description>
+    </item>
+    
+    <item>
+      <title>Install python on FX100 in nagoya-u</title>
+      <link>https://ryokbys.github.io/2016/05/install-python-on-fx100/</link>
+      <pubDate>Tue, 17 May 2016 09:25:57 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/05/install-python-on-fx100/</guid>
+      <description>tags: linux, research 名大スパコン FX100 で作業することが多いが，作業に必要なツールがデフォルトでは入っていないので自分でpythonをインストールすることから始</description>
+    </item>
+    
+    <item>
+      <title>ラヴォー地区ワイナリーテイスティング歩き</title>
+      <link>https://ryokbys.github.io/2016/05/lavaux-vineyard-tasting-walk/</link>
+      <pubDate>Sun, 15 May 2016 23:03:25 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/05/lavaux-vineyard-tasting-walk/</guid>
+      <description>tags: swiss 本日はLausanne近くのLavaux地区のワイナリーをいくつも巡ってテイスティングをしまくるというイベント（？）があった． 20CHF</description>
+    </item>
+    
+    <item>
+      <title>GNU parallel for easy multiprocessing</title>
+      <link>https://ryokbys.github.io/2016/05/gnu-parallel-for-easy-multiprocessing/</link>
+      <pubDate>Thu, 12 May 2016 13:45:48 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/05/gnu-parallel-for-easy-multiprocessing/</guid>
+      <description>tags: linux コマンドを並列に実行するGNU parallelがとても便利 GNU Parallelがすごすぎて生きるのがつらい GNU parallel 使用例 などで GNU parallel の紹介がされ</description>
+    </item>
+    
+    <item>
+      <title>Galapagos</title>
+      <link>https://ryokbys.github.io/2016/05/galapagos/</link>
+      <pubDate>Wed, 04 May 2016 23:05:26 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/05/galapagos/</guid>
+      <description>tags: book ガラパゴス 相場英雄 現代の日本の車業界，派遣労働，非正規社員なんかを背景とした刑事もので非常に勉強になるし，展開も面白い． しかし，最後に鳥</description>
+    </item>
+    
+    <item>
+      <title>Simple minimization using FIRE</title>
+      <link>https://ryokbys.github.io/2016/04/simple-minimization-using-fire/</link>
+      <pubDate>Wed, 27 Apr 2016 17:36:56 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/04/simple-minimization-using-fire/</guid>
+      <description>tags: research Bitzek et al. Structural Relaxation Made Simple, PRL 97, 170201 (2006) Damped MDのような発想で，より効率的に，MDコードをあまり改変する必要なく構造最適化を行う方法． 論文にアルゴリズムも記</description>
+    </item>
+    
+    <item>
+      <title>イオン結合系のNNポテンシャル</title>
+      <link>https://ryokbys.github.io/2016/04/nn-potential-for-ionic-system/</link>
+      <pubDate>Tue, 05 Apr 2016 16:42:24 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/04/nn-potential-for-ionic-system/</guid>
+      <description>tags: research S.A.Ghasemi et al., PRB92, 045131 (2015) 電荷可変型（variable charge）原子間ポテンシャルの電気陰性度（electronegativity）項にNNを適用</description>
+    </item>
+    
+    <item>
+      <title>サッカーのオンラインライブストリーミング</title>
+      <link>https://ryokbys.github.io/2016/04/how-to-watch-football-game-live-online/</link>
+      <pubDate>Sat, 02 Apr 2016 22:22:31 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/04/how-to-watch-football-game-live-online/</guid>
+      <description>tags: football 今日のクラシコを見たいと思って調べたら意外に簡単にライブ観戦できたからメモしておく． このサイト にいくつかリストされている中から最も見やす</description>
+    </item>
+    
+    <item>
+      <title>Precipitate model in Al-Mg-Si alloy</title>
+      <link>https://ryokbys.github.io/2016/03/precipitate-model-in-al-mg-si-alloy/</link>
+      <pubDate>Thu, 31 Mar 2016 15:16:00 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/03/precipitate-model-in-al-mg-si-alloy/</guid>
+      <description>tags: research, paper, alloy Structure Determination of Mg5Si6 Particles in Al by Dynamic Electron Diffraction Studies, by H. W. Zandbergen, S. J. Andersen, J. Jansen, Science 277 (1997) 1221 精密な実験からbeta&#39;&#39;-precipitateの原子構造を解明したという論文．</description>
+    </item>
+    
+    <item>
+      <title>DFT計算の再現性に関する論文</title>
+      <link>https://ryokbys.github.io/2016/03/reproducibility-of-dft/</link>
+      <pubDate>Wed, 30 Mar 2016 11:20:47 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/03/reproducibility-of-dft/</guid>
+      <description>tags: research, paper, DFT Reproducibility in density functional theory calculations of solids, Kurt Lejaeghere et al., Science 351, issue 6280, aad3000, link 固体材料のDFT計算ツールはたくさんあり，様々な手法のさまざまな実装が存在している． それらの各ツ</description>
+    </item>
+    
+    <item>
+      <title>Today\&#39;s French</title>
+      <link>https://ryokbys.github.io/2016/03/french/</link>
+      <pubDate>Tue, 29 Mar 2016 23:16:56 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/03/french/</guid>
+      <description>tags: language ここ から例文を取ってきて勉強した． カフェでの会話 会話例１ A: Bonjour, qu&#39;est-ce que vous prendrez? B: Qu&#39;est-ce que vous me conseillez? A: Nous utilisons du cafe Illy, donc je vous conseille toutes les boissons à base de café. B: Je vois, alors je prendrai un</description>
+    </item>
+    
+    <item>
+      <title>Password manager: pass</title>
+      <link>https://ryokbys.github.io/2016/03/pass/</link>
+      <pubDate>Tue, 29 Mar 2016 17:39:35 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/03/pass/</guid>
+      <description>tags: linux, mac Here is memorandom of how I set up password manager pass.
+Install pass On MacOSX (El Capitan in my case), :
+$ brew install pass  will install pass command and others that the pass depends on.
+Prepare gpg To generate PGP key using GnuPG gpg, :
+$ gpg --gen-key  You have to answer some questions to generate a pgp key.
+Once you generate a pgp key, you can confirm it with --list-keys option as, :</description>
+    </item>
+    
+    <item>
+      <title>Pythonで可変数の引数の取り方 \*args, \*\*kwds</title>
+      <link>https://ryokbys.github.io/2016/03/arguments-of-function-in-python/</link>
+      <pubDate>Tue, 22 Mar 2016 18:01:15 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/03/arguments-of-function-in-python/</guid>
+      <description>tags: python 関数の引数に *args や **kwds を指定した場合の挙動をいつも忘れてしまうので，例と共に書いておく． def f(*args, **kwds): print args print kwds 上のような関数は， args は変数名なしの引数</description>
+    </item>
+    
+    <item>
+      <title>Constraint atom motion in LAMMPS</title>
+      <link>https://ryokbys.github.io/2016/03/constraint-atom-motion-in-lammps/</link>
+      <pubDate>Fri, 11 Mar 2016 22:26:13 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/03/constraint-atom-motion-in-lammps/</guid>
+      <description>tags: lammps, research Suppose if one creates a dislocation in a system with two surfaces top and bottom on z axis and periodic in x and y axes. Motions of atoms at the top and bottom layer should be limited along x and y direction and not to move z direction. One can achieve this constraint in LAMMPS by writing as follows, :
+region top block 0.0 300.0 0.0 20.0 212.</description>
+    </item>
+    
+    <item>
+      <title>最近の語学学習について</title>
+      <link>https://ryokbys.github.io/2016/03/my-recent-language-study/</link>
+      <pubDate>Sun, 06 Mar 2016 11:17:47 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/03/my-recent-language-study/</guid>
+      <description>tags: language スイスに来てから３ヶ月も経過してフランス語がいっこうにしゃべれない， かつ英語でのやりとりに関しても十分なレベルとは言えないことから語学学</description>
+    </item>
+    
+    <item>
+      <title>ローザンヌでのある一日</title>
+      <link>https://ryokbys.github.io/2016/03/a-day-in-a-lausanne-life/</link>
+      <pubDate>Sat, 05 Mar 2016 23:49:53 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/03/a-day-in-a-lausanne-life/</guid>
+      <description>tags: swiss 今日は一日時間があったし，月の最初の土曜日は美術館・博物館がフリーになるので，Oucyにあるエリゼー美術館（Musee de l&#39;Elysee</description>
+    </item>
+    
+    <item>
+      <title>Disable PEP8 check when writing python code in emacs</title>
+      <link>https://ryokbys.github.io/2016/03/disable-pep8-check-when-writing-python-code-in-emacs/</link>
+      <pubDate>Wed, 02 Mar 2016 11:48:27 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/03/disable-pep8-check-when-writing-python-code-in-emacs/</guid>
+      <description>tags: emacs, python PEP check when I open a pyhton code with emacs is so annoying. So I figured out how to disable PEP8 check, and this is how it works.
+In the .emacs.d/init.d or appropriate file in your system, python-check-command should be set nil. :
+(add-hook &#39;python-mode-hook &#39;(lambda () (seq python-check-command nil) ))  Then you never be bothered by too strict PEP8 checker.</description>
+    </item>
+    
+    <item>
+      <title>Automate git archive</title>
+      <link>https://ryokbys.github.io/2016/03/automate-git-archive/</link>
+      <pubDate>Tue, 01 Mar 2016 18:08:05 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/03/automate-git-archive/</guid>
+      <description>tags: linux, git I made a bash function to replace git archive command, :
+function gitarch(){ basedname=$(git rev-parse --show-toplevel) dname=$(basename $basedname) cwd=$(pwd) cd $basedname fname=${dname}_`ymd`.tgz git archive --format=tar --prefix=${dname}/ HEAD | gzip &amp;gt; $fname cp $fname ${cwd}/ cd $cwd }  Writing this function in .bashrc file, I can create git archive with name projectname_date.tgz a little bit easier.
+BTW, by typing :
+$ type gitarch  you can see what is this function doing.</description>
+    </item>
+    
+    <item>
+      <title>String search in Fortran</title>
+      <link>https://ryokbys.github.io/2016/02/string-search-in-fortran/</link>
+      <pubDate>Mon, 29 Feb 2016 15:40:22 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/02/string-search-in-fortran/</guid>
+      <description>tags: fortran Think of a problem finding the substring def in the string abcdefg.
+I though Fortran does not have an efficient way of doing this and I have to make own subroutine to achieve this. But Fortran has such a function, index.
+See, INDEX -- position of a substring within a string
+Its syntax is, :
+RESULT = INDEX(STRING, SUBSTRING [, BACK [, KIND]])  and the return value is an integer of the substring position.</description>
+    </item>
+    
+    <item>
+      <title>Pelican blog post script</title>
+      <link>https://ryokbys.github.io/2016/02/pelican-blog-post-script/</link>
+      <pubDate>Sun, 28 Feb 2016 22:43:34 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/02/pelican-blog-post-script/</guid>
+      <description>tags: python, pelican I updated my blog automation script. This version make blog posting process much more efficient and I am much happier than before.
+This version is uploaded on Gist.
+ gist ryokbys/myblog.py  Now I can create a new blog post by typing, :
+$ blogpost &#39;BLOG TITLE&#39;  then a blog-post file is created at the apropriate place in the system with the date and title in the filename.</description>
+    </item>
+    
+    <item>
+      <title>Figures on pelican post</title>
+      <link>https://ryokbys.github.io/2016/02/figures-on-pelican-post/</link>
+      <pubDate>Sun, 28 Feb 2016 11:36:29 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/02/figures-on-pelican-post/</guid>
+      <description>tags: pelican In my case, the images used in the blog post are all uploaded on to flickr and loaded from flickr to show in the post.
+Upload the images on flickr   Fist you have to have an account on flickr, of course.
+  Upload a image to be included in a post.
+  Get the image URL from flickr.
+{width=&amp;ldquo;400px&amp;rdquo;}
+Pressing share photo button or image, from Embed tab as shown in the above picture you can get the embedding HTML source code.</description>
+    </item>
+    
+    <item>
+      <title>Package managing system Cask</title>
+      <link>https://ryokbys.github.io/2016/02/package-managing-system-cask/</link>
+      <pubDate>Sat, 27 Feb 2016 20:57:10 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/02/package-managing-system-cask/</guid>
+      <description>tags: emacs
+What is Cask? Usually, without cask, we need to download and install packages manually and write some configurations in .emacs.d/init.el to make them work. Cask makes it much easier.
+cask documentation
+It seems to require the following conditions,
+ emacs &amp;gt;= 24 python &amp;gt;= 2.6  Install $ brew install cask  It seems different from :
+$ pip install cask  Setup $ cd ~/.emacs.d $ cask init $ ls Cask $ head Cask (source gnu) (source melpa) (depends-on &amp;quot;bind-key&amp;quot;) (depends-on &amp;quot;cask&amp;quot;) (depends-on &amp;quot;dash&amp;quot;) (depends-on &amp;quot;drag-stuff&amp;quot;) (depends-on &amp;quot;exec-path-from-shell&amp;quot;) (depends-on &amp;quot;expand-region&amp;quot;) (depends-on &amp;quot;f&amp;quot;)  You can modify this Cask file to manage which packages to be installed?</description>
+    </item>
+    
+    <item>
+      <title>Use ipython/jupyter notebook on Emacs.app</title>
+      <link>https://ryokbys.github.io/2016/02/ipython-jupyter-notebook-on-emacs.app/</link>
+      <pubDate>Sat, 27 Feb 2016 19:47:42 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/02/ipython-jupyter-notebook-on-emacs.app/</guid>
+      <description>tags: python, emacs, mac Setup To use ipython/jupyter notebook in Emacs, you need elpy and ein (emacs ipython notebook) packages. So write those dependencies in .emacs.d/Cask file (here I assume that the package management system cask is installed), : (depends-on “ein&amp;quot;) (depends-on “elpy”) Usage Boot notebook server At first, ipython/jupyter notebook server should be</description>
+    </item>
+    
+    <item>
+      <title>A script to keep results in Linux</title>
+      <link>https://ryokbys.github.io/2016/02/a-script-to-keep-results-in-linux/</link>
+      <pubDate>Wed, 24 Feb 2016 16:35:12 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/02/a-script-to-keep-results-in-linux/</guid>
+      <description>tags: linux, shellscript In the previous post, I wrote about an shellscript that store some data in a directory whose name includes date info.
+Here I modified it to be able to add an identifier after the date info in the directory name. As shown in the following code, getopts function? is used to receive -i option. After analyzing the options, shift line is necessary, otherwise identifier is also counted as an argument.</description>
+    </item>
+    
+    <item>
+      <title>insufficient virtual memory</title>
+      <link>https://ryokbys.github.io/2016/02/insufficient-virtual-memory/</link>
+      <pubDate>Fri, 12 Feb 2016 17:39:52 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/02/insufficient-virtual-memory/</guid>
+      <description>tags: fortran, research When I run a program on Linux, I got the following error, :
+forrtl: severe (41): insufficient virtual memory  This error seems to be clear. As it says, I seem to require too many memory. But when I printed the number of memory I was requiring, it seemed to be not too much, like 1.8GB, for the system having 32GB.
+Actually this bug was related to the limit of 4-Byte integer.</description>
+    </item>
+    
+    <item>
+      <title>Cell relax in LAMMPS</title>
+      <link>https://ryokbys.github.io/2016/02/cell-relax-in-lammps/</link>
+      <pubDate>Wed, 10 Feb 2016 10:33:01 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/02/cell-relax-in-lammps/</guid>
+      <description>tags: research, lammps These days I am learning how to use LAMMPS.
+To allow the simulation cell to relax, you need to specify box/relax with fix command as, :
+fix 1 all box/relax tri 0.0  Here it mentions that the cell is triclinic, which meams x, y, z, yz, zx, and xy are controlled independently. And final value 0.0 means pressure to be achieved.
+Then you minimize the system as, :</description>
+    </item>
+    
+    <item>
+      <title>Retrieve offscreen XQuartz windows</title>
+      <link>https://ryokbys.github.io/2016/02/retrieve-offscreen-xquartz-window/</link>
+      <pubDate>Mon, 08 Feb 2016 11:21:49 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/02/retrieve-offscreen-xquartz-window/</guid>
+      <description>tags: mac Sometimes XQuartz windows go somewhere off the screen if you are using multiple monitors.
+To bring back the window, you may be able to use wmctrl utility which can be installed as, :
+$ brew install wmctrl  And you can see XQuartz window list as, :
+$ wmctrl -G -l 0x00600008 0 0 44 200 200 N/A Gnuplot  It seems the window I am now looking for is at the position (0,0) with width and height (200,200), but it is not seen on the screen.</description>
+    </item>
+    
+    <item>
+      <title>日付入りディレクトリへのデータ保存スクリプト</title>
+      <link>https://ryokbys.github.io/2016/02/script-for-keeping-results/</link>
+      <pubDate>Fri, 05 Feb 2016 15:00:53 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/02/script-for-keeping-results/</guid>
+      <description>tags: research, linux Linux上での結果を残しておくための簡単なスクリプト例をメモしておく． いくつかの結果ファイルを日付の入ったディレクトリに保存するスク</description>
+    </item>
+    
+    <item>
+      <title>日本語と英語の重複した論文．．．</title>
+      <link>https://ryokbys.github.io/2016/02/duplicated-journal-paper/</link>
+      <pubDate>Thu, 04 Feb 2016 10:56:53 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/02/duplicated-journal-paper/</guid>
+      <description>tags: research 今日，イタリア人の同僚から指摘されたが， 日本のある業界では，日本語論文を出してから２年後くらいに英語論文として出版するのが一般的なのだろ</description>
+    </item>
+    
+    <item>
+      <title>論文の書き方</title>
+      <link>https://ryokbys.github.io/2016/02/writing-papers/</link>
+      <pubDate>Tue, 02 Feb 2016 15:06:24 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/02/writing-papers/</guid>
+      <description>tags: research ラボ合宿でボスが論文の書き方について講義してくれたので，メモしておく． 論文ではストーリーを語る 何が重要なポイントなのか？ もし読者が２つの</description>
+    </item>
+    
+    <item>
+      <title>Lab retreat</title>
+      <link>https://ryokbys.github.io/2016/01/lab-retreat/</link>
+      <pubDate>Sun, 31 Jan 2016 00:46:39 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/lab-retreat/</guid>
+      <description>tags: research, swiss 先週一週間はずっとラボの合宿（lab retreat）で，オブロンナ（Ovronnaz）というところに出かけていた． そこは，スキーと温泉</description>
+    </item>
+    
+    <item>
+      <title>Bugfix in ASE</title>
+      <link>https://ryokbys.github.io/2016/01/bugfix-in-ase/</link>
+      <pubDate>Fri, 22 Jan 2016 10:49:15 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/bugfix-in-ase/</guid>
+      <description>tags: research, ase There was a bug in ASE package.
+When I tried to read a vasprun.xml file using ase.io.read like,
+atoms= read(&amp;#39;vasprun.xml&amp;#39;, index=0, format=&amp;#39;vasp-xml&amp;#39;) and the vasprun.xml contains some constraints for atoms, I got the following message,
+Traceback (most recent call last): File &amp;quot;/Users/kobayashi/src/fitpot/vasprun2fp.py&amp;quot;, line 63, in &amp;lt;module&amp;gt; atoms= read(&#39;vasprun.xml&#39;,index=0,format=&#39;vasp-xml&#39;) File &amp;quot;/Users/kobayashi/src/ase/ase/io/formats.py&amp;quot;, line 290, in read return next(_iread(filename, slice(index, None), format, **kwargs)) File &amp;quot;/Users/kobayashi/src/ase/ase/io/formats.py&amp;quot;, line 360, in _iread for dct in io.</description>
+    </item>
+    
+    <item>
+      <title>Today stamp in python</title>
+      <link>https://ryokbys.github.io/2016/01/today-stamp-in-python/</link>
+      <pubDate>Fri, 15 Jan 2016 16:08:01 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/today-stamp-in-python/</guid>
+      <description>tags: python Pythonで実行時の日付表示のためのやり方をいつも忘れるからメモる！ from datetime import datetime as dt d= dt.today() print d.strftime(&amp;#34;%Y/%m/%d&amp;#34;) これだけ．．．</description>
+    </item>
+    
+    <item>
+      <title>Generating VASP inputs via ASE</title>
+      <link>https://ryokbys.github.io/2016/01/generating-vasp-inputs-via-ase/</link>
+      <pubDate>Thu, 14 Jan 2016 22:45:32 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/generating-vasp-inputs-via-ase/</guid>
+      <description>tags: research, ase, vasp
+On jupyter notebook This is done on jupyter notebook, and it can be read via nbviewer web service. See the link below:
+ Generating VASP inputs via ASE  How to put your jupyter notebook on the web? When you make a jupyter notebook, put it at somewhere public place like Dropbox/Public/. And get the URL of the file and put it in the search box at jupyter nbviewer website.</description>
+    </item>
+    
+    <item>
+      <title>Crystal structures on the web</title>
+      <link>https://ryokbys.github.io/2016/01/crystal-structures-on-the-web/</link>
+      <pubDate>Thu, 14 Jan 2016 17:29:11 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/crystal-structures-on-the-web/</guid>
+      <description>tags: research, alloy 島根大？の 大庭研究室のウェブサイト に結晶構造分類が載っている．便利． Strukturbericht symbol (A1, B2など) と Pearson symbol のどちらも載っている．</description>
+    </item>
+    
+    <item>
+      <title>IPython notebook to Pelican blog post</title>
+      <link>https://ryokbys.github.io/2016/01/ipython-notebook-to-pelican-blog-post/</link>
+      <pubDate>Wed, 13 Jan 2016 17:16:54 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/ipython-notebook-to-pelican-blog-post/</guid>
+      <description>tags: pelican, python この前のブログポストはIPython notebookでの作業をブログに載せたものだが，ちょっと面倒な方法だった． 直接 .ipynb ファイルを参照で</description>
+    </item>
+    
+    <item>
+      <title>Make AlMgSi-system LAMMPS file using ASE</title>
+      <link>https://ryokbys.github.io/2016/01/make-almgsi-system-using-ase/</link>
+      <pubDate>Wed, 13 Jan 2016 16:58:33 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/make-almgsi-system-using-ase/</guid>
+      <description>tags: research, alloy, ase, lammps, python
+A bit Math first To get $y$-at%Mg2Si for the 1.2wt%Mg2Si system, calculate the following simultaneous equations,
+$$\begin{aligned} \frac{(\text{Mg$_2$Si})_y}{\text{Al}_x +(\text{Mg$_2$Si})_y} &amp;amp;=&amp;amp; 0.012, \ x + y &amp;amp;=&amp;amp; 1, \end{aligned}$$
+using masses, Al=26,981, Mg=24.305, and Si=28.085. We get $y\simeq 0.00425$.
+In case of 32000-atom system If we put (20,20,20) cubic FCC cells including 4 atoms in the simulation box, the box contains 32,000 atoms. In the 32000-atom system,</description>
+    </item>
+    
+    <item>
+      <title>A little bit more automating blog post</title>
+      <link>https://ryokbys.github.io/2016/01/a-little-bit-more-automating-blog-post/</link>
+      <pubDate>Sun, 10 Jan 2016 21:14:58 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/a-little-bit-more-automating-blog-post/</guid>
+      <description>tags: pelican, python, mac 以前に，Pelicanでのブログ投稿をある程度自動化するツールを作成することについて書いたが， それでもまだいろいろと自動化する必要が</description>
+    </item>
+    
+    <item>
+      <title>Use argsort</title>
+      <link>https://ryokbys.github.io/2016/01/use-argsort/</link>
+      <pubDate>Sun, 10 Jan 2016 18:43:15 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/use-argsort/</guid>
+      <description>tags: python Numpyパッケージにリストを並び替えるための argsort という関数があるが，その使い方がちょいと難しいからメモ． &amp;gt;&amp;gt;&amp;gt; a= np.array([3,1,2]) &amp;gt;&amp;gt;&amp;gt; b= np.argsort(a) &amp;gt;&amp;gt;&amp;gt; b array([1, 2, 0]) &amp;gt;&amp;gt;&amp;gt; a array([3, 1, 2])</description>
+    </item>
+    
+    <item>
+      <title>Inheritance in python</title>
+      <link>https://ryokbys.github.io/2016/01/inheritance-in-python/</link>
+      <pubDate>Fri, 08 Jan 2016 18:12:45 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/inheritance-in-python/</guid>
+      <description>tags: python Pythonでクラスの継承の仕方を練習したのでメモしておく． 以下のようにして， ClassA と ClassB を定義する． class ClassA(object): def __init__(self,x): self.x= x def multi(self): return self.x *self.x class ClassB(ClassA): def multi(self): return super(ClassB,self).multi() *self.x これ</description>
+    </item>
+    
+    <item>
+      <title>Internet speed in Switzerland</title>
+      <link>https://ryokbys.github.io/2016/01/internet_speed/</link>
+      <pubDate>Fri, 08 Jan 2016 11:20:39 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/internet_speed/</guid>
+      <description>tags: swiss インターネットのスピードは（実際のところは分からないが）心象的には，かなり仕事の効率に影響するように感じる． そこで，以下のサイトを用いて</description>
+    </item>
+    
+    <item>
+      <title>Use logger in python</title>
+      <link>https://ryokbys.github.io/2016/01/logger/</link>
+      <pubDate>Thu, 07 Jan 2016 18:38:11 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/logger/</guid>
+      <description>tags: python 使用例 Pythonでのloggerの使い方を学んだからメモしておく． import logging logger= logging.getLogger(__name__) console = logging.StreamHandler() console.setLevel(logging.INFO) logger.setLevel(logging.INFO) formatter = logging.Formatter(&amp;#39;%(name)-12s: %(levelname)-8s%(message)s&amp;#39;) console.setFormatter(formatter) logger.addHandler(console) logger.debug(&amp;#39;this is debug&amp;#39;) logger.info(&amp;#39;this is info&amp;#39;) logger.warn(&amp;#39;this is warn&amp;#39;) logger.error(&amp;#39;this is error&amp;#39;) logger.critical(&amp;#39;this is critical&amp;#39;) のように</description>
+    </item>
+    
+    <item>
+      <title>From gnuplot to inkscape</title>
+      <link>https://ryokbys.github.io/2016/01/gnuplot_inkscale/</link>
+      <pubDate>Wed, 06 Jan 2016 11:39:42 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/gnuplot_inkscale/</guid>
+      <description>tags: mac, research, inkscape Mac OSXのバージョンがEl Capitanになってから，Illustrator CS4の調子がすこぶる悪く，ほぼ使えない状態なので，gn</description>
+    </item>
+    
+    <item>
+      <title>Internet in Switzerland\...</title>
+      <link>https://ryokbys.github.io/2016/01/internet_swiss/</link>
+      <pubDate>Mon, 04 Jan 2016 20:27:09 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/internet_swiss/</guid>
+      <description>tags: swiss スイスで暮らし始めて１ヶ月になるが未だに安定したインターネット環境が得られない． インターネット込みの家具付きアパートを契約しているので，</description>
+    </item>
+    
+    <item>
+      <title>Python utility for creating new post</title>
+      <link>https://ryokbys.github.io/2016/01/create_post/</link>
+      <pubDate>Sun, 03 Jan 2016 21:20:43 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2016/01/create_post/</guid>
+      <description>tags: python, pelican Pelicanでブログポストを作るときに，作成するファイル自体をtinkererで : $ tinker --post とした時のように，日付で整理されたディレクト</description>
+    </item>
+    
+  </channel>
+</rss>

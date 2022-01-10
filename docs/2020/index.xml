@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2020s on R.K.S. website</title>
+    <link>https://ryokbys.github.io/2020/</link>
+    <description>Recent content in 2020s on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 27 Nov 2020 12:44:50 +0900</lastBuildDate><atom:link href="https://ryokbys.github.io/2020/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>clang error after upgrading to macOS Big Sur</title>
+      <link>https://ryokbys.github.io/2020/11/clang-error-after-upgrading-to-big-sur/</link>
+      <pubDate>Fri, 27 Nov 2020 12:44:50 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/11/clang-error-after-upgrading-to-big-sur/</guid>
+      <description>Upgraded macOS from Catalina to Big Sur today. So far almost no trouble occured after this OS upgrade except that there is an error when I tried to compile some program with using gfortran such as,
+clang: error: invalid version number in &amp;#39;-mmacosx-version-min=11.0&amp;#39; But this was solved by updating Xcode via App Store.
+I prefer the appearance of Big Sur to Catalina ;)</description>
+    </item>
+    
+    <item>
+      <title>No more car navigation...</title>
+      <link>https://ryokbys.github.io/2020/11/no-more-car-navigation.../</link>
+      <pubDate>Tue, 03 Nov 2020 22:24:35 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/11/no-more-car-navigation.../</guid>
+      <description>最近車を買い替えたが，新しい車ではカーナビとして Android auto で Google map を利用するのがデフォルトとなっている．以前から思ってはいたことだが，このやり方より</description>
+    </item>
+    
+    <item>
+      <title>fp.py on ISSP Ohtaka</title>
+      <link>https://ryokbys.github.io/2020/10/fp.py-on-issp-ohtaka/</link>
+      <pubDate>Sun, 18 Oct 2020 10:54:42 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/10/fp.py-on-issp-ohtaka/</guid>
+      <description>東大物性研のスパコン[1]のシステムBというのが使えるようになったので，そこで自分のプログラムの動作確認をした．古典力場構築プログラムfp.</description>
+    </item>
+    
+    <item>
+      <title>My Obsidian workflow</title>
+      <link>https://ryokbys.github.io/2020/08/my-obsidian-workflow/</link>
+      <pubDate>Mon, 03 Aug 2020 11:39:17 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/08/my-obsidian-workflow/</guid>
+      <description>Obsidianというnote-takingアプリがなかなか良く出来たアプリで，今流行りのZettelkastenが実装できるというので一ヶ</description>
+    </item>
+    
+    <item>
+      <title>Quiver to Obsidian</title>
+      <link>https://ryokbys.github.io/2020/07/quiver-to-obsidian/</link>
+      <pubDate>Tue, 14 Jul 2020 15:38:07 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/07/quiver-to-obsidian/</guid>
+      <description>今回もnote-takingアプリに関すること． 前回のポストがZettlrからQuiverにで戻ったというポストだったが，そこからさらにOb</description>
+    </item>
+    
+    <item>
+      <title>Back to Quiver from Zettlr</title>
+      <link>https://ryokbys.github.io/2020/07/back-to-quiver-from-zettlr/</link>
+      <pubDate>Mon, 06 Jul 2020 20:31:23 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/07/back-to-quiver-from-zettlr/</guid>
+      <description>数日前にQuiverを捨ててZettlrに移行したのだが，１週間程度でQuiverに戻ってきてしまった．最初，ZettlrのWYSIWYGス</description>
+    </item>
+    
+    <item>
+      <title>Automator quick action on macOS</title>
+      <link>https://ryokbys.github.io/2020/07/automator-quick-action/</link>
+      <pubDate>Sat, 04 Jul 2020 22:07:40 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/07/automator-quick-action/</guid>
+      <description>とある目的で，何らかのファイルを特定のフォルダにコピーし，ファイル名が年月日から始まるように変更したかった．これまではそれを手動で行っていた</description>
+    </item>
+    
+    <item>
+      <title>Note-takingアプリ</title>
+      <link>https://ryokbys.github.io/2020/06/zettlr/</link>
+      <pubDate>Sun, 28 Jun 2020 22:04:02 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/06/zettlr/</guid>
+      <description>ここ数年はnote-takingアプリとしてQuiverというアプリを使っていたが， 個人開発アプリなので開発スピードが遅い 最近アップデートが</description>
+    </item>
+    
+    <item>
+      <title>MacBookPro移行記録</title>
+      <link>https://ryokbys.github.io/2020/06/macbookpro-transition/</link>
+      <pubDate>Sun, 14 Jun 2020 17:46:49 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/06/macbookpro-transition/</guid>
+      <description>MacBookPro買い替え とある研究所の委託研究費で昨年度に購入したMacBookProは，研究期間が終了したら返却しなければいけなかった</description>
+    </item>
+    
+    <item>
+      <title>Yield strength of high entropy alloys</title>
+      <link>https://ryokbys.github.io/2020/05/yield-strength-of-high-entropy-alloys/</link>
+      <pubDate>Thu, 28 May 2020 23:05:07 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/05/yield-strength-of-high-entropy-alloys/</guid>
+      <description>論文覚書． B. Yin and W. A. Curtin, “Origin of high strength in the CoCrFeNiPd high-entropy alloy,” Mater. Res. Lett., vol. 8, no. 6, pp. 209–215, 2020. B. Yin, S. Yoshida, N. Tsuji, and W. A. Curtin, “Yield strength and misfit volumes of</description>
+    </item>
+    
+    <item>
+      <title>MTU setting on macOS for VPN connection</title>
+      <link>https://ryokbys.github.io/2020/05/mtu-setting-on-macos-for-vpn-connection/</link>
+      <pubDate>Thu, 28 May 2020 17:15:29 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/05/mtu-setting-on-macos-for-vpn-connection/</guid>
+      <description>Work from home&amp;hellip; コロナの影響で，最近はずっと自宅からリモートワークをしている． リモートワークで職場のネットワークにアクセスするには，VPN接続が必要な</description>
+    </item>
+    
+    <item>
+      <title>Simplify rsync workflow</title>
+      <link>https://ryokbys.github.io/2020/04/simply-rsync-workflow/</link>
+      <pubDate>Tue, 21 Apr 2020 12:59:40 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/04/simply-rsync-workflow/</guid>
+      <description>If you are using remote computers on a daily basis, you probably use rsync command for transfering data between the local machine and remote machines. And you may need to type remote directory every time you use rsync command, which is a small effort for a single case but it costs a lot if you do the smae thing many times. The script rsync_wrapper.py is a helper script to avoid typing remote directory every time you use rsync.</description>
+    </item>
+    
+    <item>
+      <title>AtomEye on macOS Catalina</title>
+      <link>https://ryokbys.github.io/2020/04/atomeye-on-macos-catalina/</link>
+      <pubDate>Tue, 14 Apr 2020 17:18:08 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/04/atomeye-on-macos-catalina/</guid>
+      <description>AtomEye AtomEyeは原子・分子シミュレーションの構造を可視化するツール．コマンドラインに特化しているようで使い勝手が良いソフトウェアではないと</description>
+    </item>
+    
+    <item>
+      <title>Stylish Jupyter Notebook with jupyter-themes</title>
+      <link>https://ryokbys.github.io/2020/03/jupyter-themes/</link>
+      <pubDate>Tue, 24 Mar 2020 10:24:48 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/03/jupyter-themes/</guid>
+      <description>Appearance of Jupyter Notebook can be modified using jupyter-themes. See the following websites for details, jupyterの表示拡張機能、jupyter-themesを徹底紹介する jupyter-themes の fontについて Chrome extension Stylish should be installed in addition to</description>
+    </item>
+    
+    <item>
+      <title>2020年初頭における作業環境</title>
+      <link>https://ryokbys.github.io/2020/03/2020-environment/</link>
+      <pubDate>Sun, 15 Mar 2020 21:56:22 +0900</pubDate>
+      
+      <guid>https://ryokbys.github.io/2020/03/2020-environment/</guid>
+      <description>もう最近はこれを毎年メモするだけのブログになってきているので，今年も書いておく． すでに３月も中旬なので初頭というのはフェイクニュースだが． Mac</description>
+    </item>
+    
+  </channel>
+</rss>

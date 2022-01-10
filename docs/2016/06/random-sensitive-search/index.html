@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Random structure search &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Random structure search</h1>
+  <time datetime=2016-06-14T14:25:38Z class="post-date">Tue, Jun 14, 2016</time>
+  <p>tags: research
+EPFLでの会議PASC16にて，Chris J Pickardの発表を聴いた． そこで <strong>Ab
+initio random structure search (AIRSS)</strong>
+を紹介していたので下記論文を読んでみた．</p>
+<ul>
+<li>Pickard, C. J., &amp; Needs, R. J. (2011). Ab initio random structure
+searching. Journal of Physics: Condensed Matter, 23(5), 053201.
+<a href="http://doi.org/10.1088/0953-8984/23/5/053201">http://doi.org/10.1088/0953-8984/23/5/053201</a></li>
+</ul>
+<p>これまでにいくつかの構造探索アルゴリズムが提案されているが，ランダム探索といくつかのバイアス（原子間の結びつきや対称性）を加えるというシンプルなものが良いよという論文．
+結局，以下に挙げられるようなどんなグローバル探索手法でも一長一短でこれが良いという決定打はない．ランダム検索でないと最安定構造を逃すことも多い．</p>
+<p>しかし，当然ランダム探索では <strong>curse of dimensionality (次元の呪い)</strong>
+によって扱えないクラスの問題もあるようで，電池材料のような元素がたくさん絡んでくるものはまだ難しいようだ．</p>
+<h1 id="構造探索手法">構造探索手法</h1>
+<ul>
+<li>ランダム探索</li>
+<li>Simulated anealling (SA)</li>
+<li>Ensemble SA: いくつかの異なる初期値から並列にSA</li>
+<li>Parallel tempering-like SA: いくつかの異なる温度でのSA</li>
+<li>Particle swarm: ムクドリの大群を模擬したような手法</li>
+<li>Evolutional algorithm: 進化論を模擬したような手法</li>
+<li>Basin/minima hopping: local
+minimaをホッピングしていく手法（良く知らない）</li>
+<li>Metadynamics:
+既に調べた探索空間にポテンシャルを加えていき新たな空間を探索</li>
+</ul>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

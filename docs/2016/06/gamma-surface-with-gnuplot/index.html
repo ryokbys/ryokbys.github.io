@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>gamma surface with gnuplot &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>gamma surface with gnuplot</h1>
+  <time datetime=2016-06-19T23:02:20Z class="post-date">Sun, Jun 19, 2016</time>
+  <p>tags: research, gnuplot
+材料の機械的性質を議論する場合，generalized stacking fault もしくは
+gamma surface を考える場合が多い．
+その場合，ある面内で上下の原子をシフトした場合のエネルギーがどう変化するかを調べるわけだが，その可視化として二次元カラーで表示することが多いようだ．
+これは，gnuplotで以下のようにして可視化できる．</p>
+<h1 id="data-format">Data format</h1>
+<p>x座標，y座標，データの３列のデータを以下のように並べる． :</p>
+<pre><code>0.000   0.000 -9.96910530855912E+001
+0.000   0.033 -9.89868134250834E+001
+0.000   0.067 -9.74010559556275E+001
+...
+0.000   0.967 -9.88510003534038E+001
+0.000   1.000 -9.96910530855912E+001
+
+0.200   0.000 -9.32691179812626E+001
+0.200   0.033 -9.14654801350688E+001
+</code></pre>
+<p>のように <strong>xデータの値が変わるところで空行が必要．</strong> これが結構厄介．
+<a href="http://cosmos.ge.ce.nihon-u.ac.jp/diary/20130826.html">ココ</a>
+などでawk空行を挿入するスクリプトなどが公開されているが，
+そもそもxデータが毎行変化するようなデータの場合は毎行に空行を入れる必要がある（これ自体は簡単だが，そもそもそれが必要な意味が．．．）</p>
+<hr>
+<h1 id="pm3d">pm3d</h1>
+<pre><code>reset
+unset key
+set pm3d map
+set pm3d interpolate 10,10
+set xrange [0:1]
+set yrange [0:1]
+set cbrange [0:10]
+set format x &quot;&quot;
+set format y &quot;&quot;
+set palette rgbformulae 33,13,10
+splot fname us 1:2:($3-(e0)) with pm3d
+</code></pre>
+<p>こうすると，以下のようなカラーマップで出力できる．</p>
+<p><img src="https://c2.staticflickr.com/8/7706/27167190134_9010c3bb5a_o.png" alt="">{.align-right
+width=&ldquo;500px&rdquo;}</p>
+<p>ここで， :</p>
+<pre><code>set pm3d map
+</code></pre>
+<p>とし， :</p>
+<pre><code>set pm3d interpolate 10,10
+</code></pre>
+<p>のようにすることで，少ないデータ点の間を補間してなめらかなカラーマップとできる．
+:</p>
+<pre><code>set palette rgbformulae 33,13,10
+</code></pre>
+<p>のところは， :</p>
+<pre><code>set palette defined (0 &quot;blue&quot;, 5 &quot;white&quot;, 10 &quot;red&quot;)
+</code></pre>
+<p>のような指定の仕方もあるらしい．この場合以下のようになる</p>
+<p><img src="https://c2.staticflickr.com/8/7599/27704738041_25e48c3795_o.png" alt="">{.align-right
+width=&ldquo;500px&rdquo;}</p>
+<hr>
+<h1 id="等高線も付ける">等高線も付ける</h1>
+<p>等高線も付ける場合は以下のようにする．
+以下の例では，全ての等高線を黒線としている．このようにline
+styleを指定しないと各等高線は別々の色となる． :</p>
+<pre><code>reset
+unset key
+set pm3d map
+set pm3d interpolate 10,10
+set contour
+set cntrparam cubicspline
+set cntrparam levels 10
+set style line 1 lw 1.0 lc rgb &quot;#000000&quot;
+set style line 2 lw 1.0 lc rgb &quot;#000000&quot;
+set style line 3 lw 1.0 lc rgb &quot;#000000&quot;
+set style line 4 lw 1.0 lc rgb &quot;#000000&quot;
+set style line 5 lw 1.0 lc rgb &quot;#000000&quot;
+set style line 6 lw 1.0 lc rgb &quot;#000000&quot;
+set style line 7 lw 1.0 lc rgb &quot;#000000&quot;
+set style line 8 lw 1.0 lc rgb &quot;#000000&quot;
+set style line 9 lw 1.0 lc rgb &quot;#000000&quot;
+set style line 10 lw 1.0 lc rgb &quot;#000000&quot;
+set style line 11 lw 1.0 lc rgb &quot;#000000&quot;
+set style line 12 lw 1.0 lc rgb &quot;#000000&quot;
+set style line 13 lw 1.0 lc rgb &quot;#000000&quot;
+set style line 14 lw 1.0 lc rgb &quot;#000000&quot;
+set style increment user
+set xrange [0:1]
+set yrange [0:1]
+set format x &quot;&quot;
+set format y &quot;&quot;
+set cblabel &quot;Stacking fault energy (mJ/m^2)&quot;
+set palette rgbformulae 33,13,10
+splot fname us 1:2:($3-(e0))/area*gpa with pm3d, \
+    fname us 1:2:($3-(e0))/area*gpa w l lt -1 lw 1.0 nosurface
+</code></pre>
+<p>結果は以下のような感じ．</p>
+<p><img src="https://c2.staticflickr.com/8/7425/27167191154_8c3789ff7b_o.png" alt="">{.align-right
+width=&ldquo;500px&rdquo;}</p>
+<p><code>set cblabel &quot;...&quot;</code> でカラー・マップのラベルを指定している．</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

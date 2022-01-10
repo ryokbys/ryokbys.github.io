@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.91.2" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bash: all the output to /dev/null &middot; R.K.S. website</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://ryokbys.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://ryokbys.github.io/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="https://ryokbys.github.io/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-08 ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://ryokbys.github.io/"><h1>R.K.S. website</h1></a>
+      <p class="lead">
+       Live as if you were to die tomorrow, learn as if you were to live forever... 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://ryokbys.github.io/">Home</a> </li>
+        <li><a href="https://github.com/ryokbys/"> Github </a></li><li><a href="https://www.linkedin.com/in/ryokobayashi/"> LinkedIn </a></li><li><a href="https://twitter.com/ryokbys"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Bash: all the output to /dev/null</h1>
+  <time datetime=2016-05-17T10:31:56Z class="post-date">Tue, May 17, 2016</time>
+  <p>tags: linux
+I wanted to run jupyter notebook background without showing any outputs
+from it. So I tried the following command, :</p>
+<pre><code>$ jupyter notebook hoge.ipynb 2&gt;&amp;1 &gt; /dev/null &amp;
+</code></pre>
+<p>But it still showed some outputs on the screen and interrupted me typing
+other commands. This is because, <code>2&gt;&amp;1</code> means that standard error output
+goes to where the standard output currently pointing to, which is not
+<code>/dev/null</code>. So I had to switch the order from <code>2&gt;&amp;1 &gt; /dev/null</code> to
+<code>1&gt;/dev/null 2&gt;&amp;1</code> to make the error output go to <code>/dev/null</code>. :</p>
+<pre><code>$ jupyter notebook hoge.ipynb &gt;/dev/null 2&gt;&amp;1 &amp;
+or
+$ jupyter notebook hoge.ipynb 1&gt;/dev/null 2&gt;&amp;1 &amp;
+</code></pre>
+<p>Reference:</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/18012930/how-to-redirect-all-output-to-dev-null">How to redirect all output to
+/dev/null</a></li>
+</ul>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

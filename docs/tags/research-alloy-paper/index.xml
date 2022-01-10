@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>research, alloy, paper on R.K.S. website</title>
+    <link>https://ryokbys.github.io/tags/research-alloy-paper/</link>
+    <description>Recent content in research, alloy, paper on R.K.S. website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 26 Dec 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://ryokbys.github.io/tags/research-alloy-paper/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Al-Mg-Si alloy paper</title>
+      <link>https://ryokbys.github.io/2015/12/26/al_mg_si_alloy_paper/</link>
+      <pubDate>Sat, 26 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://ryokbys.github.io/2015/12/26/al_mg_si_alloy_paper/</guid>
+      <description>Al-Mg-Si alloy paper Pogatscher et al, PRL 112, 225701 (2014) Al-Mg-Si alloyにSnを少量添加して，natural agingの負の効果を抑えて，artificial agingを促進できる</description>
+    </item>
+    
+  </channel>
+</rss>
